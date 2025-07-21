@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,6 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        jianpanConfig()
+        
+        getNotifaction()
         
         window = UIWindow(frame: UIScreen.main.bounds)
         
@@ -26,3 +31,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 }
 
+
+extension AppDelegate {
+    
+    private func jianpanConfig() {
+        IQKeyboardManager.shared.isEnabled = true
+        IQKeyboardManager.shared.resignOnTouchOutside = true
+    }
+    
+    private func getNotifaction() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(changeRootVc(_:)),
+            name: NSNotification.Name("CHANGEROOTPAGE"),
+            object: nil
+        )
+    }
+    
+    @objc func changeRootVc(_ noti: Notification) {
+        if islogin {
+            window?.rootViewController = CustomTabBarController()
+        }else {
+            window?.rootViewController = BaseNavigationController(rootViewController: LoginViewController())
+        }
+    }
+    
+    
+}

@@ -6,27 +6,38 @@
 //
 
 import UIKit
+import SnapKit
+import RxSwift
 
 class BaseView: UIView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    
+    let disposeBag = DisposeBag()
+    
+    lazy var gradientLayer: CAGradientLayer = {
+        let layer = CAGradientLayer()
+        layer.colors = [UIColor.init(hexStr: "#FFE265")!.cgColor, UIColor.init(hexStr: "#FFAF27")!.cgColor]
+        layer.startPoint = CGPoint(x: 0.5, y: 0)
+        layer.endPoint = CGPoint(x: 0.5, y: 1)
+        return layer
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        layer.insertSublayer(gradientLayer, at: 0)
     }
-    */
-
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        gradientLayer.frame = bounds
+    }
 }
 
 
 extension UIView {
-    /// 给 UIView 添加渐变色
-    /// - Parameters:
-    ///   - colors: 渐变色数组（支持 CGColor 或 UIColor）
-    ///   - startPoint: 起始点（默认从上到下）
-    ///   - endPoint: 结束点
-    ///   - cornerRadius: 圆角（可选）
     func addGradient(
         colors: [Any],
         startPoint: CGPoint = CGPoint(x: 0.5, y: 0),
@@ -43,5 +54,22 @@ extension UIView {
         // 移除之前的渐变色
         layer.sublayers?.filter { $0 is CAGradientLayer }.forEach { $0.removeFromSuperlayer() }
         layer.insertSublayer(gradientLayer, at: 0)
+    }
+}
+
+extension UIColor {
+    convenience init?(hexStr: String) {
+        let hexString = hexStr.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        guard hexString.hasPrefix("#") else {
+            return nil
+        }
+        let hexCode = hexString.dropFirst()
+        guard hexCode.count == 6, let rgbValue = UInt64(hexCode, radix: 16) else {
+            return nil
+        }
+        let blue = CGFloat(rgbValue & 0x0000FF) / 255.0
+        let green = CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0
+        let red = CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0
+        self.init(red: red, green: green, blue: blue, alpha: 1.0)
     }
 }

@@ -22,6 +22,8 @@ class LaunchViewController: UIViewController {
         // Do any additional setup after loading the view.
         view.addSubview(bgImageView)
         
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CHANGEROOTPAGE"), object: nil)
+        
     }
     
 

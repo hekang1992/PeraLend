@@ -20,5 +20,7 @@ target 'PeraLend' do
   pod 'SnapKit'
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'SAMKeychain'
+  pod 'lottie-ios'
 
 end

@@ -74,6 +74,7 @@ PODS:
   - IQTextView (1.0.5):
     - IQKeyboardToolbar/Placeholderable
   - Kingfisher (8.4.0)
+  - lottie-ios (4.5.2)
   - MJRefresh (3.7.9)
   - RxCocoa (6.9.0):
     - RxRelay (= 6.9.0)
@@ -84,6 +85,7 @@ PODS:
   - RxRelay (6.9.0):
     - RxSwift (= 6.9.0)
   - RxSwift (6.9.0)
+  - SAMKeychain (1.5.3)
   - SnapKit (5.7.1)
   - Toast-Swift (5.1.1)
   - TYAlertController (1.2.0)
@@ -95,10 +97,12 @@ DEPENDENCIES:
   - FBSDKCoreKit
   - IQKeyboardManagerSwift
   - Kingfisher
+  - lottie-ios
   - MJRefresh
   - RxCocoa
   - RxGesture
   - RxSwift
+  - SAMKeychain
   - SnapKit
   - Toast-Swift
   - TYAlertController
@@ -120,11 +124,13 @@ SPEC REPOS:
     - IQTextInputViewNotification
     - IQTextView
     - Kingfisher
+    - lottie-ios
     - MJRefresh
     - RxCocoa
     - RxGesture
     - RxRelay
     - RxSwift
+    - SAMKeychain
     - SnapKit
     - Toast-Swift
     - TYAlertController
@@ -145,15 +151,17 @@ SPEC CHECKSUMS:
   IQTextInputViewNotification: f5e954d8881fd9808b744e49e024cc0d4bcfe572
   IQTextView: ae13b4922f22e6f027f62c557d9f4f236b19d5c7
   Kingfisher: b14cc47bbfa7a3c150dd12962ee9c86338545629
+  lottie-ios: 96784afc26ea031d3e2b6cae342a4b8915072489
   MJRefresh: ff9e531227924c84ce459338414550a05d2aea78
   RxCocoa: ac16414696ae706516be3e1ab00fcce5bdc9be8a
   RxGesture: f3efb47ed2d26a8082f7b660d4a59970e275a7f8
   RxRelay: 6b0c930e5cef57d5fe2032571e5e65b78e3cbdb1
   RxSwift: 31649ace6aceeb422e16ff71c60804f9c3281ed9
+  SAMKeychain: 483e1c9f32984d50ca961e26818a534283b4cd5c
   SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
   Toast-Swift: 7a03a532afe3a560d4044bc7c237e2864d295173
   TYAlertController: c121090edb0bea7426f987da94cdddd81eef4231
 
-PODFILE CHECKSUM: 9750606ddb6b6ac3e8b44798aae7bea018fb2b1c
+PODFILE CHECKSUM: cbeb2f77cf95fe95cf421d36c9a14def2e86e654
 
 COCOAPODS: 1.16.2

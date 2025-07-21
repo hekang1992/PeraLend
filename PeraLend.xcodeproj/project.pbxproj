@@ -11,6 +11,20 @@
 		73397C682E2DD05B00732DE5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73397C672E2DD05B00732DE5 /* BaseViewController.swift */; };
 		73397C6A2E2DD06400732DE5 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73397C692E2DD06400732DE5 /* LaunchViewController.swift */; };
 		73397C6D2E2DD12D00732DE5 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73397C6C2E2DD12D00732DE5 /* BaseView.swift */; };
+		73397C722E2DD5A200732DE5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73397C712E2DD5A200732DE5 /* LoginView.swift */; };
+		73397C742E2DD5B500732DE5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73397C732E2DD5B500732DE5 /* LoginViewController.swift */; };
+		73397C762E2DD77100732DE5 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73397C752E2DD77100732DE5 /* CustomTabBarController.swift */; };
+		73397C782E2DD7B400732DE5 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73397C772E2DD7B400732DE5 /* BaseNavigationController.swift */; };
+		73397C7A2E2DDA8F00732DE5 /* PhoneListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73397C792E2DDA8F00732DE5 /* PhoneListView.swift */; };
+		73397C7D2E2DEDA100732DE5 /* loginConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73397C7C2E2DED9C00732DE5 /* loginConfig.swift */; };
+		73397C7F2E2DF15100732DE5 /* httprequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73397C7E2E2DF14100732DE5 /* httprequest.swift */; };
+		73397C812E2DF1B900732DE5 /* model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73397C802E2DF1B700732DE5 /* model.swift */; };
+		73397C832E2E031000732DE5 /* hud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73397C822E2E030D00732DE5 /* hud.swift */; };
+		73397C872E2E047D00732DE5 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 73397C862E2E047D00732DE5 /* loading.json */; };
+		73397C8E2E2E14D500732DE5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73397C8D2E2E14D500732DE5 /* HomeViewController.swift */; };
+		73397C902E2E14DD00732DE5 /* CenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73397C8F2E2E14DD00732DE5 /* CenterViewController.swift */; };
+		73397C922E2E175E00732DE5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73397C912E2E175E00732DE5 /* HomeView.swift */; };
+		73397C942E2E1ED600732DE5 /* CenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73397C932E2E1ED600732DE5 /* CenterView.swift */; };
 		73D10F5E2E2DCD0500CCFEF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73D10F552E2DCD0500CCFEF1 /* Assets.xcassets */; };
 		73D10F602E2DCD0500CCFEF1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73D10F582E2DCD0500CCFEF1 /* LaunchScreen.storyboard */; };
 		73D10F622E2DCD0500CCFEF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D10F542E2DCD0500CCFEF1 /* AppDelegate.swift */; };
@@ -21,6 +35,20 @@
 		73397C672E2DD05B00732DE5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		73397C692E2DD06400732DE5 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		73397C6C2E2DD12D00732DE5 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		73397C712E2DD5A200732DE5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		73397C732E2DD5B500732DE5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		73397C752E2DD77100732DE5 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		73397C772E2DD7B400732DE5 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		73397C792E2DDA8F00732DE5 /* PhoneListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneListView.swift; sourceTree = "<group>"; };
+		73397C7C2E2DED9C00732DE5 /* loginConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginConfig.swift; sourceTree = "<group>"; };
+		73397C7E2E2DF14100732DE5 /* httprequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = httprequest.swift; sourceTree = "<group>"; };
+		73397C802E2DF1B700732DE5 /* model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = model.swift; sourceTree = "<group>"; };
+		73397C822E2E030D00732DE5 /* hud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hud.swift; sourceTree = "<group>"; };
+		73397C862E2E047D00732DE5 /* loading.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
+		73397C8D2E2E14D500732DE5 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		73397C8F2E2E14DD00732DE5 /* CenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterViewController.swift; sourceTree = "<group>"; };
+		73397C912E2E175E00732DE5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		73397C932E2E1ED600732DE5 /* CenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterView.swift; sourceTree = "<group>"; };
 		73D10F3C2E2DCCFD00CCFEF1 /* PeraLend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeraLend.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73D10F542E2DCD0500CCFEF1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73D10F552E2DCD0500CCFEF1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -48,7 +76,6 @@
 				30D8EE2E2BB3896526AFAD5A /* Pods-PeraLend.debug.xcconfig */,
 				949416498096A99F3ADDD2AF /* Pods-PeraLend.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -66,8 +93,57 @@
 				73397C6C2E2DD12D00732DE5 /* BaseView.swift */,
 				73397C672E2DD05B00732DE5 /* BaseViewController.swift */,
 				73397C692E2DD06400732DE5 /* LaunchViewController.swift */,
+				73397C752E2DD77100732DE5 /* CustomTabBarController.swift */,
+				73397C772E2DD7B400732DE5 /* BaseNavigationController.swift */,
 			);
 			path = base;
+			sourceTree = "<group>";
+		};
+		73397C6E2E2DD4D500732DE5 /* login */ = {
+			isa = PBXGroup;
+			children = (
+				73397C712E2DD5A200732DE5 /* LoginView.swift */,
+				73397C792E2DDA8F00732DE5 /* PhoneListView.swift */,
+				73397C732E2DD5B500732DE5 /* LoginViewController.swift */,
+			);
+			path = login;
+			sourceTree = "<group>";
+		};
+		73397C7B2E2DED7B00732DE5 /* http */ = {
+			isa = PBXGroup;
+			children = (
+				73397C822E2E030D00732DE5 /* hud.swift */,
+				73397C862E2E047D00732DE5 /* loading.json */,
+				73397C802E2DF1B700732DE5 /* model.swift */,
+				73397C7E2E2DF14100732DE5 /* httprequest.swift */,
+				73397C7C2E2DED9C00732DE5 /* loginConfig.swift */,
+			);
+			path = http;
+			sourceTree = "<group>";
+		};
+		73397C882E2E147C00732DE5 /* home */ = {
+			isa = PBXGroup;
+			children = (
+				73397C912E2E175E00732DE5 /* HomeView.swift */,
+				73397C8D2E2E14D500732DE5 /* HomeViewController.swift */,
+			);
+			path = home;
+			sourceTree = "<group>";
+		};
+		73397C892E2E148000732DE5 /* center */ = {
+			isa = PBXGroup;
+			children = (
+				73397C932E2E1ED600732DE5 /* CenterView.swift */,
+				73397C8F2E2E14DD00732DE5 /* CenterViewController.swift */,
+			);
+			path = center;
+			sourceTree = "<group>";
+		};
+		73397C8A2E2E148600732DE5 /* order */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = order;
 			sourceTree = "<group>";
 		};
 		73D10F332E2DCCFD00CCFEF1 = {
@@ -95,6 +171,11 @@
 				73D10F552E2DCD0500CCFEF1 /* Assets.xcassets */,
 				73D10F542E2DCD0500CCFEF1 /* AppDelegate.swift */,
 				73D10F582E2DCD0500CCFEF1 /* LaunchScreen.storyboard */,
+				73397C8A2E2E148600732DE5 /* order */,
+				73397C892E2E148000732DE5 /* center */,
+				73397C882E2E147C00732DE5 /* home */,
+				73397C7B2E2DED7B00732DE5 /* http */,
+				73397C6E2E2DD4D500732DE5 /* login */,
 				73397C662E2DD04400732DE5 /* base */,
 			);
 			path = PeraLend;
@@ -163,6 +244,7 @@
 			files = (
 				73D10F5E2E2DCD0500CCFEF1 /* Assets.xcassets in Resources */,
 				73D10F602E2DCD0500CCFEF1 /* LaunchScreen.storyboard in Resources */,
+				73397C872E2E047D00732DE5 /* loading.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,9 +281,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PeraLend/Pods-PeraLend-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PeraLend/Pods-PeraLend-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -215,10 +301,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73397C782E2DD7B400732DE5 /* BaseNavigationController.swift in Sources */,
+				73397C832E2E031000732DE5 /* hud.swift in Sources */,
 				73D10F622E2DCD0500CCFEF1 /* AppDelegate.swift in Sources */,
 				73397C6A2E2DD06400732DE5 /* LaunchViewController.swift in Sources */,
 				73397C682E2DD05B00732DE5 /* BaseViewController.swift in Sources */,
+				73397C8E2E2E14D500732DE5 /* HomeViewController.swift in Sources */,
+				73397C762E2DD77100732DE5 /* CustomTabBarController.swift in Sources */,
+				73397C942E2E1ED600732DE5 /* CenterView.swift in Sources */,
+				73397C7A2E2DDA8F00732DE5 /* PhoneListView.swift in Sources */,
+				73397C722E2DD5A200732DE5 /* LoginView.swift in Sources */,
+				73397C902E2E14DD00732DE5 /* CenterViewController.swift in Sources */,
+				73397C812E2DF1B900732DE5 /* model.swift in Sources */,
 				73397C6D2E2DD12D00732DE5 /* BaseView.swift in Sources */,
+				73397C742E2DD5B500732DE5 /* LoginViewController.swift in Sources */,
+				73397C922E2E175E00732DE5 /* HomeView.swift in Sources */,
+				73397C7F2E2DF15100732DE5 /* httprequest.swift in Sources */,
+				73397C7D2E2DEDA100732DE5 /* loginConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
