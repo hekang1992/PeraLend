@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		550FF02CC98A753B997005B5 /* Pods_PeraLend.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FFE6F7FE1CD09A214DAC321 /* Pods_PeraLend.framework */; };
 		73397C682E2DD05B00732DE5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73397C672E2DD05B00732DE5 /* BaseViewController.swift */; };
 		73397C6A2E2DD06400732DE5 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73397C692E2DD06400732DE5 /* LaunchViewController.swift */; };
 		73397C6D2E2DD12D00732DE5 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73397C6C2E2DD12D00732DE5 /* BaseView.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		30D8EE2E2BB3896526AFAD5A /* Pods-PeraLend.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeraLend.debug.xcconfig"; path = "Target Support Files/Pods-PeraLend/Pods-PeraLend.debug.xcconfig"; sourceTree = "<group>"; };
 		73397C672E2DD05B00732DE5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		73397C692E2DD06400732DE5 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		73397C6C2E2DD12D00732DE5 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
@@ -24,6 +26,8 @@
 		73D10F552E2DCD0500CCFEF1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		73D10F562E2DCD0500CCFEF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73D10F572E2DCD0500CCFEF1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7FFE6F7FE1CD09A214DAC321 /* Pods_PeraLend.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PeraLend.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		949416498096A99F3ADDD2AF /* Pods-PeraLend.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeraLend.release.xcconfig"; path = "Target Support Files/Pods-PeraLend/Pods-PeraLend.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,12 +35,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				550FF02CC98A753B997005B5 /* Pods_PeraLend.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D568FB95E6E8719C23944CF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				30D8EE2E2BB3896526AFAD5A /* Pods-PeraLend.debug.xcconfig */,
+				949416498096A99F3ADDD2AF /* Pods-PeraLend.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		56E4779469429CCFF9EDC430 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7FFE6F7FE1CD09A214DAC321 /* Pods_PeraLend.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		73397C662E2DD04400732DE5 /* base */ = {
 			isa = PBXGroup;
 			children = (
@@ -52,6 +75,8 @@
 			children = (
 				73D10F5D2E2DCD0500CCFEF1 /* PeraLend */,
 				73D10F3D2E2DCCFD00CCFEF1 /* Products */,
+				1D568FB95E6E8719C23944CF /* Pods */,
+				56E4779469429CCFF9EDC430 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -82,17 +107,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 73D10F4F2E2DCCFE00CCFEF1 /* Build configuration list for PBXNativeTarget "PeraLend" */;
 			buildPhases = (
+				6E106BF8E3E431C918A4B3F3 /* [CP] Check Pods Manifest.lock */,
 				73D10F382E2DCCFD00CCFEF1 /* Sources */,
 				73D10F392E2DCCFD00CCFEF1 /* Frameworks */,
 				73D10F3A2E2DCCFD00CCFEF1 /* Resources */,
+				A4A3CA7B59039A415965BAAB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = PeraLend;
-			packageProductDependencies = (
-			);
 			productName = PeraLend;
 			productReference = 73D10F3C2E2DCCFD00CCFEF1 /* PeraLend.app */;
 			productType = "com.apple.product-type.application";
@@ -143,6 +168,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6E106BF8E3E431C918A4B3F3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PeraLend-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A4A3CA7B59039A415965BAAB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PeraLend/Pods-PeraLend-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PeraLend/Pods-PeraLend-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PeraLend/Pods-PeraLend-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		73D10F382E2DCCFD00CCFEF1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -171,6 +238,7 @@
 /* Begin XCBuildConfiguration section */
 		73D10F502E2DCCFE00CCFEF1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30D8EE2E2BB3896526AFAD5A /* Pods-PeraLend.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -207,6 +275,7 @@
 		};
 		73D10F512E2DCCFE00CCFEF1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 949416498096A99F3ADDD2AF /* Pods-PeraLend.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
