@@ -17,7 +17,7 @@ final class LoginConfig {
         static let platform = "ios"
         static let appVersion = "1.0.0"
         static let apiIdentifier = "peralendapi"
-        static let loginPageKey = "LOGINPAGE"
+        static let loginPageKey = "token"
     }
     
     // MARK: - Properties

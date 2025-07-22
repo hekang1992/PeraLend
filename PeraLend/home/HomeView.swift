@@ -12,6 +12,8 @@ let screenheight = UIScreen.main.bounds.size.height
 
 class HomeView: BaseView {
     
+    var applyBlock: (() -> Void)?
+    
     var homeModel: phrenlikeModel? {
         didSet {
             guard let homeModel = homeModel else { return }
@@ -34,6 +36,7 @@ class HomeView: BaseView {
     lazy var headImageView: UIImageView = {
         let headImageView = UIImageView()
         headImageView.image = UIImage(named: "home_one_head")
+        headImageView.isUserInteractionEnabled = true
         return headImageView
     }()
     
@@ -176,8 +179,25 @@ class HomeView: BaseView {
             make.centerX.equalToSuperview()
             make.top.equalTo(moneyLabel.snp.bottom).offset(10)
             make.height.equalTo(26)
-            
         }
+        
+        headImageView
+            .rx
+            .tapGesture()
+            .when(.recognized)
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.applyBlock?()
+            }).disposed(by: disposeBag)
+        
+        applyBtn
+            .rx
+            .tap
+            .subscribe(onNext: { [weak self] in
+                guard let self = self else { return }
+                self.applyBlock?()
+            }).disposed(by: disposeBag)
+        
     }
     
     @MainActor required init?(coder: NSCoder) {

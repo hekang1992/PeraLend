@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		550FF02CC98A753B997005B5 /* Pods_PeraLend.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FFE6F7FE1CD09A214DAC321 /* Pods_PeraLend.framework */; };
+		731897392E2F2BC800846439 /* AVMuidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731897382E2F2BC800846439 /* AVMuidViewController.swift */; };
+		7318973B2E2F399500846439 /* AVMuidTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7318973A2E2F399500846439 /* AVMuidTableViewCell.swift */; };
+		7318973D2E2F5A6400846439 /* AuthListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7318973C2E2F5A6400846439 /* AuthListViewController.swift */; };
+		7318973F2E2F5AA600846439 /* PhotoFaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7318973E2E2F5AA600846439 /* PhotoFaceViewController.swift */; };
 		73397C682E2DD05B00732DE5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73397C672E2DD05B00732DE5 /* BaseViewController.swift */; };
 		73397C6A2E2DD06400732DE5 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73397C692E2DD06400732DE5 /* LaunchViewController.swift */; };
 		73397C6D2E2DD12D00732DE5 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73397C6C2E2DD12D00732DE5 /* BaseView.swift */; };
@@ -36,6 +40,10 @@
 
 /* Begin PBXFileReference section */
 		30D8EE2E2BB3896526AFAD5A /* Pods-PeraLend.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeraLend.debug.xcconfig"; path = "Target Support Files/Pods-PeraLend/Pods-PeraLend.debug.xcconfig"; sourceTree = "<group>"; };
+		731897382E2F2BC800846439 /* AVMuidViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVMuidViewController.swift; sourceTree = "<group>"; };
+		7318973A2E2F399500846439 /* AVMuidTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVMuidTableViewCell.swift; sourceTree = "<group>"; };
+		7318973C2E2F5A6400846439 /* AuthListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthListViewController.swift; sourceTree = "<group>"; };
+		7318973E2E2F5AA600846439 /* PhotoFaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFaceViewController.swift; sourceTree = "<group>"; };
 		73397C672E2DD05B00732DE5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		73397C692E2DD06400732DE5 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		73397C6C2E2DD12D00732DE5 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
@@ -93,6 +101,17 @@
 				7FFE6F7FE1CD09A214DAC321 /* Pods_PeraLend.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		731897372E2F2BA800846439 /* auth */ = {
+			isa = PBXGroup;
+			children = (
+				731897382E2F2BC800846439 /* AVMuidViewController.swift */,
+				7318973A2E2F399500846439 /* AVMuidTableViewCell.swift */,
+				7318973C2E2F5A6400846439 /* AuthListViewController.swift */,
+				7318973E2E2F5AA600846439 /* PhotoFaceViewController.swift */,
+			);
+			path = auth;
 			sourceTree = "<group>";
 		};
 		73397C662E2DD04400732DE5 /* base */ = {
@@ -183,6 +202,7 @@
 				73D10F552E2DCD0500CCFEF1 /* Assets.xcassets */,
 				73D10F542E2DCD0500CCFEF1 /* AppDelegate.swift */,
 				73D10F582E2DCD0500CCFEF1 /* LaunchScreen.storyboard */,
+				731897372E2F2BA800846439 /* auth */,
 				73397C8A2E2E148600732DE5 /* order */,
 				73397C892E2E148000732DE5 /* center */,
 				73397C882E2E147C00732DE5 /* home */,
@@ -315,7 +335,10 @@
 			files = (
 				73397C782E2DD7B400732DE5 /* BaseNavigationController.swift in Sources */,
 				73397C9A2E2E2A2900732DE5 /* SettingView.swift in Sources */,
+				731897392E2F2BC800846439 /* AVMuidViewController.swift in Sources */,
 				73397C9C2E2E34D200732DE5 /* PopLogoutView.swift in Sources */,
+				7318973D2E2F5A6400846439 /* AuthListViewController.swift in Sources */,
+				7318973F2E2F5AA600846439 /* PhotoFaceViewController.swift in Sources */,
 				73397C832E2E031000732DE5 /* hud.swift in Sources */,
 				73D10F622E2DCD0500CCFEF1 /* AppDelegate.swift in Sources */,
 				73397C6A2E2DD06400732DE5 /* LaunchViewController.swift in Sources */,
@@ -334,6 +357,7 @@
 				73397C982E2E2A1000732DE5 /* SettingViewController.swift in Sources */,
 				73397C7F2E2DF15100732DE5 /* httprequest.swift in Sources */,
 				73397C7D2E2DEDA100732DE5 /* loginConfig.swift in Sources */,
+				7318973B2E2F399500846439 /* AVMuidTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
