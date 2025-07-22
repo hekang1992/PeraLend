@@ -6,13 +6,18 @@
 //
 
 import UIKit
+import RxSwift
 
 class PhotoFaceListView: UIView {
+    
+    let disposed = DisposeBag()
+    
+    var clickblock: ((String) -> Void)?
     
     lazy var bgView: UIView = {
         let bgView = UIView()
         bgView.layer.cornerRadius = 9
-        bgView.backgroundColor = UIColor.black
+        bgView.backgroundColor = UIColor.init(hexStr: "#FB7E09")
         return bgView
     }()
     
@@ -53,6 +58,10 @@ class PhotoFaceListView: UIView {
             make.right.equalToSuperview().offset(-20)
             make.size.equalTo(CGSize(width: 20, height: 20))
         }
+        
+        bgView.rx.tapGesture().when(.recognized).subscribe(onNext: { [weak self] _ in
+            self?.clickblock?(self?.nameLabel.text ?? "")
+        }).disposed(by: disposed)
     }
     
     required init?(coder: NSCoder) {

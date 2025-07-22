@@ -145,6 +145,11 @@ extension AuthListViewController {
                 }
             }
             
+            listView.clickblock = { [weak self] title in
+                guard let self = self else { return }
+                goDocument(with: title, productID: productID)
+            }
+            
             previousView = listView
         }
         
@@ -177,6 +182,11 @@ extension AuthListViewController {
                 }
             }
             
+            listView.clickblock = { [weak self] title in
+                guard let self = self else { return }
+                goDocument(with: title, productID: productID)
+            }
+            
             previousView = listView
         }
         
@@ -186,5 +196,16 @@ extension AuthListViewController {
                 make.bottom.equalTo(lastView.snp.bottom).offset(5)
             }
         }
+    }
+}
+
+extension AuthListViewController {
+    
+    
+    private func goDocument(with type: String, productID: String) {
+        let faceVc = PhotoFaceViewController()
+        faceVc.productID = productID
+        faceVc.type = type
+        self.navigationController?.pushViewController(faceVc, animated: true)
     }
 }

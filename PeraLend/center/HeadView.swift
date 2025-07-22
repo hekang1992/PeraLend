@@ -43,7 +43,7 @@ class HeadView: UIView {
         nameLabel.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.height.equalTo(20)
-            make.width.equalTo(200)
+            make.width.equalTo(280)
         }
         
         backBtn.rx.tap.subscribe(onNext: { [weak self] in

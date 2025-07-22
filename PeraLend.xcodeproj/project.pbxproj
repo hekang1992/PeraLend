@@ -13,6 +13,9 @@
 		7318973D2E2F5A6400846439 /* AuthListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7318973C2E2F5A6400846439 /* AuthListViewController.swift */; };
 		7318973F2E2F5AA600846439 /* PhotoFaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7318973E2E2F5AA600846439 /* PhotoFaceViewController.swift */; };
 		731897412E2F65F600846439 /* PhotoFaceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731897402E2F65F600846439 /* PhotoFaceListView.swift */; };
+		731897432E2F775F00846439 /* ImagePickerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731897422E2F775300846439 /* ImagePickerHelper.swift */; };
+		731897452E2F78BF00846439 /* PhotoPopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731897442E2F78BF00846439 /* PhotoPopView.swift */; };
+		731897472E2F813F00846439 /* PopImageSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731897462E2F812A00846439 /* PopImageSuccessView.swift */; };
 		73397C682E2DD05B00732DE5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73397C672E2DD05B00732DE5 /* BaseViewController.swift */; };
 		73397C6A2E2DD06400732DE5 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73397C692E2DD06400732DE5 /* LaunchViewController.swift */; };
 		73397C6D2E2DD12D00732DE5 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73397C6C2E2DD12D00732DE5 /* BaseView.swift */; };
@@ -46,6 +49,9 @@
 		7318973C2E2F5A6400846439 /* AuthListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthListViewController.swift; sourceTree = "<group>"; };
 		7318973E2E2F5AA600846439 /* PhotoFaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFaceViewController.swift; sourceTree = "<group>"; };
 		731897402E2F65F600846439 /* PhotoFaceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFaceListView.swift; sourceTree = "<group>"; };
+		731897422E2F775300846439 /* ImagePickerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerHelper.swift; sourceTree = "<group>"; };
+		731897442E2F78BF00846439 /* PhotoPopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPopView.swift; sourceTree = "<group>"; };
+		731897462E2F812A00846439 /* PopImageSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopImageSuccessView.swift; sourceTree = "<group>"; };
 		73397C672E2DD05B00732DE5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		73397C692E2DD06400732DE5 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		73397C6C2E2DD12D00732DE5 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
@@ -108,11 +114,14 @@
 		731897372E2F2BA800846439 /* auth */ = {
 			isa = PBXGroup;
 			children = (
+				731897462E2F812A00846439 /* PopImageSuccessView.swift */,
+				731897422E2F775300846439 /* ImagePickerHelper.swift */,
 				731897382E2F2BC800846439 /* AVMuidViewController.swift */,
 				7318973A2E2F399500846439 /* AVMuidTableViewCell.swift */,
+				731897402E2F65F600846439 /* PhotoFaceListView.swift */,
 				7318973C2E2F5A6400846439 /* AuthListViewController.swift */,
 				7318973E2E2F5AA600846439 /* PhotoFaceViewController.swift */,
-				731897402E2F65F600846439 /* PhotoFaceListView.swift */,
+				731897442E2F78BF00846439 /* PhotoPopView.swift */,
 			);
 			path = auth;
 			sourceTree = "<group>";
@@ -352,15 +361,18 @@
 				73397C7A2E2DDA8F00732DE5 /* PhoneListView.swift in Sources */,
 				73397C722E2DD5A200732DE5 /* LoginView.swift in Sources */,
 				73397C962E2E290E00732DE5 /* HeadView.swift in Sources */,
+				731897432E2F775F00846439 /* ImagePickerHelper.swift in Sources */,
 				73397C902E2E14DD00732DE5 /* CenterViewController.swift in Sources */,
 				73397C812E2DF1B900732DE5 /* model.swift in Sources */,
 				731897412E2F65F600846439 /* PhotoFaceListView.swift in Sources */,
 				73397C6D2E2DD12D00732DE5 /* BaseView.swift in Sources */,
+				731897452E2F78BF00846439 /* PhotoPopView.swift in Sources */,
 				73397C742E2DD5B500732DE5 /* LoginViewController.swift in Sources */,
 				73397C922E2E175E00732DE5 /* HomeView.swift in Sources */,
 				73397C982E2E2A1000732DE5 /* SettingViewController.swift in Sources */,
 				73397C7F2E2DF15100732DE5 /* httprequest.swift in Sources */,
 				73397C7D2E2DEDA100732DE5 /* loginConfig.swift in Sources */,
+				731897472E2F813F00846439 /* PopImageSuccessView.swift in Sources */,
 				7318973B2E2F399500846439 /* AVMuidTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

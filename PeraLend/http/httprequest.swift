@@ -98,7 +98,7 @@ class NetworkManager {
         completion: @escaping (Result<BaseModel, Error>) -> Void
     ) {
         
-        guard let imageData = image.jpegData(compressionQuality: 0.7) else {
+        guard let imageData = image.jpegData(compressionQuality: 0.5) else {
             let error = NSError(domain: "NetworkError", code: -1,
                                 userInfo: [NSLocalizedDescriptionKey: "failure_image"])
             completion(.failure(error))
