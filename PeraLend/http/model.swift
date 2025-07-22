@@ -24,6 +24,9 @@ class phrenlikeModel: Codable {
     var physalidpm: physalidpmModel?
     var gregcasey: Int?//face
     var lyst: [[String]]?
+    var exactlyent: String?
+    var crevitive: String?
+    var applyess: String?
 }
 
 class polysureModel: Codable {
@@ -68,5 +71,6 @@ class solidenModel: Codable {
 }
 
 class physalidpmModel: Codable {
+    var everybodyior: String?
     var salimiddleette: Int?//是否完整umid认证
 }

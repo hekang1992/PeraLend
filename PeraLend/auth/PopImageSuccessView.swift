@@ -63,6 +63,32 @@ class PopImageSuccessView: UIView {
         return titleLabel
     }()
     
+    lazy var nameView: AuthListNormalView = {
+        let nameView = AuthListNormalView()
+        nameView.namelabel.text = "Name"
+        return nameView
+    }()
+    
+    lazy var numberView: AuthListNormalView = {
+        let numberView = AuthListNormalView()
+        numberView.namelabel.text = "Id Number"
+        return numberView
+    }()
+    
+    lazy var dateView: AuthListEnumView = {
+        let dateView = AuthListEnumView()
+        dateView.namelabel.text = "Date of Birth"
+        return dateView
+    }()
+    
+    lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.contentInsetAdjustmentBehavior = .never
+        return scrollView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(bgView)
@@ -77,7 +103,7 @@ class PopImageSuccessView: UIView {
             make.size.equalTo(CGSize(width: 302, height: 360))
         }
         innerView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(UIEdgeInsets(top: 15, left: 15, bottom: 5, right: 15))
+            make.edges.equalToSuperview().inset(UIEdgeInsets(top: 15, left: 15, bottom: 40, right: 15))
         }
         bgImageView.snp.makeConstraints { make in
             make.top.equalTo(bgView.snp.top).offset(-105)
@@ -119,6 +145,32 @@ class PopImageSuccessView: UIView {
             self?.sureBlock?()
         }).disposed(by: disposeBag)
         
+        innerView.addSubview(scrollView)
+        scrollView.addSubview(nameView)
+        scrollView.addSubview(numberView)
+        scrollView.addSubview(dateView)
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        nameView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(40)
+            make.size.equalTo(CGSize(width: 250, height: 80))
+            make.centerX.equalToSuperview()
+        }
+        
+        numberView.snp.makeConstraints { make in
+            make.top.equalTo(nameView.snp.bottom).offset(10)
+            make.size.equalTo(CGSize(width: 250, height: 80))
+            make.centerX.equalToSuperview()
+        }
+        
+        dateView.snp.makeConstraints { make in
+            make.top.equalTo(numberView.snp.bottom).offset(10)
+            make.size.equalTo(CGSize(width: 250, height: 80))
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-40)
+        }
     }
     
     required init?(coder: NSCoder) {

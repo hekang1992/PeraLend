@@ -32,6 +32,7 @@ class AVMuidViewController: BaseViewController {
     lazy var headImageView: UIImageView = {
         let headImageView = UIImageView()
         headImageView.image = UIImage(named: "center_hea")
+        headImageView.isUserInteractionEnabled = true
         return headImageView
     }()
     
@@ -177,6 +178,10 @@ extension AVMuidViewController: UITableViewDelegate, UITableViewDataSource {
         amoLabel.attributedText = NSMutableAttributedString(string: "  \(model?.agcheoy?.tinyaci?.road ?? "")  ")
         let title = self.model?.monitad?.road ?? ""
         applyBtn.setTitle(title, for: .normal)
+        applyBtn.rx.tap.subscribe(onNext: { [weak self] in
+            guard let self = self else { return }
+            clickProductDetailInfo(with: productID)
+        }).disposed(by: disposeBag)
         return headView
     }
     
@@ -201,8 +206,15 @@ extension AVMuidViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model = self.model?.soliden?[indexPath.row]
         let salimiddleette = model?.salimiddleette ?? 0
+        let viscer = model?.viscer ?? ""
         if salimiddleette == 0 {
             clickProductDetailInfo(with: productID)
+        }else if salimiddleette == 1 {
+            if viscer == "brachiality" {
+                let faceVc = PhotoFaceViewController()
+                faceVc.productID = productID
+                self.navigationController?.pushViewController(faceVc, animated: true)
+            }
         }
     }
     
@@ -253,6 +265,10 @@ extension AVMuidViewController {
                         if !viscer.isEmpty {
                             if viscer == "brachiality" {
                                 self.getFaceAuthInfo()
+                            }else if viscer == "germinate" {
+                                let personalVc = PersonalViewController()
+                                personalVc.productID = productID
+                                self.navigationController?.pushViewController(personalVc, animated: true)
                             }
                         }
                     }
@@ -275,7 +291,6 @@ extension AVMuidViewController {
             case .success(let success):
                 let verscancerern = success.verscancerern
                 if verscancerern == "0" || verscancerern == "00" {
-                    let gregcasey = success.phrenlike?.gregcasey ?? 0
                     let salimiddleette = success.phrenlike?.physalidpm?.salimiddleette ?? 0
                     if salimiddleette == 0 {//go umid
                         let listVc = AuthListViewController()

@@ -169,6 +169,12 @@ class PhotoFaceViewController: BaseViewController {
             .when(.recognized)
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
+                let salimiddleette = self.model?.physalidpm?.salimiddleette ?? 0
+                if salimiddleette == 1 {
+                    ToastConfig.makeToast(form: view, message: "You have already completed the verification and cannot verify again.")
+                    return
+                }
+                
                 let popView = PhotoPopView(frame: CGRectMake(0, 0, screenwidth, screenheight))
                 let alertVc = TYAlertController(alert: popView, preferredStyle: .alert)!
                 self.present(alertVc, animated: true)
@@ -222,10 +228,6 @@ class PhotoFaceViewController: BaseViewController {
                     ToastConfig.makeToast(form: view, message: "Please complete identity verification first.")
                     return
                 }
-                if salimiddleette == 1 {
-                    ToastConfig.makeToast(form: view, message: "You have already completed the verification and cannot verify again.")
-                    return
-                }
                 if gregcasey == 1 {
                     ToastConfig.makeToast(form: view, message: "You have already completed the verification and cannot verify again.")
                     return
@@ -238,7 +240,11 @@ class PhotoFaceViewController: BaseViewController {
                         ImagePickerHelper.presentCamera(from: self) { image in
                             if let image = image {
                                 // 使用选中的图片
-                                print("获取了相机图片")
+                                self.uploadImage(with: "2",
+                                                 pinguly: self.productID,
+                                                 potamowise: "10",
+                                                 everybodyior: self.type,
+                                                 image: image)
                             }
                         }
                     }
@@ -251,7 +257,7 @@ class PhotoFaceViewController: BaseViewController {
         
         nextBtn.rx.tap.subscribe(onNext: { [weak self] in
             guard let self = self else { return }
-            
+            bclickProductDetailInfo(with: productID)
         }).disposed(by: disposeBag)
         
     }
@@ -277,10 +283,16 @@ extension PhotoFaceViewController {
                     if verscancerern == "0" || verscancerern == "00" {
                         let gregcasey = success.phrenlike?.gregcasey ?? 0
                         let salimiddleette = success.phrenlike?.physalidpm?.salimiddleette ?? 0
-                        if salimiddleette == 0 {//go umid
-                            self.twoImageView.isUserInteractionEnabled = true
+                        self.selectLabel.text = success.phrenlike?.physalidpm?.everybodyior ?? ""
+                        if salimiddleette == 0 {
+                            self.threeImageView.image = UIImage(named: "face_three")
                         }else {
-                            self.twoImageView.isUserInteractionEnabled = false
+                            self.threeImageView.image = UIImage(named: "pho_com_s")
+                            if gregcasey == 1 {
+                                self.fourImageView.image = UIImage(named: "fac_com_sd")
+                            }else {
+                                self.fourImageView.image = UIImage(named: "face_four")
+                            }
                         }
                     }
                     ViewHud.hideLoadView()
@@ -306,12 +318,18 @@ extension PhotoFaceViewController {
             case .success(let success):
                 guard let self = self else { return }
                 let verscancerern = success.verscancerern
+                let microfic = success.microfic ?? ""
                 if verscancerern == "0" || verscancerern == "00" {
                     if let model = success.phrenlike {
-                        alertModel(with: model)
+                        if potamowise == "11" {
+                            alertModel(with: model)
+                        }else {
+                            self.bclickProductDetailInfo(with: pinguly)
+                        }
                     }
                 }
                 ViewHud.hideLoadView()
+                ToastConfig.makeToast(form: view, message: microfic)
                 break
             case .failure(_):
                 ViewHud.hideLoadView()
@@ -322,17 +340,52 @@ extension PhotoFaceViewController {
     
     private func alertModel(with model: phrenlikeModel) {
         let popView = PopImageSuccessView(frame: CGRectMake(0, 0, screenwidth, screenheight))
-        let alertVc = TYAlertController(alert: popView, preferredStyle: .alert)!
+        let alertVc = TYAlertController(alert: popView, preferredStyle: .actionSheet)!
         self.present(alertVc, animated: true)
+        popView.nameView.phoneTx.text = model.exactlyent ?? ""
+        popView.numberView.phoneTx.text = model.crevitive ?? ""
+        popView.dateView.phoneTx.text = model.applyess ?? ""
         popView.dismissBlock = {
             self.dismiss(animated: true)
         }
         popView.sureBlock = {
-            self.dismiss(animated: true) {
-                
+            self.saveAuthInfo(with: popView)
+        }
+    }
+    
+    private func saveAuthInfo(with listView: PopImageSuccessView) {
+        ViewHud.addLoadView()
+        let applyess = listView.dateView.phoneTx.text ?? ""
+        let crevitive = listView.numberView.phoneTx.text ?? ""
+        let exactlyent = listView.nameView.phoneTx.text ?? ""
+        let dict = ["potamowise": "11",
+                    "everybodyior": type,
+                    "applyess": applyess,
+                    "crevitive": crevitive,
+                    "exactlyent": exactlyent]
+        
+        NetworkManager.shared.postMultipartFormRequest(url: "/plapiall/like", parameters: dict) { [weak self] result in
+            switch result {
+            case .success(let success):
+                guard let self = self else { return }
+                let verscancerern = success.verscancerern
+                let microfic = success.microfic ?? ""
+                if verscancerern == "0" || verscancerern == "00" {
+                    self.dismiss(animated: true) {
+                        self.getFaceAuthInfo()
+                    }
+                }
+                ViewHud.hideLoadView()
+                ToastConfig.makeToast(form: view, message: microfic)
+                break
+            case .failure(_):
+                ViewHud.hideLoadView()
+                break
             }
         }
     }
+    
+    
     
 }
 
