@@ -84,6 +84,12 @@ class AVMuidViewController: BaseViewController {
         return backBtn
     }()
     
+    lazy var deImageView: UIImageView = {
+        let deImageView = UIImageView()
+        deImageView.image = UIImage(named: "lu_de_ad")
+        return deImageView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -119,18 +125,19 @@ class AVMuidViewController: BaseViewController {
 extension AVMuidViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 308
+        return 368
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let model = self.model?.formee
         let headView = UIView()
         headView.addSubview(headImageView)
-        headView.addSubview(logoImageView)
-        headView.addSubview(namelabel)
-        headView.addSubview(moneyLabel)
-        headView.addSubview(amoLabel)
-        headView.addSubview(applyBtn)
+        headImageView.addSubview(logoImageView)
+        headImageView.addSubview(namelabel)
+        headImageView.addSubview(moneyLabel)
+        headImageView.addSubview(amoLabel)
+        headImageView.addSubview(applyBtn)
+        headView.addSubview(deImageView)
         headImageView.snp.makeConstraints { make in
             make.left.right.top.equalToSuperview()
             make.height.equalTo(308)
@@ -159,6 +166,11 @@ extension AVMuidViewController: UITableViewDelegate, UITableViewDataSource {
             make.centerX.equalToSuperview()
             make.bottom.equalToSuperview()
             make.size.equalTo(CGSize(width: 235, height: 48))
+        }
+        deImageView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(headImageView.snp.bottom).offset(10)
+            make.size.equalTo(CGSize(width: 302, height: 65))
         }
         namelabel.text = model?.ruptwise ?? ""
         moneyLabel.text = model?.agcheoy?.tinyaci?.officesion ?? ""
@@ -253,7 +265,7 @@ extension AVMuidViewController {
             }
     }
     
-    //获取是否有上床umid信息
+    //获取是否有上传umid信息
     private func getFaceAuthInfo() {
         ViewHud.addLoadView()
         NetworkManager
@@ -268,6 +280,7 @@ extension AVMuidViewController {
                     if salimiddleette == 0 {//go umid
                         let listVc = AuthListViewController()
                         listVc.productID = self.productID
+                        listVc.lystArray = success.phrenlike?.lyst ?? []
                         self.navigationController?.pushViewController(listVc, animated: true)
                     }else {
                         let faceVc = PhotoFaceViewController()

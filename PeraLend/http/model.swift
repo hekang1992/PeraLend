@@ -23,6 +23,7 @@ class phrenlikeModel: Codable {
     var soliden: [solidenModel]?
     var physalidpm: physalidpmModel?
     var gregcasey: Int?//face
+    var lyst: [[String]]?
 }
 
 class polysureModel: Codable {
