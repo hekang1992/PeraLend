@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxRelay
+import MJRefresh
 
 class HomeViewController: BaseViewController {
     
@@ -13,6 +15,8 @@ class HomeViewController: BaseViewController {
         let playView = HomeView()
         return playView
     }()
+    
+    var homeModel = BehaviorRelay<phrenlikeModel?>(value: nil)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,17 +26,48 @@ class HomeViewController: BaseViewController {
         playView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        
+        self.playView.scrollView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
+            self.getHomeDataMessage()
+        })
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getHomeDataMessage()
     }
-    */
 
+    
+}
+
+extension HomeViewController {
+    
+    private func getHomeDataMessage() {
+        ViewHud.addLoadView()
+        NetworkManager.shared.getRequest(url: "/plapiall/phrenlike") { [weak self] result in
+            switch result {
+            case .success(let success):
+                guard let self = self, let homeModel = success.phrenlike else { return }
+                let verscancerern = success.verscancerern
+                if verscancerern == "0" || verscancerern == "00" {
+                    self.homeModel.accept(homeModel)
+                    let potamowise = homeModel.polysure?.potamowise ?? ""
+                    if potamowise == "partpowerfy" {//a
+                        self.playView.homeModel = homeModel
+                    }else {//b
+                        
+                    }
+                }
+                ViewHud.hideLoadView()
+                self.playView.scrollView.mj_header?.endRefreshing()
+                break
+            case .failure(_):
+                ViewHud.hideLoadView()
+                self?.playView.scrollView.mj_header?.endRefreshing()
+                break
+            }
+        }
+    }
+    
 }

@@ -16,4 +16,18 @@ class BaseModel: Codable {
 class phrenlikeModel: Codable {
     var filiatic: String?
     var plebofficeably: String?
+    var polysure: polysureModel?
+}
+
+class polysureModel: Codable {
+    var potamowise: String?
+    var nema: [nemaModel]?
+}
+
+class nemaModel: Codable {
+    var amongel: String?
+    var goodfold: String?
+    var theyine: String?
+    var voluntacy: String?
+    var raptorium: Int?//productid
 }

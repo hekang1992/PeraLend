@@ -99,7 +99,7 @@ extension LoginViewController {
                     ToastConfig.makeToast(form: view, message: microfic)
                     ViewHud.hideLoadView()
                     break
-                case .failure(let failure):
+                case .failure(_):
                     ViewHud.hideLoadView()
                     break
                 }

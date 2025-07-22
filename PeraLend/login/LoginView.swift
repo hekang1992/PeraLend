@@ -132,4 +132,10 @@ class LoginBackState {
         UserDefaults.standard.set(token, forKey: "token")
         UserDefaults.standard.synchronize()
     }
+    
+    static func removeLoginInfo() {
+        UserDefaults.standard.set("", forKey: "phone")
+        UserDefaults.standard.set("", forKey: "token")
+        UserDefaults.standard.synchronize()
+    }
 }

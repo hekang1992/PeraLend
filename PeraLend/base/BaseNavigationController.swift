@@ -7,10 +7,11 @@
 
 import UIKit
 
-class BaseNavigationController: UINavigationController {
-
+class BaseNavigationController: UINavigationController, UINavigationControllerDelegate {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.delegate = self
         self.navigationBar.isHidden = true
         self.navigationBar.isTranslucent = false
         self.interactivePopGestureRecognizer?.isEnabled = false
@@ -22,5 +23,13 @@ class BaseNavigationController: UINavigationController {
         }
         super.pushViewController(viewController, animated: animated)
     }
-
+    
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        if viewController == viewControllers.first {
+            (tabBarController as? CustomTabBarController)?.setCustomTabBar(hidden: false)
+        } else {
+            (tabBarController as? CustomTabBarController)?.setCustomTabBar(hidden: true)
+        }
+    }
+    
 }

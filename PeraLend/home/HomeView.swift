@@ -12,6 +12,17 @@ let screenheight = UIScreen.main.bounds.size.height
 
 class HomeView: BaseView {
     
+    var homeModel: phrenlikeModel? {
+        didSet {
+            guard let homeModel = homeModel else { return }
+            let model = homeModel.polysure?.nema?.first
+            applyBtn.setTitle(model?.amongel ?? "", for: .normal)
+            moneyLabel.text =  model?.voluntacy ?? ""
+            let desc = model?.theyine ?? ""
+            amoLabel.attributedText = NSMutableAttributedString(string: "  \(desc)  ")
+        }
+    }
+    
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsHorizontalScrollIndicator = false
@@ -83,10 +94,31 @@ class HomeView: BaseView {
         return threeImageView
     }()
     
+    lazy var moneyLabel: UILabel = {
+        let moneyLabel = UILabel()
+        moneyLabel.font = UIFont.boldSystemFont(ofSize: 50)
+        moneyLabel.textAlignment = .center
+        moneyLabel.textColor = .white
+        return moneyLabel
+    }()
+    
+    lazy var amoLabel: UILabel = {
+        let amoLabel = UILabel()
+        amoLabel.font = UIFont.boldSystemFont(ofSize: 15)
+        amoLabel.textAlignment = .center
+        amoLabel.textColor = .white
+        amoLabel.layer.cornerRadius = 9
+        amoLabel.layer.masksToBounds = true
+        amoLabel.backgroundColor = UIColor.init(hexStr: "#E34081")
+        return amoLabel
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(scrollView)
         scrollView.addSubview(headImageView)
+        headImageView.addSubview(moneyLabel)
+        headImageView.addSubview(amoLabel)
         headImageView.addSubview(applyBtn)
         scrollView.addSubview(clickLabel)
         scrollView.addSubview(oneImageView)
@@ -134,6 +166,17 @@ class HomeView: BaseView {
             make.size.equalTo(CGSize(width: 375, height: 135))
             make.top.equalTo(twoImageView.snp.bottom).offset(8)
             make.bottom.equalToSuperview().offset(-90)
+        }
+        moneyLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().offset(84)
+            make.size.equalTo(CGSize(width: 250, height: 57))
+        }
+        amoLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(moneyLabel.snp.bottom).offset(10)
+            make.height.equalTo(26)
+            
         }
     }
     

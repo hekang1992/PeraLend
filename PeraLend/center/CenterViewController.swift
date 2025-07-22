@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxGesture
 
 class CenterViewController: BaseViewController {
     
@@ -22,6 +23,54 @@ class CenterViewController: BaseViewController {
         centetrView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        
+        centetrView.fiveImageView.rx.tapGesture().when(.recognized).subscribe(onNext: {_ in 
+            let setVc = SettingViewController()
+            self.navigationController?.pushViewController(setVc, animated: true)
+        }).disposed(by: disposeBag)
+        
+        centetrView.oneBlock = { [weak self] in
+            guard let self = self else { return }
+            ToastConfig.makeToast(form: view, message: "1")
+        }
+        
+        centetrView.twoBlock = { [weak self] in
+            guard let self = self else { return }
+            ToastConfig.makeToast(form: view, message: "2")
+        }
+        
+        centetrView.threeBlock = { [weak self] in
+            guard let self = self else { return }
+            ToastConfig.makeToast(form: view, message: "3")
+        }
+        
+        centetrView.fourBlock = { [weak self] in
+            guard let self = self else { return }
+            ToastConfig.makeToast(form: view, message: "4")
+        }
+        
+        centetrView.fiveBlock = { [weak self] in
+            guard let self = self else { return }
+            ToastConfig.makeToast(form: view, message: "5")
+        }
+        
+        centetrView.sixBlock = { [weak self] in
+            guard let self = self else { return }
+            ToastConfig.makeToast(form: view, message: "6")
+        }
+        
+        centetrView.sevenBlock = { [weak self] in
+            guard let self = self else { return }
+            let settingVc = SettingViewController()
+            self.navigationController?.pushViewController(settingVc, animated: true)
+        }
+        
+        centetrView.eightBlock = { [weak self] in
+            guard let self = self else { return }
+            ToastConfig.makeToast(form: view, message: "8")
+        }
+        
+        
     }
     
 

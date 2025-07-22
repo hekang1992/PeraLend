@@ -67,7 +67,7 @@ class CustomTabBarView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
-        setSelected(index: 0) // 默认选中第一个
+        setSelected(index: 0)
     }
     
     required init?(coder: NSCoder) {
@@ -116,5 +116,15 @@ class CustomTabBarView: UIView {
             btn.setImage(UIImage(named: imageName), for: .normal)
         }
         selectedIndex = index
+    }
+}
+
+extension CustomTabBarController {
+    func setCustomTabBar(hidden: Bool, animated: Bool = true) {
+        let tabBarHeight = customTabBar.frame.height
+        let offsetY = hidden ? tabBarHeight : 0
+        UIView.animate(withDuration: animated ? 0.25 : 0.0) {
+            self.customTabBar.transform = CGAffineTransform(translationX: 0, y: offsetY)
+        }
     }
 }
