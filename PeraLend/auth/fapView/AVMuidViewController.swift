@@ -91,6 +91,11 @@ class AVMuidViewController: BaseViewController {
         return deImageView
     }()
     
+    lazy var headfView: UIView = {
+        let headfView = UIView()
+        return headfView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -114,6 +119,12 @@ class AVMuidViewController: BaseViewController {
         backBtn.rx.tap.subscribe(onNext: { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         }).disposed(by: disposeBag)
+        
+        applyBtn.rx.tap.subscribe(onNext: { [weak self] in
+            guard let self = self else { return }
+            clickProductDetailInfo(with: productID)
+        }).disposed(by: disposeBag)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -131,14 +142,13 @@ extension AVMuidViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let model = self.model?.formee
-        let headView = UIView()
-        headView.addSubview(headImageView)
+        headfView.addSubview(headImageView)
         headImageView.addSubview(logoImageView)
         headImageView.addSubview(namelabel)
         headImageView.addSubview(moneyLabel)
         headImageView.addSubview(amoLabel)
         headImageView.addSubview(applyBtn)
-        headView.addSubview(deImageView)
+        headfView.addSubview(deImageView)
         headImageView.snp.makeConstraints { make in
             make.left.right.top.equalToSuperview()
             make.height.equalTo(308)
@@ -178,11 +188,8 @@ extension AVMuidViewController: UITableViewDelegate, UITableViewDataSource {
         amoLabel.attributedText = NSMutableAttributedString(string: "  \(model?.agcheoy?.tinyaci?.road ?? "")  ")
         let title = self.model?.monitad?.road ?? ""
         applyBtn.setTitle(title, for: .normal)
-        applyBtn.rx.tap.subscribe(onNext: { [weak self] in
-            guard let self = self else { return }
-            clickProductDetailInfo(with: productID)
-        }).disposed(by: disposeBag)
-        return headView
+        
+        return headfView
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

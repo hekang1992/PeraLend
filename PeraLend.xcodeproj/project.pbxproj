@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		550FF02CC98A753B997005B5 /* Pods_PeraLend.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FFE6F7FE1CD09A214DAC321 /* Pods_PeraLend.framework */; };
+		7304FE832E307DA00092908A /* PersonalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7304FE822E307DA00092908A /* PersonalView.swift */; };
+		7304FE852E3081970092908A /* NormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7304FE842E3081970092908A /* NormalCell.swift */; };
+		7304FE872E3081A20092908A /* EnumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7304FE862E3081A20092908A /* EnumCell.swift */; };
 		731897392E2F2BC800846439 /* AVMuidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731897382E2F2BC800846439 /* AVMuidViewController.swift */; };
 		7318973B2E2F399500846439 /* AVMuidTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7318973A2E2F399500846439 /* AVMuidTableViewCell.swift */; };
 		7318973D2E2F5A6400846439 /* AuthListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7318973C2E2F5A6400846439 /* AuthListViewController.swift */; };
@@ -47,6 +50,9 @@
 
 /* Begin PBXFileReference section */
 		30D8EE2E2BB3896526AFAD5A /* Pods-PeraLend.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeraLend.debug.xcconfig"; path = "Target Support Files/Pods-PeraLend/Pods-PeraLend.debug.xcconfig"; sourceTree = "<group>"; };
+		7304FE822E307DA00092908A /* PersonalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalView.swift; sourceTree = "<group>"; };
+		7304FE842E3081970092908A /* NormalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalCell.swift; sourceTree = "<group>"; };
+		7304FE862E3081A20092908A /* EnumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumCell.swift; sourceTree = "<group>"; };
 		731897382E2F2BC800846439 /* AVMuidViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVMuidViewController.swift; sourceTree = "<group>"; };
 		7318973A2E2F399500846439 /* AVMuidTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVMuidTableViewCell.swift; sourceTree = "<group>"; };
 		7318973C2E2F5A6400846439 /* AuthListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthListViewController.swift; sourceTree = "<group>"; };
@@ -117,7 +123,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		731897372E2F2BA800846439 /* auth */ = {
+		7304FE7E2E307D630092908A /* peronstalView */ = {
+			isa = PBXGroup;
+			children = (
+				7318974C2E2F988E00846439 /* PersonalViewController.swift */,
+				7304FE822E307DA00092908A /* PersonalView.swift */,
+				7304FE842E3081970092908A /* NormalCell.swift */,
+				7304FE862E3081A20092908A /* EnumCell.swift */,
+			);
+			path = peronstalView;
+			sourceTree = "<group>";
+		};
+		7304FE7F2E307D660092908A /* fapView */ = {
 			isa = PBXGroup;
 			children = (
 				731897462E2F812A00846439 /* PopImageSuccessView.swift */,
@@ -130,7 +147,15 @@
 				731897442E2F78BF00846439 /* PhotoPopView.swift */,
 				731897482E2F8E9F00846439 /* AuthListNormalView.swift */,
 				7318974A2E2F8EAE00846439 /* AuthListEnumView.swift */,
-				7318974C2E2F988E00846439 /* PersonalViewController.swift */,
+			);
+			path = fapView;
+			sourceTree = "<group>";
+		};
+		731897372E2F2BA800846439 /* auth */ = {
+			isa = PBXGroup;
+			children = (
+				7304FE7F2E307D660092908A /* fapView */,
+				7304FE7E2E307D630092908A /* peronstalView */,
 			);
 			path = auth;
 			sourceTree = "<group>";
@@ -354,6 +379,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7304FE852E3081970092908A /* NormalCell.swift in Sources */,
 				73397C782E2DD7B400732DE5 /* BaseNavigationController.swift in Sources */,
 				73397C9A2E2E2A2900732DE5 /* SettingView.swift in Sources */,
 				731897392E2F2BC800846439 /* AVMuidViewController.swift in Sources */,
@@ -372,9 +398,11 @@
 				73397C722E2DD5A200732DE5 /* LoginView.swift in Sources */,
 				73397C962E2E290E00732DE5 /* HeadView.swift in Sources */,
 				731897432E2F775F00846439 /* ImagePickerHelper.swift in Sources */,
+				7304FE872E3081A20092908A /* EnumCell.swift in Sources */,
 				73397C902E2E14DD00732DE5 /* CenterViewController.swift in Sources */,
 				73397C812E2DF1B900732DE5 /* model.swift in Sources */,
 				731897412E2F65F600846439 /* PhotoFaceListView.swift in Sources */,
+				7304FE832E307DA00092908A /* PersonalView.swift in Sources */,
 				73397C6D2E2DD12D00732DE5 /* BaseView.swift in Sources */,
 				731897452E2F78BF00846439 /* PhotoPopView.swift in Sources */,
 				73397C742E2DD5B500732DE5 /* LoginViewController.swift in Sources */,

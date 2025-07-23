@@ -146,7 +146,7 @@ class PhotoFaceViewController: BaseViewController {
             make.bottom.equalToSuperview()
         }
         
-        selectLabel.text = type
+        
         
         twoImageView
             .rx
@@ -283,7 +283,8 @@ extension PhotoFaceViewController {
                     if verscancerern == "0" || verscancerern == "00" {
                         let gregcasey = success.phrenlike?.gregcasey ?? 0
                         let salimiddleette = success.phrenlike?.physalidpm?.salimiddleette ?? 0
-                        self.selectLabel.text = success.phrenlike?.physalidpm?.everybodyior ?? ""
+                        let unStr = success.phrenlike?.physalidpm?.everybodyior ?? ""
+                        self.selectLabel.text = unStr.isEmpty ? self.type : unStr
                         if salimiddleette == 0 {
                             self.threeImageView.image = UIImage(named: "face_three")
                         }else {
