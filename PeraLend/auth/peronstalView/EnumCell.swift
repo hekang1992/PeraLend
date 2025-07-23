@@ -8,6 +8,16 @@
 import UIKit
 
 class EnumCell: UITableViewCell {
+    
+    var cellBlock: ((UITextField) -> Void)?
+    
+    var model: consumerfierModel? {
+        didSet {
+            guard let model = model else { return }
+            namelabel.text = model.road ?? ""
+            phoneTx.placeholder = model.sufling ?? ""
+        }
+    }
 
     lazy var bgImageView: UIImageView = {
         let bgImageView = UIImageView()
@@ -35,20 +45,21 @@ class EnumCell: UITableViewCell {
     
     lazy var oneBtn: UIButton = {
         let oneBtn = UIButton(type: .custom)
+        oneBtn.addTarget(self, action: #selector(enumBtnClick(_ :)), for: .touchUpInside)
         return oneBtn
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         contentView.addSubview(bgImageView)
         bgImageView.addSubview(namelabel)
         bgImageView.addSubview(phoneTx)
         bgImageView.addSubview(oneBtn)
         bgImageView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview()
-            make.size.equalTo(CGSize(width: 243, height: 76))
+            make.bottom.equalToSuperview().offset(-15)
+            make.size.equalTo(CGSize(width: 347, height: 76))
         }
         namelabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(14)
@@ -63,9 +74,15 @@ class EnumCell: UITableViewCell {
         oneBtn.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+
+        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc func enumBtnClick(_ sender: UIButton) {
+        self.cellBlock?(phoneTx)
     }
 }

@@ -9,6 +9,14 @@ import UIKit
 
 class NormalCell: UITableViewCell {
     
+    var model: consumerfierModel? {
+        didSet {
+            guard let model = model else { return }
+            namelabel.text = model.road ?? ""
+            phoneTx.placeholder = model.sufling ?? ""
+        }
+    }
+    
     lazy var bgImageView: UIImageView = {
         let bgImageView = UIImageView()
         bgImageView.image = UIImage(named: "lis_auy_uu")
@@ -26,9 +34,9 @@ class NormalCell: UITableViewCell {
     
     lazy var phoneTx: UITextField = {
         let phoneTx = UITextField()
-        phoneTx.placeholder = "Please Enter"
         phoneTx.font = UIFont.boldSystemFont(ofSize: 12)
         phoneTx.textColor = .black
+        phoneTx.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         return phoneTx
     }()
     
@@ -38,11 +46,11 @@ class NormalCell: UITableViewCell {
         bgImageView.addSubview(namelabel)
         bgImageView.addSubview(phoneTx)
         bgImageView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview()
-            make.size.equalTo(CGSize(width: 243, height: 76))
+            make.bottom.equalToSuperview().offset(-15)
+            make.size.equalTo(CGSize(width: 347, height: 76))
         }
-
         namelabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(14)
             make.left.equalToSuperview().offset(14)
@@ -58,4 +66,10 @@ class NormalCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        guard let text = textField.text, !text.isEmpty else { return }
+        model?.chlor = text
+    }
+    
 }

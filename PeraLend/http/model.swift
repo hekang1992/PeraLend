@@ -27,6 +27,8 @@ class phrenlikeModel: Codable {
     var exactlyent: String?
     var crevitive: String?
     var applyess: String?
+    var consumerfier: [consumerfierModel]?
+    var rur: [rurModel]?
 }
 
 class polysureModel: Codable {
@@ -73,4 +75,27 @@ class solidenModel: Codable {
 class physalidpmModel: Codable {
     var everybodyior: String?
     var salimiddleette: Int?//是否完整umid认证
+}
+
+class consumerfierModel: Codable {
+    var cal: String?//cell类型
+    var opinel: String?
+    var readize: [readizeModel]?
+    var road: String?
+    var sufling: String?
+    var verscancerern: String?
+    var troubletion: Int?//键盘类型
+    var chlor: String?
+    var potamowise: String?
+}
+
+class readizeModel: Codable {
+    var exactlyent: String?
+    var potamowise: Int?
+}
+
+class rurModel: Codable {
+    var exactlyent: String?
+    var raptorium: Int?
+    var rur: [rurModel]?
 }

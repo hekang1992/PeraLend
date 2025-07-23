@@ -11,6 +11,7 @@
 		7304FE832E307DA00092908A /* PersonalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7304FE822E307DA00092908A /* PersonalView.swift */; };
 		7304FE852E3081970092908A /* NormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7304FE842E3081970092908A /* NormalCell.swift */; };
 		7304FE872E3081A20092908A /* EnumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7304FE862E3081A20092908A /* EnumCell.swift */; };
+		7304FE8A2E308AB30092908A /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7304FE892E308AB00092908A /* config.swift */; };
 		731897392E2F2BC800846439 /* AVMuidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731897382E2F2BC800846439 /* AVMuidViewController.swift */; };
 		7318973B2E2F399500846439 /* AVMuidTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7318973A2E2F399500846439 /* AVMuidTableViewCell.swift */; };
 		7318973D2E2F5A6400846439 /* AuthListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7318973C2E2F5A6400846439 /* AuthListViewController.swift */; };
@@ -53,6 +54,7 @@
 		7304FE822E307DA00092908A /* PersonalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalView.swift; sourceTree = "<group>"; };
 		7304FE842E3081970092908A /* NormalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalCell.swift; sourceTree = "<group>"; };
 		7304FE862E3081A20092908A /* EnumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumCell.swift; sourceTree = "<group>"; };
+		7304FE892E308AB00092908A /* config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
 		731897382E2F2BC800846439 /* AVMuidViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVMuidViewController.swift; sourceTree = "<group>"; };
 		7318973A2E2F399500846439 /* AVMuidTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVMuidTableViewCell.swift; sourceTree = "<group>"; };
 		7318973C2E2F5A6400846439 /* AuthListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthListViewController.swift; sourceTree = "<group>"; };
@@ -151,9 +153,18 @@
 			path = fapView;
 			sourceTree = "<group>";
 		};
+		7304FE882E308AAB0092908A /* config */ = {
+			isa = PBXGroup;
+			children = (
+				7304FE892E308AB00092908A /* config.swift */,
+			);
+			path = config;
+			sourceTree = "<group>";
+		};
 		731897372E2F2BA800846439 /* auth */ = {
 			isa = PBXGroup;
 			children = (
+				7304FE882E308AAB0092908A /* config */,
 				7304FE7F2E307D660092908A /* fapView */,
 				7304FE7E2E307D630092908A /* peronstalView */,
 			);
@@ -412,6 +423,7 @@
 				73397C982E2E2A1000732DE5 /* SettingViewController.swift in Sources */,
 				73397C7F2E2DF15100732DE5 /* httprequest.swift in Sources */,
 				73397C7D2E2DEDA100732DE5 /* loginConfig.swift in Sources */,
+				7304FE8A2E308AB30092908A /* config.swift in Sources */,
 				731897472E2F813F00846439 /* PopImageSuccessView.swift in Sources */,
 				7318973B2E2F399500846439 /* AVMuidTableViewCell.swift in Sources */,
 			);

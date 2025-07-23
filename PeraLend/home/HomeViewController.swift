@@ -37,6 +37,8 @@ class HomeViewController: BaseViewController {
             self.applyProduct(with: productID)
         }
         
+        getAddressInfo()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -142,6 +144,31 @@ extension HomeViewController {
                     break
                 }
             }
+    }
+    
+}
+
+extension HomeViewController {
+    
+    private func getAddressInfo() {
+        ViewHud.addLoadView()
+        NetworkManager
+            .shared
+            .getRequest(url: "/plapiall/crass") { result in
+            switch result {
+            case .success(let success):
+                let verscancerern = success.verscancerern
+                if verscancerern == "0" || verscancerern == "00" {
+                    let rurArray = AddressModel.getAddressModelArray(dataSourceArr: success.phrenlike?.rur ?? [])
+                    AdressModelSingle.shared.modelArray = rurArray
+                }
+                ViewHud.hideLoadView()
+                break
+            case .failure(_):
+                ViewHud.hideLoadView()
+                break
+            }
+        }
     }
     
 }

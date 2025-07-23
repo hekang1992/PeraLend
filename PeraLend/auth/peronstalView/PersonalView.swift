@@ -6,8 +6,13 @@
 //
 
 import UIKit
+import BRPickerView
 
 class PersonalView: BaseView {
+    
+    var cellBlock: ((consumerfierModel) -> Void)?
+    
+    var consumerfierArray: [consumerfierModel] = []
 
     lazy var headView: HeadView = {
         let headView = HeadView()
@@ -25,6 +30,8 @@ class PersonalView: BaseView {
         tableView.showsVerticalScrollIndicator = false
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.delegate = self
+        tableView.dataSource = self
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = 0
         }
@@ -77,6 +84,85 @@ class PersonalView: BaseView {
     
     @MainActor required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
+extension PersonalView: UITableViewDelegate, UITableViewDataSource  {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.consumerfierArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let model = self.consumerfierArray[indexPath.row]
+        let cal = model.cal ?? ""
+        if cal == "bothage" {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NormalCell", for: indexPath) as! NormalCell
+            cell.backgroundColor = .clear
+            cell.selectionStyle = .none
+            cell.model = model
+            return cell
+        }else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "EnumCell", for: indexPath) as! EnumCell
+            cell.backgroundColor = .clear
+            cell.selectionStyle = .none
+            cell.model = model
+            cell.cellBlock = { [weak self] tx in
+                guard let self = self else { return }
+                self.endEditing(true)
+                let listArray = model.readize ?? []
+                let cal = model.cal ?? ""
+                if cal == "squamform" {
+                    setupPickerView(model: model, textField: tx, array: listArray)
+                }else {
+                    let modelArray = AdressModelSingle.shared.modelArray ?? []
+                    setupadressPickerView(model: model, textField: tx, array: modelArray)
+                }
+            }
+            return cell
+        }
+        
+    }
+    
+    
+}
+
+
+extension PersonalView {
+    
+    func setupPickerView(model: consumerfierModel, textField: UITextField, array: [readizeModel]) {
+        let stringPickerView = BRAddressPickerView()
+        stringPickerView.pickerMode = .province
+        let enumArray = FirstModel.getFirstModelArray(dataSourceArr: array)
+        stringPickerView.title = model.road ?? ""
+        stringPickerView.dataSourceArr = enumArray
+        stringPickerView.selectIndexs = [0]
+        stringPickerView.resultBlock = { province, city, area in
+            let provinceName = province?.name ?? ""
+            textField.text = provinceName
+            model.chlor = provinceName
+            model.potamowise = province?.code
+        }
+        stringPickerView.show()
+    }
+    
+    func setupadressPickerView(model: consumerfierModel, textField: UITextField, array: [BRProvinceModel]) {
+        let stringPickerView = BRAddressPickerView()
+        stringPickerView.pickerMode = .area
+        stringPickerView.title = model.road ?? ""
+        stringPickerView.dataSourceArr = array
+        stringPickerView.selectIndexs = [0]
+        stringPickerView.resultBlock = { province, city, area in
+            let provinceName = province?.name ?? ""
+            let cityName = city?.name ?? ""
+            let areaName = area?.name ?? ""
+            let addressString = provinceName + "-" + cityName + "-" + areaName
+            textField.text = addressString
+            model.chlor = addressString
+            model.potamowise = addressString
+        }
+        stringPickerView.show()
     }
     
 }
