@@ -25,7 +25,7 @@ class OrderEmptyView: UIView {
         super.init(frame: frame)
         addSubview(bgImageView)
         bgImageView.snp.makeConstraints { make in
-            make.size.equalTo(CGSize(width: 90, height: 90))
+            make.size.equalTo(CGSize(width: 164, height: 195))
             make.center.equalToSuperview()
         }
         

@@ -141,6 +141,7 @@ extension OrderViewController {
                     }
                 }
                 ViewHud.hideLoadView()
+                self.orderView.tableView.reloadData()
                 self.orderView.tableView.mj_header?.endRefreshing()
                 break
             case .failure(_):

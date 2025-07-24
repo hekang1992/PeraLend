@@ -149,6 +149,7 @@ class rurModel: Codable {
     var relationText: String?
     var rur: [rurModel]?
     var fodlike: [fodlikeModel]?
+    var sesquireallyment: sesquireallymentModel?
 }
 
 class torpefoldModel: Codable {
@@ -165,4 +166,16 @@ class affectariumModel: Codable {
     var clader: String?
     var hypnoence: String?
     var playaneity: String?
+}
+
+class sesquireallymentModel: Codable {
+    var apertaster: String?
+    var beforeress: String?
+    var introism: String?
+    var odorship: String?
+    var photitor: String?
+    var ruptwise: String?
+    var subteraceous: String?
+    var therier: Int?//产品ID
+    var diaconditionry: Int?//订单状态ID
 }
