@@ -37,13 +37,20 @@ class BaseViewController: UIViewController {
 extension BaseViewController {
     
     func popToSelectController() {
-        if let navigationController = self.navigationController {
-            for viewController in navigationController.viewControllers {
-                if let targetVC = viewController as? AVMuidViewController {
-                    navigationController.popToViewController(targetVC, animated: true)
-                    break
-                }
+        guard let navigationController = self.navigationController else { return }
+        
+        var foundTarget = false
+        for viewController in navigationController.viewControllers {
+            if let targetVC = viewController as? AVMuidViewController {
+                navigationController.popToViewController(targetVC, animated: true)
+                foundTarget = true
+                break
             }
+        }
+        
+        // If target view controller wasn't found, pop to root
+        if !foundTarget {
+            navigationController.popToRootViewController(animated: true)
         }
     }
     

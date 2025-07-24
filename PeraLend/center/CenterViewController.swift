@@ -31,7 +31,9 @@ class CenterViewController: BaseViewController {
         
         centetrView.oneBlock = { [weak self] in
             guard let self = self else { return }
-            ToastConfig.makeToast(form: view, message: "1")
+            let listVc = OrderViewController()
+            listVc.orderType = "4"
+            self.navigationController?.pushViewController(listVc, animated: true)
         }
         
         centetrView.twoBlock = { [weak self] in
@@ -46,17 +48,23 @@ class CenterViewController: BaseViewController {
         
         centetrView.fourBlock = { [weak self] in
             guard let self = self else { return }
-            ToastConfig.makeToast(form: view, message: "4")
+            let listVc = OrderViewController()
+            listVc.orderType = "7"
+            self.navigationController?.pushViewController(listVc, animated: true)
         }
         
         centetrView.fiveBlock = { [weak self] in
             guard let self = self else { return }
-            ToastConfig.makeToast(form: view, message: "5")
+            let listVc = OrderViewController()
+            listVc.orderType = "6"
+            self.navigationController?.pushViewController(listVc, animated: true)
         }
         
         centetrView.sixBlock = { [weak self] in
             guard let self = self else { return }
-            ToastConfig.makeToast(form: view, message: "6")
+            let listVc = OrderViewController()
+            listVc.orderType = "5"
+            self.navigationController?.pushViewController(listVc, animated: true)
         }
         
         centetrView.sevenBlock = { [weak self] in
