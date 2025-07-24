@@ -55,6 +55,7 @@
 		73509F752E31D51C0030D74B /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73509F742E31D51C0030D74B /* OrderViewController.swift */; };
 		73509F772E31E9410030D74B /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73509F762E31E9410030D74B /* OrderTableViewCell.swift */; };
 		73509F792E31ED1C0030D74B /* OrderEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73509F782E31ED1C0030D74B /* OrderEmptyView.swift */; };
+		73509F7B2E31FD270030D74B /* fristLaunchNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73509F7A2E31FD1A0030D74B /* fristLaunchNetwork.swift */; };
 		73D10F5E2E2DCD0500CCFEF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73D10F552E2DCD0500CCFEF1 /* Assets.xcassets */; };
 		73D10F602E2DCD0500CCFEF1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73D10F582E2DCD0500CCFEF1 /* LaunchScreen.storyboard */; };
 		73D10F622E2DCD0500CCFEF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D10F542E2DCD0500CCFEF1 /* AppDelegate.swift */; };
@@ -109,6 +110,7 @@
 		73509F742E31D51C0030D74B /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		73509F762E31E9410030D74B /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		73509F782E31ED1C0030D74B /* OrderEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderEmptyView.swift; sourceTree = "<group>"; };
+		73509F7A2E31FD1A0030D74B /* fristLaunchNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fristLaunchNetwork.swift; sourceTree = "<group>"; };
 		73D10F3C2E2DCCFD00CCFEF1 /* PeraLend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeraLend.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73D10F542E2DCD0500CCFEF1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73D10F552E2DCD0500CCFEF1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				73397C802E2DF1B700732DE5 /* model.swift */,
 				73397C7E2E2DF14100732DE5 /* httprequest.swift */,
 				73397C7C2E2DED9C00732DE5 /* loginConfig.swift */,
+				73509F7A2E31FD1A0030D74B /* fristLaunchNetwork.swift */,
 			);
 			path = http;
 			sourceTree = "<group>";
@@ -411,13 +414,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PeraLend/Pods-PeraLend-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PeraLend/Pods-PeraLend-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -431,6 +430,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73509F7B2E31FD270030D74B /* fristLaunchNetwork.swift in Sources */,
 				7304FE852E3081970092908A /* NormalCell.swift in Sources */,
 				73397C782E2DD7B400732DE5 /* BaseNavigationController.swift in Sources */,
 				73397C9A2E2E2A2900732DE5 /* SettingView.swift in Sources */,

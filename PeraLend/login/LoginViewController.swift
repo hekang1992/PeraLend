@@ -28,6 +28,20 @@ class LoginViewController: BaseViewController {
             make.edges.equalToSuperview()
         }
         
+        loginView.oneBlock = { [weak self] in
+            guard let self = self else { return }
+            let webVc = WebViewController()
+            webVc.pageUrl = base_web_url + "/apricotCaul"
+            self.navigationController?.pushViewController(webVc, animated: true)
+        }
+        
+        loginView.twoBlock = { [weak self] in
+            guard let self = self else { return }
+            let webVc = WebViewController()
+            webVc.pageUrl = base_web_url + "/greenbeanCh"
+            self.navigationController?.pushViewController(webVc, animated: true)
+        }
+        
         loginView.twoView.sendBtn.rx.tap.subscribe(onNext: { [weak self] in
             guard let self = self else { return }
             let phone = self.loginView.oneView.phoneTx.text ?? ""

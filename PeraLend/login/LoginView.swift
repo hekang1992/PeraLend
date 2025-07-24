@@ -14,6 +14,9 @@ var islogin: Bool {
 
 class LoginView: BaseView {
     
+    var oneBlock: (() -> Void)?
+    var twoBlock: (() -> Void)?
+    
     lazy var headImageView: UIImageView = {
         let headImageView = UIImageView()
         headImageView.image = UIImage(named: "loginde")
@@ -59,7 +62,34 @@ class LoginView: BaseView {
         return loginBtn
     }()
     
-
+    lazy var clickLabel: UILabel = {
+        let clickLabel = UILabel()
+        clickLabel.numberOfLines = 0
+        clickLabel.textAlignment = .center
+        let fullText = "It is important to note that before obtaining a loan, you are required to read and consent to our Privacy Policy and Loan Terms."
+        let privacyPolicyRange = (fullText as NSString).range(of: "Privacy Policy")
+        let loanTermsRange = (fullText as NSString).range(of: "Loan Terms")
+        
+        let attributedText = NSMutableAttributedString(string: fullText)
+        let linkAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.blue,
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ]
+        
+        attributedText.addAttributes(linkAttributes, range: privacyPolicyRange)
+        attributedText.addAttributes(linkAttributes, range: loanTermsRange)
+        
+        clickLabel.attributedText = attributedText
+        
+        clickLabel.font = UIFont.systemFont(ofSize: 14)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        clickLabel.addGestureRecognizer(tapGesture)
+        clickLabel.isUserInteractionEnabled = true
+        
+        return clickLabel
+    }()
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(headImageView)
@@ -69,6 +99,7 @@ class LoginView: BaseView {
         loImageView.addSubview(oneView)
         loImageView.addSubview(twoView)
         loImageView.addSubview(loginBtn)
+        addSubview(clickLabel)
         
         headImageView.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(15)
@@ -110,10 +141,51 @@ class LoginView: BaseView {
             make.size.equalTo(CGSize(width: 235, height: 48))
             make.top.equalTo(twoView.snp.bottom).offset(14)
         }
+        
+        clickLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(loImageView.snp.bottom).offset(10)
+            make.left.equalToSuperview().offset(36)
+        }
     }
     
     @MainActor required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc func handleTap(_ gesture: UITapGestureRecognizer) {
+        guard let text = clickLabel.attributedText?.string else { return }
+        
+        let privacyPolicyRange = (text as NSString).range(of: "Privacy Policy")
+        let loanTermsRange = (text as NSString).range(of: "Loan Terms")
+        
+        let tapLocation = gesture.location(in: clickLabel)
+        guard let index = characterIndexAtLocation(location: tapLocation, in: clickLabel) else { return }
+        
+        if NSLocationInRange(index - 8, privacyPolicyRange) {
+            print("Tapped on Privacy Policy")
+            self.oneBlock?()
+        } else if NSLocationInRange(index - 8, loanTermsRange) {
+            print("Tapped on Loan Terms")
+            self.twoBlock?()
+        }
+    }
+    
+    func characterIndexAtLocation(location: CGPoint, in label: UILabel) -> Int? {
+        guard let attributedText = label.attributedText else { return nil }
+        
+        let textStorage = NSTextStorage(attributedString: attributedText)
+        let layoutManager = NSLayoutManager()
+        textStorage.addLayoutManager(layoutManager)
+        
+        let textContainer = NSTextContainer(size: label.bounds.size)
+        textContainer.lineFragmentPadding = 0
+        textContainer.maximumNumberOfLines = label.numberOfLines
+        textContainer.lineBreakMode = label.lineBreakMode
+        layoutManager.addTextContainer(textContainer)
+        
+        let index = layoutManager.characterIndex(for: location, in: textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
+        return index
     }
     
 }

@@ -75,8 +75,11 @@ extension HomeViewController {
                     let talkability = phrenlike?.talkability ?? ""
                     if talkability.contains("ios://pera.lend.app/flamingoCypr") {
                         let productID = getQueryParameter(from: talkability, parameterName: "pinguly") ?? ""
+                        let muidVc = AVMuidViewController()
+                        muidVc.productID = productID
+                        self.navigationController?.pushViewController(muidVc, animated: true)
                         //去认证--产品详情
-                        getProductDetailInfo(with: productID)
+//                        getProductDetailInfo(with: productID)
                     }else {
                         let webVc = WebViewController()
                         webVc.pageUrl = talkability

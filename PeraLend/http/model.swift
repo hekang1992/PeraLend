@@ -30,6 +30,7 @@ class phrenlikeModel: Codable {
     var consumerfier: [consumerfierModel]?
     var rur: [rurModel]?
     var torpefold: torpefoldModel?
+    var affectarium: affectariumModel?
 }
 
 class polysureModel: Codable {
@@ -157,4 +158,11 @@ class torpefoldModel: Codable {
 class fodlikeModel: Codable {
     var exactlyent: String?
     var potamowise: String?
+}
+
+class affectariumModel: Codable {
+    var buyen: String?
+    var clader: String?
+    var hypnoence: String?
+    var playaneity: String?
 }

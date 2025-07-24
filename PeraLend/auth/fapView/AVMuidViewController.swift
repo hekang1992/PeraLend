@@ -134,7 +134,7 @@ class AVMuidViewController: BaseViewController {
                 let webVc = WebViewController()
                 webVc.pageUrl = base_web_url + "/apricotCaul"
                 self.navigationController?.pushViewController(webVc, animated: true)
-        }).disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
         
     }
     
@@ -198,7 +198,8 @@ extension AVMuidViewController: UITableViewDelegate, UITableViewDataSource {
         moneyLabel.text = model?.agcheoy?.tinyaci?.officesion ?? ""
         amoLabel.attributedText = NSMutableAttributedString(string: "  \(model?.agcheoy?.tinyaci?.road ?? "")  ")
         let title = self.model?.monitad?.road ?? ""
-        applyBtn.setTitle(title, for: .normal)
+        let mesTtile = title.isEmpty ? "Apply" : title
+        applyBtn.setTitle(mesTtile, for: .normal)
         
         return headfView
     }
@@ -266,11 +267,7 @@ extension AVMuidViewController {
                 case .success(let success):
                     let verscancerern = success.verscancerern
                     if verscancerern == "0" || verscancerern == "00" {
-                        let monitad = success.phrenlike?.monitad
-                        let viscer = monitad?.viscer ?? ""
-                        if !viscer.isEmpty {
-                            self.model = success.phrenlike
-                        }
+                        self.model = success.phrenlike
                         self.tableView.reloadData()
                     }
                     ViewHud.hideLoadView()
@@ -289,9 +286,10 @@ extension AVMuidViewController {
         ViewHud.addLoadView()
         NetworkManager
             .shared
-            .postMultipartFormRequest(url: "/plapiall/saxaneous", parameters: ["pinguly": productID]) { result in
+            .postMultipartFormRequest(url: "/plapiall/saxaneous", parameters: ["pinguly": productID]) { [weak self] result in
                 switch result {
                 case .success(let success):
+                    guard let self = self else { return }
                     let verscancerern = success.verscancerern
                     if verscancerern == "0" || verscancerern == "00" {
                         let monitad = success.phrenlike?.monitad
@@ -316,6 +314,13 @@ extension AVMuidViewController {
                                 bankVc.productID = productID
                                 self.navigationController?.pushViewController(bankVc, animated: true)
                             }
+                        }else {
+                            let songfic = success.phrenlike?.formee?.songfic ?? ""
+                            orderNoInfo(with: songfic) { pageUrl in
+                                let webVc = WebViewController()
+                                webVc.pageUrl = pageUrl
+                                self.navigationController?.pushViewController(webVc, animated: true)
+                            }
                         }
                     }
                     ViewHud.hideLoadView()
@@ -333,29 +338,29 @@ extension AVMuidViewController {
         NetworkManager
             .shared
             .getRequest(url: "/plapiall/wallia", parameters: ["pinguly": productID, "type": "auth"]) { result in
-            switch result {
-            case .success(let success):
-                let verscancerern = success.verscancerern
-                if verscancerern == "0" || verscancerern == "00" {
-                    let salimiddleette = success.phrenlike?.physalidpm?.salimiddleette ?? 0
-                    if salimiddleette == 0 {//go umid
-                        let listVc = AuthListViewController()
-                        listVc.productID = self.productID
-                        listVc.lystArray = success.phrenlike?.lyst ?? []
-                        self.navigationController?.pushViewController(listVc, animated: true)
-                    }else {
-                        let faceVc = PhotoFaceViewController()
-                        faceVc.productID = self.productID
-                        self.navigationController?.pushViewController(faceVc, animated: true)
+                switch result {
+                case .success(let success):
+                    let verscancerern = success.verscancerern
+                    if verscancerern == "0" || verscancerern == "00" {
+                        let salimiddleette = success.phrenlike?.physalidpm?.salimiddleette ?? 0
+                        if salimiddleette == 0 {//go umid
+                            let listVc = AuthListViewController()
+                            listVc.productID = self.productID
+                            listVc.lystArray = success.phrenlike?.lyst ?? []
+                            self.navigationController?.pushViewController(listVc, animated: true)
+                        }else {
+                            let faceVc = PhotoFaceViewController()
+                            faceVc.productID = self.productID
+                            self.navigationController?.pushViewController(faceVc, animated: true)
+                        }
                     }
+                    ViewHud.hideLoadView()
+                    break
+                case .failure(_):
+                    ViewHud.hideLoadView()
+                    break
                 }
-                ViewHud.hideLoadView()
-                break
-            case .failure(_):
-                ViewHud.hideLoadView()
-                break
             }
-        }
     }
     
 }

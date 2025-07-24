@@ -6,9 +6,9 @@
 //
 
 import DeviceKit
-import SAMKeychain
 import AppTrackingTransparency
 import AdSupport
+import SAMKeychain
 
 final class LoginConfig {
     
