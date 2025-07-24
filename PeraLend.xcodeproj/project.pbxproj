@@ -53,6 +53,8 @@
 		73509F702E31CD1C0030D74B /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73509F6F2E31CD1C0030D74B /* WebViewController.swift */; };
 		73509F732E31D5060030D74B /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73509F722E31D5060030D74B /* OrderView.swift */; };
 		73509F752E31D51C0030D74B /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73509F742E31D51C0030D74B /* OrderViewController.swift */; };
+		73509F772E31E9410030D74B /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73509F762E31E9410030D74B /* OrderTableViewCell.swift */; };
+		73509F792E31ED1C0030D74B /* OrderEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73509F782E31ED1C0030D74B /* OrderEmptyView.swift */; };
 		73D10F5E2E2DCD0500CCFEF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73D10F552E2DCD0500CCFEF1 /* Assets.xcassets */; };
 		73D10F602E2DCD0500CCFEF1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73D10F582E2DCD0500CCFEF1 /* LaunchScreen.storyboard */; };
 		73D10F622E2DCD0500CCFEF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D10F542E2DCD0500CCFEF1 /* AppDelegate.swift */; };
@@ -105,6 +107,8 @@
 		73509F6F2E31CD1C0030D74B /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		73509F722E31D5060030D74B /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
 		73509F742E31D51C0030D74B /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
+		73509F762E31E9410030D74B /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
+		73509F782E31ED1C0030D74B /* OrderEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderEmptyView.swift; sourceTree = "<group>"; };
 		73D10F3C2E2DCCFD00CCFEF1 /* PeraLend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeraLend.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73D10F542E2DCD0500CCFEF1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73D10F552E2DCD0500CCFEF1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -264,7 +268,9 @@
 			isa = PBXGroup;
 			children = (
 				73509F722E31D5060030D74B /* OrderView.swift */,
+				73509F762E31E9410030D74B /* OrderTableViewCell.swift */,
 				73509F742E31D51C0030D74B /* OrderViewController.swift */,
+				73509F782E31ED1C0030D74B /* OrderEmptyView.swift */,
 			);
 			path = order;
 			sourceTree = "<group>";
@@ -435,6 +441,7 @@
 				731897492E2F8E9F00846439 /* AuthListNormalView.swift in Sources */,
 				7318973F2E2F5AA600846439 /* PhotoFaceViewController.swift in Sources */,
 				73397C832E2E031000732DE5 /* hud.swift in Sources */,
+				73509F792E31ED1C0030D74B /* OrderEmptyView.swift in Sources */,
 				73D10F622E2DCD0500CCFEF1 /* AppDelegate.swift in Sources */,
 				73397C6A2E2DD06400732DE5 /* LaunchViewController.swift in Sources */,
 				7304FE952E30D10D0092908A /* BankViewController.swift in Sources */,
@@ -455,6 +462,7 @@
 				7304FE932E30AB790092908A /* PhoneContView.swift in Sources */,
 				7304FE832E307DA00092908A /* PersonalView.swift in Sources */,
 				73397C6D2E2DD12D00732DE5 /* BaseView.swift in Sources */,
+				73509F772E31E9410030D74B /* OrderTableViewCell.swift in Sources */,
 				7304FE8F2E30A9F80092908A /* PhoneViewController.swift in Sources */,
 				731897452E2F78BF00846439 /* PhotoPopView.swift in Sources */,
 				7304FE8C2E30A4710092908A /* WorkViewController.swift in Sources */,

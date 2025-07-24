@@ -39,12 +39,16 @@ class SettingViewController: BaseViewController {
         
         settingView.twoBlock = { [weak self] in
             guard let self = self else { return }
-            ToastConfig.makeToast(form: view, message: "1")
+            let webVc = WebViewController()
+            webVc.pageUrl = base_web_url + "/apricotCaul"
+            self.navigationController?.pushViewController(webVc, animated: true)
         }
         
         settingView.threeBlock = { [weak self] in
             guard let self = self else { return }
-            ToastConfig.makeToast(form: view, message: "2")
+            let webVc = WebViewController()
+            webVc.pageUrl = base_web_url + "/greenbeanCh"
+            self.navigationController?.pushViewController(webVc, animated: true)
         }
         
         settingView.fourBlock = { [weak self] in

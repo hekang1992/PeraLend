@@ -37,6 +37,17 @@ class HomeViewController: BaseViewController {
             self.applyProduct(with: productID)
         }
         
+        playView
+            .clickLabel
+            .rx
+            .tapGesture()
+            .when(.recognized).subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                let webVc = WebViewController()
+                webVc.pageUrl = base_web_url + "/greenbeanCh"
+                self.navigationController?.pushViewController(webVc, animated: true)
+        }).disposed(by: disposeBag)
+        
         getAddressInfo()
         
     }

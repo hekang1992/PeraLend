@@ -9,6 +9,8 @@ import UIKit
 
 class OrderView: BaseView {
     
+    var rurModelArray: [rurModel] = []
+    
     var oneblock: (() -> Void)?
     var twoblock: (() -> Void)?
     var threeblock: (() -> Void)?
@@ -50,6 +52,23 @@ class OrderView: BaseView {
         return fourBtn
     }()
     
+    lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = .clear
+        tableView.register(OrderTableViewCell.self, forCellReuseIdentifier: "OrderTableViewCell")
+        tableView.estimatedRowHeight = 80
+        tableView.showsVerticalScrollIndicator = false
+        tableView.contentInsetAdjustmentBehavior = .never
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.delegate = self
+        tableView.dataSource = self
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        }
+        return tableView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(scrollView)
@@ -57,6 +76,7 @@ class OrderView: BaseView {
         scrollView.addSubview(twoBtn)
         scrollView.addSubview(threeBtn)
         scrollView.addSubview(fourBtn)
+        addSubview(tableView)
         scrollView.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
             make.height.equalTo(30)
@@ -81,6 +101,10 @@ class OrderView: BaseView {
             make.size.equalTo(CGSize(width: 90, height: 28))
             make.centerY.equalToSuperview()
             make.right.equalToSuperview().offset(-10)
+        }
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(scrollView.snp.bottom).offset(10)
+            make.left.right.bottom.equalToSuperview()
         }
         
         oneBtn.rx.tap.subscribe(onNext: { [weak self] in
@@ -108,5 +132,24 @@ class OrderView: BaseView {
     @MainActor required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+}
+
+extension OrderView: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return rurModelArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let model = rurModelArray[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "OrderTableViewCell", for: indexPath) as! OrderTableViewCell
+        cell.backgroundColor = .clear
+        cell.selectionStyle = .none
+        if rurModelArray.count > 0 {
+            cell.model = model
+        }
+        return cell
+    }
+    
     
 }

@@ -88,6 +88,7 @@ class AVMuidViewController: BaseViewController {
     lazy var deImageView: UIImageView = {
         let deImageView = UIImageView()
         deImageView.image = UIImage(named: "lu_de_ad")
+        deImageView.isUserInteractionEnabled = true
         return deImageView
     }()
     
@@ -123,6 +124,16 @@ class AVMuidViewController: BaseViewController {
         applyBtn.rx.tap.subscribe(onNext: { [weak self] in
             guard let self = self else { return }
             clickProductDetailInfo(with: productID)
+        }).disposed(by: disposeBag)
+        
+        deImageView
+            .rx
+            .tapGesture()
+            .when(.recognized).subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                let webVc = WebViewController()
+                webVc.pageUrl = base_web_url + "/apricotCaul"
+                self.navigationController?.pushViewController(webVc, animated: true)
         }).disposed(by: disposeBag)
         
     }

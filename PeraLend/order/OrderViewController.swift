@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MJRefresh
 
 class OrderViewController: BaseViewController {
     
@@ -14,6 +15,11 @@ class OrderViewController: BaseViewController {
     lazy var orderView: OrderView = {
         let orderView = OrderView()
         return orderView
+    }()
+    
+    lazy var emptyView: OrderEmptyView = {
+        let emptyView = OrderEmptyView()
+        return emptyView
     }()
 
     override func viewDidLoad() {
@@ -44,23 +50,41 @@ class OrderViewController: BaseViewController {
         orderView.oneblock = { [weak self] in
             guard let self = self else { return }
             changeBtnColor(with: "4")
+            getOrderListInfo(with: "4")
+            orderType = "4"
         }
         
         orderView.twoblock = { [weak self] in
             guard let self = self else { return }
             changeBtnColor(with: "7")
+            getOrderListInfo(with: "7")
+            orderType = "7"
         }
         
         orderView.threeblock = { [weak self] in
             guard let self = self else { return }
             changeBtnColor(with: "6")
+            getOrderListInfo(with: "6")
+            orderType = "6"
         }
         
         orderView.fourblock = { [weak self] in
             guard let self = self else { return }
             changeBtnColor(with: "5")
+            getOrderListInfo(with: "5")
+            orderType = "5"
         }
         
+        self.orderView.tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
+            guard let self = self else { return }
+            getOrderListInfo(with: orderType)
+        })
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getOrderListInfo(with: orderType)
     }
     
 
@@ -90,6 +114,40 @@ extension OrderViewController {
             orderView.twoBtn.isSelected = false
             orderView.threeBtn.isSelected = false
             orderView.fourBtn.isSelected = true
+        }
+    }
+    
+    private func getOrderListInfo(with orderType: String) {
+        ViewHud.addLoadView()
+        NetworkManager
+            .shared
+            .postMultipartFormRequest(url: "/plapiall/potamowise", parameters: ["bringster": orderType]) { [weak self] result in
+            switch result {
+            case .success(let success):
+                guard let self = self else { return }
+                let verscancerern = success.verscancerern
+                if verscancerern == "0" || verscancerern == "00" {
+                    let rurModelArray = success.phrenlike?.rur ?? []
+                    self.orderView.rurModelArray = rurModelArray
+                    self.orderView.tableView.reloadData()
+                    self.emptyView.removeFromSuperview()
+                    if rurModelArray.isEmpty {
+                        self.orderView.tableView.insertSubview(emptyView, at: 0)
+                        self.emptyView.snp.makeConstraints { make in
+                            make.centerX.equalToSuperview()
+                            make.left.equalTo((screenwidth - 200) * 0.5)
+                            make.size.equalTo(CGSize(width: 200, height: 200))
+                        }
+                    }
+                }
+                ViewHud.hideLoadView()
+                self.orderView.tableView.mj_header?.endRefreshing()
+                break
+            case .failure(_):
+                ViewHud.hideLoadView()
+                self?.orderView.tableView.mj_header?.endRefreshing()
+                break
+            }
         }
     }
     

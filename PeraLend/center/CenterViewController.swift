@@ -38,12 +38,16 @@ class CenterViewController: BaseViewController {
         
         centetrView.twoBlock = { [weak self] in
             guard let self = self else { return }
-            ToastConfig.makeToast(form: view, message: "2")
+            let webVc = WebViewController()
+            webVc.pageUrl = base_web_url
+            self.navigationController?.pushViewController(webVc, animated: true)
         }
         
         centetrView.threeBlock = { [weak self] in
             guard let self = self else { return }
-            ToastConfig.makeToast(form: view, message: "3")
+            let webVc = WebViewController()
+            webVc.pageUrl = base_web_url + "/rainbowHoll"
+            self.navigationController?.pushViewController(webVc, animated: true)
         }
         
         centetrView.fourBlock = { [weak self] in
@@ -75,7 +79,9 @@ class CenterViewController: BaseViewController {
         
         centetrView.eightBlock = { [weak self] in
             guard let self = self else { return }
-            ToastConfig.makeToast(form: view, message: "8")
+            let webVc = WebViewController()
+            webVc.pageUrl = base_web_url + "/apricotCaul"
+            self.navigationController?.pushViewController(webVc, animated: true)
         }
         
         
