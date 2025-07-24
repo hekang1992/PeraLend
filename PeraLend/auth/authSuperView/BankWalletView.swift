@@ -1,5 +1,5 @@
 //
-//  PersonalView.swift
+//  BankWalletView.swift
 //  PeraLend
 //
 //  Created by 何康 on 2025/7/23.
@@ -8,7 +8,10 @@
 import UIKit
 import BRPickerView
 
-class PersonalView: BaseView {
+class BankWalletView: BaseView {
+    
+    var wallBlock: ((UIButton, UIButton) -> Void)?
+    var bankBlock: ((UIButton, UIButton) -> Void)?
     
     var cellBlock: ((consumerfierModel) -> Void)?
     
@@ -16,7 +19,7 @@ class PersonalView: BaseView {
 
     lazy var headView: HeadView = {
         let headView = HeadView()
-        headView.nameLabel.text = "Information Confirmation"
+        headView.nameLabel.text = "Payment Binding"
         return headView
     }()
     
@@ -47,16 +50,33 @@ class PersonalView: BaseView {
         return nextBtn
     }()
     
-    lazy var ctImageView: UIImageView = {
-        let ctImageView = UIImageView()
-        ctImageView.image = UIImage(named: "p_one_image")
-        return ctImageView
+    lazy var plendImageView: UIImageView = {
+        let plendImageView = UIImageView()
+        plendImageView.image = UIImage(named: "p_last_image")
+        return plendImageView
+    }()
+    
+    lazy var oneBtn: UIButton = {
+        let oneBtn = UIButton(type: .custom)
+        oneBtn.setImage(UIImage(named: "wall_sel"), for: .selected)
+        oneBtn.setImage(UIImage(named: "wall_nor"), for: .normal)
+        oneBtn.isSelected = true
+        return oneBtn
+    }()
+    
+    lazy var twoBtn: UIButton = {
+        let twoBtn = UIButton(type: .custom)
+        twoBtn.setImage(UIImage(named: "bank_sel"), for: .selected)
+        twoBtn.setImage(UIImage(named: "bank_nor"), for: .normal)
+        return twoBtn
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(headView)
-        addSubview(ctImageView)
+        addSubview(plendImageView)
+        addSubview(oneBtn)
+        addSubview(twoBtn)
         addSubview(tableView)
         addSubview(nextBtn)
         
@@ -65,10 +85,20 @@ class PersonalView: BaseView {
             make.height.equalTo(30)
             make.left.right.equalToSuperview()
         }
-        ctImageView.snp.makeConstraints { make in
+        plendImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(headView.snp.bottom).offset(15)
             make.size.equalTo(CGSize(width: 341, height: 78))
+        }
+        oneBtn.snp.makeConstraints { make in
+            make.top.equalTo(plendImageView.snp.bottom).offset(15)
+            make.size.equalTo(CGSize(width: 140, height: 38))
+            make.left.equalToSuperview().offset(38)
+        }
+        twoBtn.snp.makeConstraints { make in
+            make.top.equalTo(plendImageView.snp.bottom).offset(15)
+            make.size.equalTo(CGSize(width: 140, height: 38))
+            make.right.equalToSuperview().offset(-38)
         }
         nextBtn.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
@@ -76,10 +106,21 @@ class PersonalView: BaseView {
             make.size.equalTo(CGSize(width: 235, height: 49))
         }
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(ctImageView.snp.bottom).offset(15)
+            make.top.equalTo(oneBtn.snp.bottom).offset(20)
             make.left.right.equalToSuperview()
             make.bottom.equalTo(nextBtn.snp.top).offset(-5)
         }
+        
+        oneBtn.rx.tap.subscribe(onNext: { [weak self] in
+            guard let self = self else { return }
+            self.wallBlock?(oneBtn, twoBtn)
+        }).disposed(by: disposeBag)
+        
+        twoBtn.rx.tap.subscribe(onNext: { [weak self] in
+            guard let self = self else { return }
+            self.bankBlock?(oneBtn, twoBtn)
+        }).disposed(by: disposeBag)
+        
     }
     
     @MainActor required init?(coder: NSCoder) {
@@ -88,7 +129,7 @@ class PersonalView: BaseView {
     
 }
 
-extension PersonalView: UITableViewDelegate, UITableViewDataSource  {
+extension BankWalletView: UITableViewDelegate, UITableViewDataSource  {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.consumerfierArray.count
@@ -129,7 +170,7 @@ extension PersonalView: UITableViewDelegate, UITableViewDataSource  {
 }
 
 
-extension PersonalView {
+extension BankWalletView {
     
     func setupPickerView(model: consumerfierModel, textField: UITextField, array: [readizeModel]) {
         let stringPickerView = BRAddressPickerView()

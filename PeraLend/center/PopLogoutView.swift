@@ -15,10 +15,10 @@ class PopLogoutView: UIView {
     var dismissblock: (() -> Void)?
     var sureblock: (() -> Void)?
     
-    lazy var ctImageView: UIImageView = {
-        let ctImageView = UIImageView()
-        ctImageView.isUserInteractionEnabled = true
-        return ctImageView
+    lazy var plendImageView: UIImageView = {
+        let plendImageView = UIImageView()
+        plendImageView.isUserInteractionEnabled = true
+        return plendImageView
     }()
 
     lazy var oneBtn: UIButton = {
@@ -38,11 +38,11 @@ class PopLogoutView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(ctImageView)
-        ctImageView.addSubview(oneBtn)
-        ctImageView.addSubview(twoBtn)
-        ctImageView.addSubview(threeBtn)
-        ctImageView.snp.makeConstraints { make in
+        addSubview(plendImageView)
+        plendImageView.addSubview(oneBtn)
+        plendImageView.addSubview(twoBtn)
+        plendImageView.addSubview(threeBtn)
+        plendImageView.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.size.equalTo(CGSize(width: 314, height: 345))
         }

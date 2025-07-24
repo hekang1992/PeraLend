@@ -6,8 +6,13 @@
 //
 
 import UIKit
+import RxSwift
 
 class AuthListEnumView: UIView {
+    
+    let disposeBag = DisposeBag()
+    
+    var clickblock: ((UITextField) -> Void)?
 
     lazy var bgImageView: UIImageView = {
         let bgImageView = UIImageView()
@@ -62,6 +67,11 @@ class AuthListEnumView: UIView {
         oneBtn.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        
+        oneBtn.rx.tap.subscribe(onNext: { [weak self] in
+            guard let self = self else { return }
+            self.clickblock?(phoneTx)
+        }).disposed(by: disposeBag)
     }
     
     required init?(coder: NSCoder) {

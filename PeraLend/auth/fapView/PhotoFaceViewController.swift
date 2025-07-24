@@ -7,6 +7,7 @@
 
 import UIKit
 import TYAlertController
+import BRPickerView
 
 class PhotoFaceViewController: BaseViewController {
     
@@ -237,7 +238,7 @@ class PhotoFaceViewController: BaseViewController {
                 self.present(alertVc, animated: true)
                 popView.camerablock = {
                     self.dismiss(animated: true) {
-                        ImagePickerHelper.presentCamera(from: self) { image in
+                        ImagePickerHelper.presentCamera(from: self, type: "Camera") { image in
                             if let image = image {
                                 // 使用选中的图片
                                 self.uploadImage(with: "2",
@@ -257,7 +258,11 @@ class PhotoFaceViewController: BaseViewController {
         
         nextBtn.rx.tap.subscribe(onNext: { [weak self] in
             guard let self = self else { return }
-            bclickProductDetailInfo(with: productID)
+            if self.model?.physalidpm?.salimiddleette == 0 || self.model?.gregcasey == 0 {
+                ToastConfig.makeToast(form: view, message: "Please complete the verification process first.")
+            }else {
+                bclickProductDetailInfo(with: productID)
+            }
         }).disposed(by: disposeBag)
         
     }
@@ -346,6 +351,33 @@ extension PhotoFaceViewController {
         popView.nameView.phoneTx.text = model.exactlyent ?? ""
         popView.numberView.phoneTx.text = model.crevitive ?? ""
         popView.dateView.phoneTx.text = model.applyess ?? ""
+        popView.dateView.clickblock = { [weak self] dateTx in
+            guard let self = self else { return }
+            self.view.endEditing(true)
+            let datePicker = BRDatePickerView()
+            datePicker.pickerMode = .YMD
+            datePicker.title = "Select Your Time"
+            let inputFormatter = DateFormatter()
+            inputFormatter.dateFormat = "dd-MM-yyyy"
+            if let defaultStr = popView.dateView.phoneTx.text,
+               let defaultDate = inputFormatter.date(from: defaultStr) {
+                datePicker.selectDate = defaultDate
+            } else {
+                datePicker.selectDate = Date()
+            }
+            
+            datePicker.resultBlock = { selectDate, selectValue in
+                if let date = selectDate {
+                    let outputFormatter = DateFormatter()
+                    outputFormatter.dateFormat = "dd-MM-yyyy"
+                    let dateStr = outputFormatter.string(from: date)
+                    dateTx.text = dateStr
+                } else if let value = selectValue {
+                    dateTx.text = value
+                }
+            }
+            datePicker.show()
+        }
         popView.dismissBlock = {
             self.dismiss(animated: true)
         }
@@ -364,7 +396,6 @@ extension PhotoFaceViewController {
                     "applyess": applyess,
                     "crevitive": crevitive,
                     "exactlyent": exactlyent]
-        
         NetworkManager.shared.postMultipartFormRequest(url: "/plapiall/like", parameters: dict) { [weak self] result in
             switch result {
             case .success(let success):
@@ -377,7 +408,7 @@ extension PhotoFaceViewController {
                     }
                 }
                 ViewHud.hideLoadView()
-                ToastConfig.makeToast(form: view, message: microfic)
+                ToastConfig.makeToast(form: listView, message: microfic)
                 break
             case .failure(_):
                 ViewHud.hideLoadView()

@@ -29,6 +29,7 @@ class phrenlikeModel: Codable {
     var applyess: String?
     var consumerfier: [consumerfierModel]?
     var rur: [rurModel]?
+    var torpefold: torpefoldModel?
 }
 
 class polysureModel: Codable {
@@ -53,6 +54,7 @@ class formeeModel: Codable {
     var agcheoy: agcheoyModel?
     var ruptwise: String?
     var raptorium: String?
+    var songfic: String?
 }
 
 class agcheoyModel: Codable {
@@ -78,24 +80,81 @@ class physalidpmModel: Codable {
 }
 
 class consumerfierModel: Codable {
-    var cal: String?//cell类型
+    var cal: String?
     var opinel: String?
     var readize: [readizeModel]?
     var road: String?
     var sufling: String?
     var verscancerern: String?
-    var troubletion: Int?//键盘类型
+    var troubletion: Int?
     var chlor: String?
     var potamowise: String?
+    var consumerfier: [consumerfierModel]?
+
+    enum CodingKeys: String, CodingKey {
+        case cal, opinel, readize, road, sufling, verscancerern, troubletion, chlor, potamowise, consumerfier
+    }
+
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        cal = try? container.decode(String.self, forKey: .cal)
+        opinel = try? container.decode(String.self, forKey: .opinel)
+        readize = try? container.decode([readizeModel].self, forKey: .readize)
+        road = try? container.decode(String.self, forKey: .road)
+        sufling = try? container.decode(String.self, forKey: .sufling)
+        verscancerern = try? container.decode(String.self, forKey: .verscancerern)
+        troubletion = try? container.decode(Int.self, forKey: .troubletion)
+        chlor = try? container.decode(String.self, forKey: .chlor)
+
+        if let str = try? container.decode(String.self, forKey: .potamowise) {
+            potamowise = str
+        } else if let intVal = try? container.decode(Int.self, forKey: .potamowise) {
+            potamowise = String(intVal)
+        }
+
+        consumerfier = try? container.decode([consumerfierModel].self, forKey: .consumerfier)
+    }
 }
 
 class readizeModel: Codable {
     var exactlyent: String?
-    var potamowise: Int?
+    var potamowise: String?
+
+    enum CodingKeys: String, CodingKey {
+        case exactlyent, potamowise
+    }
+
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        exactlyent = try? container.decode(String.self, forKey: .exactlyent)
+
+        if let str = try? container.decode(String.self, forKey: .potamowise) {
+            potamowise = str
+        } else if let intVal = try? container.decode(Int.self, forKey: .potamowise) {
+            potamowise = String(intVal)
+        }
+    }
 }
+
 
 class rurModel: Codable {
     var exactlyent: String?
     var raptorium: Int?
+    var officesion: String?
+    var tendorium: String?
+    var sarcolanditious: String?
+    var mollfier: String?
+    var relationText: String?
     var rur: [rurModel]?
+    var fodlike: [fodlikeModel]?
+}
+
+class torpefoldModel: Codable {
+    var rur: [rurModel]?
+}
+
+class fodlikeModel: Codable {
+    var exactlyent: String?
+    var potamowise: String?
 }

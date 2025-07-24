@@ -221,6 +221,22 @@ extension AVMuidViewController: UITableViewDelegate, UITableViewDataSource {
                 let faceVc = PhotoFaceViewController()
                 faceVc.productID = productID
                 self.navigationController?.pushViewController(faceVc, animated: true)
+            }else if viscer == "germinate" {
+                let personalVc = PersonalViewController()
+                personalVc.productID = productID
+                self.navigationController?.pushViewController(personalVc, animated: true)
+            }else if viscer == "lunfoodad" {
+                let workVc = WorkViewController()
+                workVc.productID = productID
+                self.navigationController?.pushViewController(workVc, animated: true)
+            }else if viscer == "laughwise" {
+                let phoneVc = PhoneViewController()
+                phoneVc.productID = productID
+                self.navigationController?.pushViewController(phoneVc, animated: true)
+            }else if viscer == "clinoid" {
+                let bankVc = BankViewController()
+                bankVc.productID = productID
+                self.navigationController?.pushViewController(bankVc, animated: true)
             }
         }
     }
@@ -276,6 +292,18 @@ extension AVMuidViewController {
                                 let personalVc = PersonalViewController()
                                 personalVc.productID = productID
                                 self.navigationController?.pushViewController(personalVc, animated: true)
+                            }else if viscer == "lunfoodad" {
+                                let workVc = WorkViewController()
+                                workVc.productID = productID
+                                self.navigationController?.pushViewController(workVc, animated: true)
+                            }else if viscer == "laughwise" {
+                                let phoneVc = PhoneViewController()
+                                phoneVc.productID = productID
+                                self.navigationController?.pushViewController(phoneVc, animated: true)
+                            }else if viscer == "clinoid" {
+                                let bankVc = BankViewController()
+                                bankVc.productID = productID
+                                self.navigationController?.pushViewController(bankVc, animated: true)
                             }
                         }
                     }

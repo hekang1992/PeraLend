@@ -1,5 +1,5 @@
 //
-//  PersonalViewController.swift
+//  WorkViewController.swift
 //  PeraLend
 //
 //  Created by 何康 on 2025/7/22.
@@ -8,7 +8,7 @@
 import UIKit
 import BRPickerView
 
-class PersonalViewController: BaseViewController {
+class WorkViewController: BaseViewController {
     
     var productID: String = ""
     
@@ -16,6 +16,7 @@ class PersonalViewController: BaseViewController {
     
     lazy var personView: PersonalView = {
         let personView = PersonalView()
+        personView.plendImageView.image = UIImage(named: "p_two_image")
         return personView
     }()
 
@@ -31,7 +32,7 @@ class PersonalViewController: BaseViewController {
             self?.popToSelectController()
         }
         
-        getPersonalInfo()
+        getWorkInfo()
         
         
         personView.nextBtn.rx.tap.subscribe(onNext: { [weak self] in
@@ -47,7 +48,24 @@ class PersonalViewController: BaseViewController {
                 }
                 endDict[key] = value
             }
-            print("endDict=====\(endDict)")
+            ViewHud.addLoadView()
+            NetworkManager.shared.postMultipartFormRequest(url: "/plapiall/graphoite", parameters: endDict) { [weak self] result in
+                switch result {
+                case .success(let success):
+                    guard let self = self else { return }
+                    let verscancerern = success.verscancerern
+                    let microfic = success.microfic ?? ""
+                    if verscancerern == "0" || verscancerern == "00" {
+                        bclickProductDetailInfo(with: productID)
+                    }
+                    ViewHud.hideLoadView()
+                    ToastConfig.makeToast(form: view, message: microfic)
+                    break
+                case .failure(_):
+                    ViewHud.hideLoadView()
+                    break
+                }
+            }
         }).disposed(by: disposeBag)
         
     }
@@ -55,13 +73,13 @@ class PersonalViewController: BaseViewController {
 
 }
 
-extension PersonalViewController {
+extension WorkViewController {
     
-    private func getPersonalInfo() {
+    private func getWorkInfo() {
         ViewHud.addLoadView()
         NetworkManager
             .shared
-            .postMultipartFormRequest(url: "/plapiall/messageible", parameters: ["pinguly": productID]) { [weak self] result in
+            .postMultipartFormRequest(url: "/plapiall/fetose", parameters: ["pinguly": productID]) { [weak self] result in
             switch result {
             case .success(let success):
                 guard let self = self else { return }
@@ -82,7 +100,7 @@ extension PersonalViewController {
     
 }
 
-extension PersonalViewController {
+extension WorkViewController {
     
     
     

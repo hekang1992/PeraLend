@@ -17,11 +17,9 @@ class AVMuidTableViewCell: UITableViewCell {
             let salimiddleette = model.salimiddleette
             bgImageView.kf.setImage(with: URL(string: logoUrl))
             tagImagView.image = UIImage(named: "indexpath_\(model.viscer ?? "")")
-            if salimiddleette == 0 {
-                ceImageView.image = UIImage(named: "Certification_\(model.viscer ?? "")")
-            }else {
-                ceImageView.image = UIImage(named: "adf_adeld")
-            }
+            ceImageView.image = UIImage(named: "Certification_\(model.viscer ?? "")")
+            suceImageView.isHidden = salimiddleette == 1 ? false : true
+            
         }
     }
     
@@ -45,6 +43,13 @@ class AVMuidTableViewCell: UITableViewCell {
         let ceImageView = UIImageView()
         return ceImageView
     }()
+    
+    lazy var suceImageView: UIImageView = {
+        let suceImageView = UIImageView()
+        suceImageView.image = UIImage(named: "adf_adeld")
+        suceImageView.isHidden = true
+        return suceImageView
+    }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -52,6 +57,7 @@ class AVMuidTableViewCell: UITableViewCell {
         bgView.addSubview(bgImageView)
         bgView.addSubview(tagImagView)
         bgImageView.addSubview(ceImageView)
+        bgView.addSubview(suceImageView)
         bgView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -69,6 +75,11 @@ class AVMuidTableViewCell: UITableViewCell {
             make.top.equalToSuperview().offset(11)
             make.left.equalToSuperview().offset(18)
             make.size.equalTo(CGSize(width: 90, height: 13))
+        }
+        suceImageView.snp.makeConstraints { make in
+            make.bottom.equalToSuperview()
+            make.left.equalTo(bgImageView.snp.left).offset(-2)
+            make.size.equalTo(CGSize(width: 185, height: 29))
         }
     }
     

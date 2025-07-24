@@ -16,6 +16,8 @@ class EnumCell: UITableViewCell {
             guard let model = model else { return }
             namelabel.text = model.road ?? ""
             phoneTx.placeholder = model.sufling ?? ""
+            let chlor = model.chlor
+            phoneTx.text = chlor
         }
     }
 
@@ -85,4 +87,5 @@ class EnumCell: UITableViewCell {
     @objc func enumBtnClick(_ sender: UIButton) {
         self.cellBlock?(phoneTx)
     }
+    
 }

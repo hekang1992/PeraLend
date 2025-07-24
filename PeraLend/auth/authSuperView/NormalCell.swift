@@ -14,6 +14,10 @@ class NormalCell: UITableViewCell {
             guard let model = model else { return }
             namelabel.text = model.road ?? ""
             phoneTx.placeholder = model.sufling ?? ""
+            let chlor = model.chlor
+            phoneTx.text = chlor
+            let troubletion = model.troubletion ?? 0
+            phoneTx.keyboardType = troubletion == 0 ? .default : .numberPad
         }
     }
     

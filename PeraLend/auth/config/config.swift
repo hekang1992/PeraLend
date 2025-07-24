@@ -15,7 +15,22 @@ class FirstModel {
                 continue
             }
             let proviceModel = BRProvinceModel()
-            proviceModel.code = String(proviceDic.potamowise ?? 0)
+            proviceModel.code = proviceDic.potamowise
+            proviceModel.name = proviceDic.exactlyent
+            proviceModel.index = dataSourceArr.firstIndex(where: { $0 as AnyObject === proviceDic as AnyObject }) ?? 0
+            result.append(proviceModel)
+        }
+        return result
+    }
+    
+    static func getModelArray(dataSourceArr: [Any]) -> [BRProvinceModel] {
+        var result = [BRProvinceModel]()
+        for proviceDic in dataSourceArr {
+            guard let proviceDic = proviceDic as? fodlikeModel else {
+                continue
+            }
+            let proviceModel = BRProvinceModel()
+            proviceModel.code = proviceDic.potamowise
             proviceModel.name = proviceDic.exactlyent
             proviceModel.index = dataSourceArr.firstIndex(where: { $0 as AnyObject === proviceDic as AnyObject }) ?? 0
             result.append(proviceModel)

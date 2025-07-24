@@ -50,7 +50,7 @@ class SettingViewController: BaseViewController {
         settingView.fourBlock = { [weak self] in
             guard let self = self else { return }
             let logView = PopLogoutView(frame: CGRectMake(0, 0, screenwidth, screenheight))
-            logView.ctImageView.image = UIImage(named: "logout_Iamge")
+            logView.plendImageView.image = UIImage(named: "logout_Iamge")
             let alertVc = TYAlertController(alert: logView, preferredStyle: .alert)!
             self.present(alertVc, animated: true)
             
@@ -66,7 +66,7 @@ class SettingViewController: BaseViewController {
         settingView.fiveBlock = { [weak self] in
             guard let self = self else { return }
             let logView = PopLogoutView(frame: CGRectMake(0, 0, screenwidth, screenheight))
-            logView.ctImageView.image = UIImage(named: "delete_IMGE")
+            logView.plendImageView.image = UIImage(named: "delete_IMGE")
             let alertVc = TYAlertController(alert: logView, preferredStyle: .alert)!
             self.present(alertVc, animated: true)
             

@@ -19,6 +19,7 @@ class PhoneListView: UIView {
     lazy var listImageView: UIImageView = {
         let listImageView = UIImageView()
         listImageView.image = UIImage(named: "phone_im")
+        listImageView.contentMode = .scaleAspectFill
         return listImageView
     }()
     
@@ -58,7 +59,7 @@ class PhoneListView: UIView {
             make.center.equalToSuperview()
         }
         listImageView.snp.makeConstraints { make in
-            make.top.equalTo(bgView.snp.top).offset(5)
+            make.top.equalTo(bgView.snp.top)
             make.size.equalTo(CGSize(width: 184, height: 31))
             make.left.equalTo(listImageView.snp.left).offset(-8)
         }

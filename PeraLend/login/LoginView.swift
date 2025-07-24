@@ -71,7 +71,7 @@ class LoginView: BaseView {
         loImageView.addSubview(loginBtn)
         
         headImageView.snp.makeConstraints { make in
-            make.top.equalTo(self.safeAreaLayoutGuide.snp.top)
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(15)
             make.centerX.equalToSuperview()
             make.size.equalTo(CGSize(width: 375, height: 96))
         }

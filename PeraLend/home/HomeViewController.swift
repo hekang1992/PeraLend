@@ -66,6 +66,10 @@ extension HomeViewController {
                         let productID = getQueryParameter(from: talkability, parameterName: "pinguly") ?? ""
                         //去认证--产品详情
                         getProductDetailInfo(with: productID)
+                    }else {
+                        let webVc = WebViewController()
+                        webVc.pageUrl = talkability
+                        self.navigationController?.pushViewController(webVc, animated: true)
                     }
                 }
                 ViewHud.hideLoadView()
@@ -124,9 +128,10 @@ extension HomeViewController {
         ViewHud.addLoadView()
         NetworkManager
             .shared
-            .postMultipartFormRequest(url: "/plapiall/saxaneous", parameters: ["pinguly": productID]) { result in
+            .postMultipartFormRequest(url: "/plapiall/saxaneous", parameters: ["pinguly": productID]) { [weak self] result in
                 switch result {
                 case .success(let success):
+                    guard let self = self else { return }
                     let verscancerern = success.verscancerern
                     if verscancerern == "0" || verscancerern == "00" {
                         let monitad = success.phrenlike?.monitad
@@ -135,6 +140,13 @@ extension HomeViewController {
                             let muidVc = AVMuidViewController()
                             muidVc.productID = productID
                             self.navigationController?.pushViewController(muidVc, animated: true)
+                        }else {
+                            let songfic = success.phrenlike?.formee?.songfic ?? ""
+                            orderNoInfo(with: songfic) { pageUrl in
+                                let webVc = WebViewController()
+                                webVc.pageUrl = pageUrl
+                                self.navigationController?.pushViewController(webVc, animated: true)
+                            }
                         }
                     }
                     ViewHud.hideLoadView()

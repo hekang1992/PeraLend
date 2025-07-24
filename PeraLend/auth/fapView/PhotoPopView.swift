@@ -16,11 +16,11 @@ class PhotoPopView: UIView {
     var photoblock: (() -> Void)?
     var camerablock: (() -> Void)?
     
-    lazy var ctImageView: UIImageView = {
-        let ctImageView = UIImageView()
-        ctImageView.isUserInteractionEnabled = true
-        ctImageView.image = UIImage(named: "umad_ima_da")
-        return ctImageView
+    lazy var plendImageView: UIImageView = {
+        let plendImageView = UIImageView()
+        plendImageView.isUserInteractionEnabled = true
+        plendImageView.image = UIImage(named: "umad_ima_da")
+        return plendImageView
     }()
 
     lazy var oneBtn: UIButton = {
@@ -40,11 +40,11 @@ class PhotoPopView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(ctImageView)
-        ctImageView.addSubview(oneBtn)
-        ctImageView.addSubview(twoBtn)
-        ctImageView.addSubview(threeBtn)
-        ctImageView.snp.makeConstraints { make in
+        addSubview(plendImageView)
+        plendImageView.addSubview(oneBtn)
+        plendImageView.addSubview(twoBtn)
+        plendImageView.addSubview(threeBtn)
+        plendImageView.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.size.equalTo(CGSize(width: 302, height: 466))
         }
@@ -99,11 +99,11 @@ class CameraPopView: UIView {
     var dismissblock: (() -> Void)?
     var camerablock: (() -> Void)?
     
-    lazy var ctImageView: UIImageView = {
-        let ctImageView = UIImageView()
-        ctImageView.isUserInteractionEnabled = true
-        ctImageView.image = UIImage(named: "face_iamg_ad_d")
-        return ctImageView
+    lazy var plendImageView: UIImageView = {
+        let plendImageView = UIImageView()
+        plendImageView.isUserInteractionEnabled = true
+        plendImageView.image = UIImage(named: "face_iamg_ad_d")
+        return plendImageView
     }()
 
     lazy var oneBtn: UIButton = {
@@ -118,10 +118,10 @@ class CameraPopView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(ctImageView)
-        ctImageView.addSubview(oneBtn)
-        ctImageView.addSubview(twoBtn)
-        ctImageView.snp.makeConstraints { make in
+        addSubview(plendImageView)
+        plendImageView.addSubview(oneBtn)
+        plendImageView.addSubview(twoBtn)
+        plendImageView.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.size.equalTo(CGSize(width: 302, height: 466))
         }
