@@ -105,7 +105,6 @@ class ImagePickerHelper: NSObject, UIImagePickerControllerDelegate, UINavigation
         }
     }
     
-    // MARK: - 选图完成回调
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         let image = info[.originalImage] as? UIImage
         picker.dismiss(animated: true) {
@@ -119,7 +118,6 @@ class ImagePickerHelper: NSObject, UIImagePickerControllerDelegate, UINavigation
         }
     }
     
-    // MARK: - 权限弹窗
     private class func showPermissionAlert(from vc: UIViewController, feature: String) {
         let alert = UIAlertController(title: "\(feature)权限未开启",
                                       message: "请前往 设置 > 隐私 > \(feature)，开启权限后重试。",

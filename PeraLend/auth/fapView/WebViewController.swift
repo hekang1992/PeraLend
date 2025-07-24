@@ -16,13 +16,12 @@ class WebViewController: BaseViewController {
     lazy var webView: WKWebView = {
         let userContentController = WKUserContentController()
         let configuration = WKWebViewConfiguration()
-        let scriptNames = ["preparing",
-                           "spring",
-                           "moved",
-                           "thorax",
-                           "backwards",
-                           "spine",
-                           "edge"]
+        let scriptNames = ["rowanwood",
+                           "sunflower",
+                           "bisonHali",
+                           "dogRutaba",
+                           "houseWine",
+                           "dinosaurJ"]
         scriptNames.forEach { userContentController.add(self, name: $0) }
         configuration.userContentController = userContentController
         let webView = WKWebView(frame: .zero, configuration: configuration)
@@ -50,7 +49,6 @@ class WebViewController: BaseViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        
         
         view.addSubview(headView)
         
@@ -124,21 +122,21 @@ extension WebViewController: WKScriptMessageHandler, WKNavigationDelegate {
         decisionHandler(.allow)
     }
     
-    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-//        ViewCycleManager.showLoading()
-    }
-    
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-//        ViewCycleManager.hideLoading()
-    }
-    
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-//        ViewCycleManager.hideLoading()
-    }
-    
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         let messageName = message.name
-        
+        if messageName == "toGrade" {
+            requestAppReview()
+        }else if messageName == "dogRutaba" {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CHANGEROOTPAGE"), object: nil)
+        }else if messageName == "bisonHali" {
+            self.navigationController?.popToRootViewController(animated: true)
+        }else if messageName == "sunflower" {//跳h5或者原生
+            
+        }else if messageName == "rowanwood" {//bugpoint
+            
+        }else if messageName == "houseWine" {//email
+            
+        }
     }
     
     func requestAppReview() {
@@ -146,8 +144,6 @@ extension WebViewController: WKScriptMessageHandler, WKNavigationDelegate {
             SKStoreReviewController.requestReview(in: windowScene)
         }
     }
-    
-    
     
 }
 
