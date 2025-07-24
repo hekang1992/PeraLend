@@ -80,6 +80,12 @@ class OrderViewController: BaseViewController {
             getOrderListInfo(with: orderType)
         })
         
+        self.orderView.cellBlock = { [weak self] model in
+            guard let self = self else { return }
+            let productID = model.sesquireallyment?.therier ?? 0
+            applyProduct(with: String(productID))
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,6 +98,49 @@ class OrderViewController: BaseViewController {
 
 
 extension OrderViewController {
+    
+    private func applyProduct(with productID: String) {
+        ViewHud.addLoadView()
+        let dict = ["pinguly": productID, "home": "1"]
+        NetworkManager.shared.postMultipartFormRequest(url: "/plapiall/opportunityment", parameters: dict) { [weak self] result in
+            switch result {
+            case .success(let success):
+                guard let self = self else { return }
+                let verscancerern = success.verscancerern
+                if verscancerern == "0" || verscancerern == "00" {
+                    let phrenlike = success.phrenlike
+                    let talkability = phrenlike?.talkability ?? ""
+                    if talkability.contains("ios://pera.lend.app/flamingoCypr") {
+                        let productID = getQueryParameter(from: talkability, parameterName: "pinguly") ?? ""
+                        let muidVc = AVMuidViewController()
+                        muidVc.productID = productID
+                        self.navigationController?.pushViewController(muidVc, animated: true)
+                        //去认证--产品详情
+//                        getProductDetailInfo(with: productID)
+                    }else {
+                        let webVc = WebViewController()
+                        webVc.pageUrl = talkability
+                        self.navigationController?.pushViewController(webVc, animated: true)
+                    }
+                }
+                ViewHud.hideLoadView()
+                break
+            case .failure(_):
+                ViewHud.hideLoadView()
+                break
+            }
+        }
+    }
+    
+    func getQueryParameter(from urlString: String, parameterName: String) -> String? {
+        guard let url = URL(string: urlString),
+              let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+              let queryItems = components.queryItems else {
+            return nil
+        }
+        
+        return queryItems.first(where: { $0.name == parameterName })?.value
+    }
     
     private func changeBtnColor(with orderType: String) {
         if orderType == "4" {
@@ -134,6 +183,7 @@ extension OrderViewController {
                     if rurModelArray.isEmpty {
                         self.orderView.tableView.insertSubview(emptyView, at: 0)
                         self.emptyView.snp.makeConstraints { make in
+                            make.top.equalToSuperview().offset(200)
                             make.centerX.equalToSuperview()
                             make.left.equalTo((screenwidth - 200) * 0.5)
                             make.size.equalTo(CGSize(width: 200, height: 200))
@@ -151,5 +201,7 @@ extension OrderViewController {
             }
         }
     }
+    
+    
     
 }

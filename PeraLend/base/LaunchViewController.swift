@@ -12,7 +12,7 @@ class LaunchViewController: UIViewController {
     lazy var bgImageView: UIImageView = {
         let bgImageView = UIImageView()
         bgImageView.image = UIImage(named: "launchimage")
-        bgImageView.contentMode = .scaleAspectFill
+        bgImageView.contentMode = .scaleToFill
         return bgImageView
     }()
 

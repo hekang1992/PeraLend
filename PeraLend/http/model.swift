@@ -170,12 +170,13 @@ class affectariumModel: Codable {
 
 class sesquireallymentModel: Codable {
     var apertaster: String?
-    var beforeress: String?
+    var beforeress: String?//button text
     var introism: String?
     var odorship: String?
     var photitor: String?
     var ruptwise: String?
     var subteraceous: String?
+    var jointure: String?
     var therier: Int?//产品ID
     var diaconditionry: Int?//订单状态ID
 }

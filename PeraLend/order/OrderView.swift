@@ -9,6 +9,8 @@ import UIKit
 
 class OrderView: BaseView {
     
+    var cellBlock: ((rurModel) -> Void)?
+    
     var rurModelArray: [rurModel] = []
     
     var oneblock: (() -> Void)?
@@ -145,11 +147,19 @@ extension OrderView: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "OrderTableViewCell", for: indexPath) as! OrderTableViewCell
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
+        cell.btnBlock = { [weak self] in
+            guard let self = self else { return }
+            self.cellBlock?(model)
+        }
         if rurModelArray.count > 0 {
             cell.model = model
         }
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let model = rurModelArray[indexPath.row]
+        self.cellBlock?(model)
+    }
     
 }
