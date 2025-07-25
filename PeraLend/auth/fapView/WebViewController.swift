@@ -2,7 +2,7 @@
 //  AuthListEnumView.swift
 //  PeraLend
 //
-//  Created by 何康 on 2025/7/22.
+//  Created by Jennifer Adams on 2025/7/22.
 //
 
 import UIKit

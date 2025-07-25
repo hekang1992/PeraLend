@@ -2,7 +2,7 @@
 //  deviceInfo.swift
 //  PeraLend
 //
-//  Created by 何康 on 2025/7/25.
+//  Created by Jennifer Adams on 2025/7/25.
 //
 
 import SystemServices
@@ -10,7 +10,7 @@ import DeviceKit
 import UIKit
 
 class SoftConfig {
-    // 实例属性
+
     let prunel = "ios"
     let southain: String
     let othersment: String
@@ -54,12 +54,12 @@ class SoftConfig {
     }
 }
 
-class Mnestchildosity {  // 类名改为大写
+class Mnestchildosity {
     let thermless: String
     let mouthess: String
     
     init() {
-        UIDevice.current.isBatteryMonitoringEnabled = true  // 只启用一次
+        UIDevice.current.isBatteryMonitoringEnabled = true
         self.thermless = String(Mnestchildosity.getBatteryLevel())
         self.mouthess = String(Mnestchildosity.isCharging())
     }
