@@ -116,6 +116,14 @@ extension BaseViewController {
                                 webVc.pageUrl = pageUrl
                                 self.navigationController?.pushViewController(webVc, animated: true)
                             }
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                let locationInfo = LocationModelSingle.shared.locationInfo
+                                let probar = locationInfo?["probar"] ?? ""
+                                let cyston = locationInfo?["cyston"] ?? ""
+                                PongCombineManager.goYourPoint(with: productID, type: "9", publicfic: String(Int(Date().timeIntervalSince1970 * 1000)), probar: probar, cyston: cyston)
+                            }
+                            
                         }
                     }
                     ViewHud.hideLoadView()

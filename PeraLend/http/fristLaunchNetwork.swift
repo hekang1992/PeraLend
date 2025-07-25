@@ -20,13 +20,19 @@ class NetworkStatusManager {
         reachabilityManager?.startListening { status in
             switch status {
             case .notReachable:
-                print("❌ 网络不可用")
+                UserDefaults.standard.set("none", forKey: "network")
+                UserDefaults.standard.synchronize()
             case .unknown:
-                print("❓ 网络状态未知")
+                UserDefaults.standard.set("unknown", forKey: "network")
+                UserDefaults.standard.synchronize()
             case .reachable(.ethernetOrWiFi):
                 self.getAppTypeInit()
+                UserDefaults.standard.set("WIFI", forKey: "network")
+                UserDefaults.standard.synchronize()
             case .reachable(.cellular):
                 self.getAppTypeInit()
+                UserDefaults.standard.set("5G", forKey: "network")
+                UserDefaults.standard.synchronize()
             }
         }
     }
@@ -46,9 +52,7 @@ extension NetworkStatusManager {
                     case .restricted:
                         break
                     case .authorized, .notDetermined, .denied:
-                        Task {
-                            await self.getFceBookInfo()
-                        }
+                        self.getFcfda_idfa_od()
                         break
                     @unknown default:
                         break
@@ -59,7 +63,7 @@ extension NetworkStatusManager {
         
     }
     
-    private func getFceBookInfo() async {
+    private func getFcfda_idfa_od() {
         let dict = ["ennisuddenlytion": DeviceIdfvManager.shared.getDeviceID(),
                     "ornithsexia": DeviceIdfvManager.shared.getIDFA()]
         NetworkManager

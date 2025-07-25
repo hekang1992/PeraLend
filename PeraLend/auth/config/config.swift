@@ -78,3 +78,11 @@ class AdressModelSingle {
     private init() {}
     var modelArray: [BRProvinceModel]?
 }
+
+
+
+class LocationModelSingle {
+    static let shared = LocationModelSingle()
+    private init() {}
+    var locationInfo: [String: String]?
+}

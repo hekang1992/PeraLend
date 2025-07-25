@@ -56,6 +56,9 @@
 		73509F772E31E9410030D74B /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73509F762E31E9410030D74B /* OrderTableViewCell.swift */; };
 		73509F792E31ED1C0030D74B /* OrderEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73509F782E31ED1C0030D74B /* OrderEmptyView.swift */; };
 		73509F7B2E31FD270030D74B /* fristLaunchNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73509F7A2E31FD1A0030D74B /* fristLaunchNetwork.swift */; };
+		7373507E2E332A4F00E75DC5 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373507D2E332A4B00E75DC5 /* LocationManager.swift */; };
+		737350812E334F0600E75DC5 /* deviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737350802E334EF900E75DC5 /* deviceInfo.swift */; };
+		737350832E3357B400E75DC5 /* Untitled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737350822E3357B400E75DC5 /* Untitled.swift */; };
 		73B876E42E3226D900439FB0 /* OtherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B876E32E3226D900439FB0 /* OtherView.swift */; };
 		73B876E62E322F1C00439FB0 /* OtherableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B876E52E322F1C00439FB0 /* OtherableViewCell.swift */; };
 		73D10F5E2E2DCD0500CCFEF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73D10F552E2DCD0500CCFEF1 /* Assets.xcassets */; };
@@ -113,6 +116,10 @@
 		73509F762E31E9410030D74B /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		73509F782E31ED1C0030D74B /* OrderEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderEmptyView.swift; sourceTree = "<group>"; };
 		73509F7A2E31FD1A0030D74B /* fristLaunchNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fristLaunchNetwork.swift; sourceTree = "<group>"; };
+		7373507D2E332A4B00E75DC5 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		7373507F2E332BEF00E75DC5 /* PeraLend.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PeraLend.entitlements; sourceTree = "<group>"; };
+		737350802E334EF900E75DC5 /* deviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = deviceInfo.swift; sourceTree = "<group>"; };
+		737350822E3357B400E75DC5 /* Untitled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Untitled.swift; sourceTree = "<group>"; };
 		73B876E32E3226D900439FB0 /* OtherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherView.swift; sourceTree = "<group>"; };
 		73B876E52E322F1C00439FB0 /* OtherableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherableViewCell.swift; sourceTree = "<group>"; };
 		73D10F3C2E2DCCFD00CCFEF1 /* PeraLend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeraLend.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -217,6 +224,7 @@
 		73397C662E2DD04400732DE5 /* base */ = {
 			isa = PBXGroup;
 			children = (
+				7373507D2E332A4B00E75DC5 /* LocationManager.swift */,
 				73397C6C2E2DD12D00732DE5 /* BaseView.swift */,
 				73397C672E2DD05B00732DE5 /* BaseViewController.swift */,
 				73397C692E2DD06400732DE5 /* LaunchViewController.swift */,
@@ -229,6 +237,8 @@
 		73397C6E2E2DD4D500732DE5 /* login */ = {
 			isa = PBXGroup;
 			children = (
+				737350822E3357B400E75DC5 /* Untitled.swift */,
+				737350802E334EF900E75DC5 /* deviceInfo.swift */,
 				73397C712E2DD5A200732DE5 /* LoginView.swift */,
 				73397C792E2DDA8F00732DE5 /* PhoneListView.swift */,
 				73397C732E2DD5B500732DE5 /* LoginViewController.swift */,
@@ -305,6 +315,7 @@
 		73D10F5D2E2DCD0500CCFEF1 /* PeraLend */ = {
 			isa = PBXGroup;
 			children = (
+				7373507F2E332BEF00E75DC5 /* PeraLend.entitlements */,
 				73D10F562E2DCD0500CCFEF1 /* Info.plist */,
 				73D10F552E2DCD0500CCFEF1 /* Assets.xcassets */,
 				73D10F542E2DCD0500CCFEF1 /* AppDelegate.swift */,
@@ -420,13 +431,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PeraLend/Pods-PeraLend-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PeraLend/Pods-PeraLend-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -442,8 +449,10 @@
 			files = (
 				73509F7B2E31FD270030D74B /* fristLaunchNetwork.swift in Sources */,
 				7304FE852E3081970092908A /* NormalCell.swift in Sources */,
+				737350832E3357B400E75DC5 /* Untitled.swift in Sources */,
 				73397C782E2DD7B400732DE5 /* BaseNavigationController.swift in Sources */,
 				73397C9A2E2E2A2900732DE5 /* SettingView.swift in Sources */,
+				7373507E2E332A4F00E75DC5 /* LocationManager.swift in Sources */,
 				73509F6E2E31C1C40030D74B /* BankWalletView.swift in Sources */,
 				731897392E2F2BC800846439 /* AVMuidViewController.swift in Sources */,
 				73397C9C2E2E34D200732DE5 /* PopLogoutView.swift in Sources */,
@@ -466,6 +475,7 @@
 				73B876E62E322F1C00439FB0 /* OtherableViewCell.swift in Sources */,
 				73509F702E31CD1C0030D74B /* WebViewController.swift in Sources */,
 				7304FE872E3081A20092908A /* EnumCell.swift in Sources */,
+				737350812E334F0600E75DC5 /* deviceInfo.swift in Sources */,
 				73397C902E2E14DD00732DE5 /* CenterViewController.swift in Sources */,
 				73397C812E2DF1B900732DE5 /* model.swift in Sources */,
 				731897412E2F65F600846439 /* PhotoFaceListView.swift in Sources */,
@@ -513,6 +523,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PeraLend/PeraLend.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -550,6 +561,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PeraLend/PeraLend.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;

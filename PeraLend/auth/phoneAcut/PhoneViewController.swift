@@ -24,6 +24,9 @@ class PhoneViewController: BaseViewController {
     
     var dictArray: [[String: String]] = []
     
+    var time: String = ""
+    let locationService = LocationService()  // 保留引用
+    
     lazy var phoneView: PhoneContView = {
         let phoneView = PhoneContView()
         phoneView.plendImageView.image = UIImage(named: "p_four_image")
@@ -34,6 +37,13 @@ class PhoneViewController: BaseViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        
+        locationService.startLocation { locationInfo in
+            LocationModelSingle.shared.locationInfo = locationInfo
+        }
+        
+        time = String(Int(Date().timeIntervalSince1970 * 1000))
+        
         view.addSubview(phoneView)
         phoneView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -94,6 +104,12 @@ extension PhoneViewController {
                     let verscancerern = success.verscancerern
                     if verscancerern == "0" || verscancerern == "00" {
                         bclickProductDetailInfo(with: productID)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                            let locationInfo = LocationModelSingle.shared.locationInfo
+                            let probar = locationInfo?["probar"] ?? ""
+                            let cyston = locationInfo?["cyston"] ?? ""
+                            PongCombineManager.goYourPoint(with: self.productID, type: "7", publicfic: self.time, probar: probar, cyston: cyston)
+                        }
                     }
                     ViewHud.hideLoadView()
                     break

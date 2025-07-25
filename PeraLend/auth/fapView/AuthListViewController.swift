@@ -42,6 +42,9 @@ class AuthListViewController: BaseViewController {
     private let scrollView1 = UIScrollView()
     private let contentView1 = UIView()
     
+    let locationService = LocationService()  // 保留引用
+    var time: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -117,6 +120,13 @@ class AuthListViewController: BaseViewController {
         
         loadOneTitles()
         loadTwoTitles()
+        
+        time = String(Int(Date().timeIntervalSince1970 * 1000))
+        locationService.startLocation { locationInfo in
+            LocationModelSingle.shared.locationInfo = locationInfo
+        }
+        
+        
     }
     
     
@@ -207,5 +217,14 @@ extension AuthListViewController {
         faceVc.productID = productID
         faceVc.type = type
         self.navigationController?.pushViewController(faceVc, animated: true)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            let locationInfo = LocationModelSingle.shared.locationInfo
+            let probar = locationInfo?["probar"] ?? ""
+            let cyston = locationInfo?["cyston"] ?? ""
+            PongCombineManager.goYourPoint(with: self.productID, type: "2", publicfic: self.time, probar: probar, cyston: cyston)
+        }
+        
+        
     }
 }

@@ -8,6 +8,7 @@
 import UIKit
 import RxRelay
 import MJRefresh
+import CoreLocation
 
 class HomeViewController: BaseViewController {
     
@@ -23,12 +24,49 @@ class HomeViewController: BaseViewController {
         return anotherView
     }()
     
+    let locationService = LocationService()  // 保留引用
+    
     var homeModel = BehaviorRelay<phrenlikeModel?>(value: nil)
+    
+    var time: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        time = String(Int(Date().timeIntervalSince1970 * 1000))
+        locationService.startLocation { locationInfo in
+            LocationModelSingle.shared.locationInfo = locationInfo
+            let locationInfo = LocationModelSingle.shared.locationInfo
+            
+            let satious = locationInfo?["satious"] ?? ""
+            let arborfine = locationInfo?["arborfine"] ?? ""
+            let coracdom = locationInfo?["coracdom"] ?? ""
+            let biblatory = locationInfo?["biblatory"] ?? ""
+            let cyston = locationInfo?["cyston"] ?? ""
+            let probar = locationInfo?["probar"] ?? ""
+            let millwise = locationInfo?["millwise"] ?? ""
+            
+            let dict = [
+                "satious": satious,
+                "arborfine": arborfine,
+                "coracdom": coracdom,
+                "biblatory": biblatory,
+                "cyston": cyston,
+                "probar": probar,
+                "millwise": millwise
+            ]
+            
+            NetworkManager.shared.postMultipartFormRequest(url: "/plapiall/apertaster", parameters: dict) { result in
+                switch result {
+                case .success(_):
+                    break
+                case .failure(_):
+                    break
+                }
+            }
+        }
+        
         view.addSubview(playView)
         playView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -74,7 +112,7 @@ class HomeViewController: BaseViewController {
                 let webVc = WebViewController()
                 webVc.pageUrl = base_web_url + "/greenbeanCh"
                 self.navigationController?.pushViewController(webVc, animated: true)
-        }).disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
         
         getAddressInfo()
         
@@ -90,7 +128,59 @@ class HomeViewController: BaseViewController {
 
 extension HomeViewController {
     
+    func showPermissionAlert(from vc: UIViewController, feature: String) {
+        let alert = UIAlertController(title: "\(feature)权限未开启",
+                                      message: "请前往 设置 > 隐私 > \(feature)，开启权限后重试。",
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "取消", style: .cancel))
+        alert.addAction(UIAlertAction(title: "去设置", style: .default, handler: { _ in
+            if let url = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(url)
+            }
+        }))
+        vc.present(alert, animated: true)
+    }
+    
     private func applyProduct(with productID: String) {
+        
+        //判断权限
+        let kakier = self.homeModel.value?.kakier ?? 0
+        if kakier == 1 {
+            let status = CLLocationManager().authorizationStatus
+            if status == .authorizedAlways || status == .authorizedWhenInUse {
+            }else {
+                showPermissionAlert(from: self, feature: "")
+                return
+            }
+        }
+        
+        //上报
+        let locationInfo = LocationModelSingle.shared.locationInfo
+        let probar = locationInfo?["probar"] ?? ""
+        let cyston = locationInfo?["cyston"] ?? ""
+        PongCombineManager.goYourPoint(with: productID, type: "1", publicfic: self.time, probar: probar, cyston: cyston)
+        
+        //设备
+        let deeiidict = SoftConfig().backAllDict()
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: deeiidict, options: [])
+            let jsonString = String(data: jsonData, encoding: .utf8)!
+            if let base64Data = jsonString.data(using: .utf8) {
+                let base64String = base64Data.base64EncodedString()
+                let dict = ["phrenlike": base64String, "apple": "1"]
+                NetworkManager.shared.postMultipartFormRequest(url: "/plapiall/amongel", parameters: dict) { result in
+                    switch result {
+                    case .success(_):
+                        break
+                    case .failure(_):
+                        break
+                    }
+                }
+            }
+        } catch {
+        
+        }
+        
         ViewHud.addLoadView()
         let dict = ["pinguly": productID, "home": "1"]
         NetworkManager.shared.postMultipartFormRequest(url: "/plapiall/opportunityment", parameters: dict) { [weak self] result in
@@ -107,7 +197,7 @@ extension HomeViewController {
                         muidVc.productID = productID
                         self.navigationController?.pushViewController(muidVc, animated: true)
                         //去认证--产品详情
-//                        getProductDetailInfo(with: productID)
+                        //                        getProductDetailInfo(with: productID)
                     }else {
                         let webVc = WebViewController()
                         webVc.pageUrl = talkability
@@ -216,20 +306,29 @@ extension HomeViewController {
         NetworkManager
             .shared
             .getRequest(url: "/plapiall/crass") { result in
-            switch result {
-            case .success(let success):
-                let verscancerern = success.verscancerern
-                if verscancerern == "0" || verscancerern == "00" {
-                    let rurArray = AddressModel.getAddressModelArray(dataSourceArr: success.phrenlike?.rur ?? [])
-                    AdressModelSingle.shared.modelArray = rurArray
+                switch result {
+                case .success(let success):
+                    let verscancerern = success.verscancerern
+                    if verscancerern == "0" || verscancerern == "00" {
+                        let rurArray = AddressModel.getAddressModelArray(dataSourceArr: success.phrenlike?.rur ?? [])
+                        AdressModelSingle.shared.modelArray = rurArray
+                    }
+                    ViewHud.hideLoadView()
+                    break
+                case .failure(_):
+                    ViewHud.hideLoadView()
+                    break
                 }
-                ViewHud.hideLoadView()
-                break
-            case .failure(_):
-                ViewHud.hideLoadView()
-                break
             }
-        }
+    }
+    
+}
+
+
+extension HomeViewController {
+     
+    private func uploadinfo() {
+        
     }
     
 }

@@ -22,5 +22,6 @@ target 'PeraLend' do
   pod 'Alamofire'
   pod 'SAMKeychain'
   pod 'lottie-ios'
-
+  pod 'SystemServices'
+  
 end

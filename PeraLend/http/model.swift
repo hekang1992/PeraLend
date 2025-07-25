@@ -33,6 +33,7 @@ class phrenlikeModel: Codable {
     var affectarium: affectariumModel?
     var discussaire: discussaireModel?
     var cantesque: cantesqueModel?
+    var kakier: Int?
 }
 
 class polysureModel: Codable {

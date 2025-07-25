@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import FBSDKCoreKit
 
 class LoginViewController: BaseViewController {
     
@@ -70,6 +71,10 @@ class LoginViewController: BaseViewController {
 extension LoginViewController {
     
     private func getCode() {
+        
+        //上报
+        getFce_kInfo()
+        
         ViewHud.addLoadView()
         let dict = ["pachose": "do",
                     "dyistic": self.loginView.oneView.phoneTx.text ?? ""]
@@ -148,6 +153,39 @@ extension LoginViewController {
         loginView.twoView.sendBtn.isEnabled = true
         loginView.twoView.sendBtn.setTitle("Send", for: .normal)
         
+    }
+    
+    private func getFce_kInfo() {
+        let dict = ["ennisuddenlytion": DeviceIdfvManager.shared.getDeviceID(),
+                    "ornithsexia": DeviceIdfvManager.shared.getIDFA()]
+        NetworkManager
+            .shared
+            .postMultipartFormRequest(url: "/plapiall/voluntacy", parameters: dict) { [weak self] result in
+                switch result {
+                case .success(let success):
+                    guard let self = self else { return }
+                    let verscancerern = success.verscancerern
+                    if verscancerern == "0" || verscancerern == "00" {
+                        if let affectariumModel = success.phrenlike?.affectarium {
+                            faceBookUpModel(from: affectariumModel)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CHANGEROOTPAGE"), object: nil)
+                            }
+                        }
+                    }
+                    break
+                case .failure(_):
+                    break
+                }
+            }
+    }
+    
+    private func faceBookUpModel(from model: affectariumModel) {
+        Settings.shared.appID = model.buyen ?? ""
+        Settings.shared.clientToken = model.clader ?? ""
+        Settings.shared.displayName = model.playaneity ?? ""
+        Settings.shared.appURLSchemeSuffix = model.hypnoence ?? ""
+        ApplicationDelegate.shared.application(UIApplication.shared, didFinishLaunchingWithOptions: nil)
     }
     
 }

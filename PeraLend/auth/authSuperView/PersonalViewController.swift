@@ -10,9 +10,13 @@ import BRPickerView
 
 class PersonalViewController: BaseViewController {
     
+    var time: String = ""
+    
     var productID: String = ""
     
     var consumerfierArray: [consumerfierModel] = []
+    
+    let locationService = LocationService()  // 保留引用
     
     lazy var personView: PersonalView = {
         let personView = PersonalView()
@@ -24,6 +28,10 @@ class PersonalViewController: BaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        locationService.startLocation { locationInfo in
+            LocationModelSingle.shared.locationInfo = locationInfo
+        }
+        
         view.addSubview(personView)
         personView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -34,7 +42,7 @@ class PersonalViewController: BaseViewController {
         
         getPersonalInfo()
         
-        
+        time = String(Int(Date().timeIntervalSince1970 * 1000))
         personView.nextBtn.rx.tap.subscribe(onNext: { [weak self] in
             guard let self = self else { return }
             var endDict: [String: String] = ["pinguly": productID]
@@ -57,6 +65,12 @@ class PersonalViewController: BaseViewController {
                     let microfic = success.microfic ?? ""
                     if verscancerern == "0" || verscancerern == "00" {
                         bclickProductDetailInfo(with: productID)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                            let locationInfo = LocationModelSingle.shared.locationInfo
+                            let probar = locationInfo?["probar"] ?? ""
+                            let cyston = locationInfo?["cyston"] ?? ""
+                            PongCombineManager.goYourPoint(with: self.productID, type: "5", publicfic: self.time, probar: probar, cyston: cyston)
+                        }
                     }
                     ViewHud.hideLoadView()
                     ToastConfig.makeToast(form: view, message: microfic)

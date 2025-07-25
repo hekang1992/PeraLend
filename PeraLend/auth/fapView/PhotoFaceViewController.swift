@@ -71,6 +71,10 @@ class PhotoFaceViewController: BaseViewController {
         return selectLabel
     }()
     
+    let locationService = LocationService()  // 保留引用
+    var time1: String = ""
+    var time2: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -147,7 +151,9 @@ class PhotoFaceViewController: BaseViewController {
             make.bottom.equalToSuperview()
         }
         
-        
+        locationService.startLocation { locationInfo in
+            LocationModelSingle.shared.locationInfo = locationInfo
+        }
         
         twoImageView
             .rx
@@ -170,6 +176,7 @@ class PhotoFaceViewController: BaseViewController {
             .when(.recognized)
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
+                time1 = String(Int(Date().timeIntervalSince1970 * 1000))
                 let salimiddleette = self.model?.physalidpm?.salimiddleette ?? 0
                 if salimiddleette == 1 {
                     ToastConfig.makeToast(form: view, message: "You have already completed the verification and cannot verify again.")
@@ -223,6 +230,7 @@ class PhotoFaceViewController: BaseViewController {
             .when(.recognized)
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
+                time2 = String(Int(Date().timeIntervalSince1970 * 1000))
                 let salimiddleette = self.model?.physalidpm?.salimiddleette ?? 0
                 let gregcasey = self.model?.gregcasey ?? 0
                 if salimiddleette == 0 {
@@ -331,6 +339,12 @@ extension PhotoFaceViewController {
                             alertModel(with: model)
                         }else {
                             self.bclickProductDetailInfo(with: pinguly)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                                let locationInfo = LocationModelSingle.shared.locationInfo
+                                let probar = locationInfo?["probar"] ?? ""
+                                let cyston = locationInfo?["cyston"] ?? ""
+                                PongCombineManager.goYourPoint(with: self.productID, type: "4", publicfic: self.time2, probar: probar, cyston: cyston)
+                            }
                         }
                     }
                 }
@@ -406,6 +420,13 @@ extension PhotoFaceViewController {
                     self.dismiss(animated: true) {
                         self.getFaceAuthInfo()
                     }
+                    //point_three
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                        let locationInfo = LocationModelSingle.shared.locationInfo
+                        let probar = locationInfo?["probar"] ?? ""
+                        let cyston = locationInfo?["cyston"] ?? ""
+                        PongCombineManager.goYourPoint(with: self.productID, type: "3", publicfic: self.time1, probar: probar, cyston: cyston)
+                    }                    
                 }
                 ViewHud.hideLoadView()
                 ToastConfig.makeToast(form: listView, message: microfic)

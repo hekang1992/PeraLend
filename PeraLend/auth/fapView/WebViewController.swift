@@ -12,6 +12,8 @@ import RxSwift
 import StoreKit
 
 class WebViewController: BaseViewController {
+    
+    let locationService = LocationService()  // 保留引用
 
     lazy var webView: WKWebView = {
         let userContentController = WKUserContentController()
@@ -51,6 +53,10 @@ class WebViewController: BaseViewController {
         // Do any additional setup after loading the view.
         
         view.addSubview(headView)
+        
+        locationService.startLocation { locationInfo in
+            LocationModelSingle.shared.locationInfo = locationInfo
+        }
         
         headView.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
@@ -124,7 +130,6 @@ extension WebViewController: WKScriptMessageHandler, WKNavigationDelegate {
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         let messageName = message.name
-       
         if messageName == "toGrade" {
             requestAppReview()
         }else if messageName == "dogRutaba" {
@@ -145,7 +150,14 @@ extension WebViewController: WKScriptMessageHandler, WKNavigationDelegate {
                 bclickProductDetailInfo(with: productID)
             }
         }else if messageName == "rowanwood" {//bugpoint
-            
+            let body = message.body as? [String]
+            let productID = body?.first ?? ""
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                let locationInfo = LocationModelSingle.shared.locationInfo
+                let probar = locationInfo?["probar"] ?? ""
+                let cyston = locationInfo?["cyston"] ?? ""
+                PongCombineManager.goYourPoint(with: productID, type: "10", publicfic: String(Int(Date().timeIntervalSince1970 * 1000)), probar: probar, cyston: cyston)
+            }
         }else if messageName == "houseWine" {//email
             let body = message.body
             goEmail(with: body as? String ?? "")
