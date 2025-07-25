@@ -56,6 +56,8 @@
 		73509F772E31E9410030D74B /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73509F762E31E9410030D74B /* OrderTableViewCell.swift */; };
 		73509F792E31ED1C0030D74B /* OrderEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73509F782E31ED1C0030D74B /* OrderEmptyView.swift */; };
 		73509F7B2E31FD270030D74B /* fristLaunchNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73509F7A2E31FD1A0030D74B /* fristLaunchNetwork.swift */; };
+		73B876E42E3226D900439FB0 /* OtherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B876E32E3226D900439FB0 /* OtherView.swift */; };
+		73B876E62E322F1C00439FB0 /* OtherableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B876E52E322F1C00439FB0 /* OtherableViewCell.swift */; };
 		73D10F5E2E2DCD0500CCFEF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73D10F552E2DCD0500CCFEF1 /* Assets.xcassets */; };
 		73D10F602E2DCD0500CCFEF1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73D10F582E2DCD0500CCFEF1 /* LaunchScreen.storyboard */; };
 		73D10F622E2DCD0500CCFEF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D10F542E2DCD0500CCFEF1 /* AppDelegate.swift */; };
@@ -111,6 +113,8 @@
 		73509F762E31E9410030D74B /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		73509F782E31ED1C0030D74B /* OrderEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderEmptyView.swift; sourceTree = "<group>"; };
 		73509F7A2E31FD1A0030D74B /* fristLaunchNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fristLaunchNetwork.swift; sourceTree = "<group>"; };
+		73B876E32E3226D900439FB0 /* OtherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherView.swift; sourceTree = "<group>"; };
+		73B876E52E322F1C00439FB0 /* OtherableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherableViewCell.swift; sourceTree = "<group>"; };
 		73D10F3C2E2DCCFD00CCFEF1 /* PeraLend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeraLend.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73D10F542E2DCD0500CCFEF1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73D10F552E2DCD0500CCFEF1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -250,6 +254,8 @@
 			children = (
 				73397C912E2E175E00732DE5 /* HomeView.swift */,
 				73397C8D2E2E14D500732DE5 /* HomeViewController.swift */,
+				73B876E32E3226D900439FB0 /* OtherView.swift */,
+				73B876E52E322F1C00439FB0 /* OtherableViewCell.swift */,
 			);
 			path = home;
 			sourceTree = "<group>";
@@ -414,9 +420,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PeraLend/Pods-PeraLend-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PeraLend/Pods-PeraLend-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -453,6 +463,7 @@
 				73397C722E2DD5A200732DE5 /* LoginView.swift in Sources */,
 				73397C962E2E290E00732DE5 /* HeadView.swift in Sources */,
 				731897432E2F775F00846439 /* ImagePickerHelper.swift in Sources */,
+				73B876E62E322F1C00439FB0 /* OtherableViewCell.swift in Sources */,
 				73509F702E31CD1C0030D74B /* WebViewController.swift in Sources */,
 				7304FE872E3081A20092908A /* EnumCell.swift in Sources */,
 				73397C902E2E14DD00732DE5 /* CenterViewController.swift in Sources */,
@@ -476,6 +487,7 @@
 				73397C7D2E2DEDA100732DE5 /* loginConfig.swift in Sources */,
 				7304FE8A2E308AB30092908A /* config.swift in Sources */,
 				73509F732E31D5060030D74B /* OrderView.swift in Sources */,
+				73B876E42E3226D900439FB0 /* OtherView.swift in Sources */,
 				731897472E2F813F00846439 /* PopImageSuccessView.swift in Sources */,
 				7318973B2E2F399500846439 /* AVMuidTableViewCell.swift in Sources */,
 			);

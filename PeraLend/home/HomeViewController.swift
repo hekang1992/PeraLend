@@ -13,7 +13,14 @@ class HomeViewController: BaseViewController {
     
     lazy var playView: HomeView = {
         let playView = HomeView()
+        playView.isHidden = true
         return playView
+    }()
+    
+    lazy var anotherView: OtherView = {
+        let anotherView = OtherView()
+        anotherView.isHidden = true
+        return anotherView
     }()
     
     var homeModel = BehaviorRelay<phrenlikeModel?>(value: nil)
@@ -27,7 +34,16 @@ class HomeViewController: BaseViewController {
             make.edges.equalToSuperview()
         }
         
+        view.addSubview(anotherView)
+        anotherView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
         self.playView.scrollView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
+            self.getHomeDataMessage()
+        })
+        
+        self.anotherView.tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
             self.getHomeDataMessage()
         })
         
@@ -107,16 +123,23 @@ extension HomeViewController {
                     let potamowise = homeModel.polysure?.potamowise ?? ""
                     if potamowise == "partpowerfy" {//a
                         self.playView.homeModel = homeModel
-                    }else {//b
-                        
+                        self.playView.isHidden = false
+                        self.anotherView.isHidden = true
+                    }else if potamowise == "finalation" {//b
+                        self.anotherView.homeModel = homeModel
+                        self.playView.isHidden = true
+                        self.anotherView.isHidden = false
+                        self.anotherView.tableView.reloadData()
                     }
                 }
                 ViewHud.hideLoadView()
                 self.playView.scrollView.mj_header?.endRefreshing()
+                self.anotherView.tableView.mj_header?.endRefreshing()
                 break
             case .failure(_):
                 ViewHud.hideLoadView()
                 self?.playView.scrollView.mj_header?.endRefreshing()
+                self?.anotherView.tableView.mj_header?.endRefreshing()
                 break
             }
         }

@@ -31,6 +31,8 @@ class phrenlikeModel: Codable {
     var rur: [rurModel]?
     var torpefold: torpefoldModel?
     var affectarium: affectariumModel?
+    var discussaire: discussaireModel?
+    var cantesque: cantesqueModel?
 }
 
 class polysureModel: Codable {
@@ -44,6 +46,8 @@ class nemaModel: Codable {
     var theyine: String?
     var voluntacy: String?
     var raptorium: Int?//productid
+    var apertaster: String?
+    var ruptwise: String?
 }
 
 class monitadModel: Codable {
@@ -179,4 +183,12 @@ class sesquireallymentModel: Codable {
     var jointure: String?
     var therier: Int?//产品ID
     var diaconditionry: Int?//订单状态ID
+}
+
+class discussaireModel: Codable {
+    var nema: [nemaModel]?
+}
+
+class cantesqueModel: Codable {
+    var nema: [nemaModel]?
 }
