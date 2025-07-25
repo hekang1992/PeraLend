@@ -124,6 +124,7 @@ extension WebViewController: WKScriptMessageHandler, WKNavigationDelegate {
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         let messageName = message.name
+       
         if messageName == "toGrade" {
             requestAppReview()
         }else if messageName == "dogRutaba" {
@@ -131,18 +132,67 @@ extension WebViewController: WKScriptMessageHandler, WKNavigationDelegate {
         }else if messageName == "bisonHali" {
             self.navigationController?.popToRootViewController(animated: true)
         }else if messageName == "sunflower" {//跳h5或者原生
-            
+            let body = message.body as? String ?? ""
+            if body.contains("teffCocoaMus"){
+                LoginBackState.removeLoginInfo()
+                self.dismiss(animated: true) {
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CHANGEROOTPAGE"), object: nil)
+                }
+            }else if body.contains("unicornBrocc") {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CHANGEROOTPAGE"), object: nil)
+            }else if body.contains("flamingoCypr") {
+                let productID = getQueryParameter(from: body, parameterName: "pinguly") ?? ""
+                bclickProductDetailInfo(with: productID)
+            }
         }else if messageName == "rowanwood" {//bugpoint
             
         }else if messageName == "houseWine" {//email
-            
+            let body = message.body
+            goEmail(with: body as? String ?? "")
         }
+    }
+    
+    func getQueryParameter(from urlString: String, parameterName: String) -> String? {
+        guard let url = URL(string: urlString),
+              let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+              let queryItems = components.queryItems else {
+            return nil
+        }
+        
+        return queryItems.first(where: { $0.name == parameterName })?.value
     }
     
     func requestAppReview() {
         if #available(iOS 14.0, *), let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
             SKStoreReviewController.requestReview(in: windowScene)
         }
+    }
+    
+    func goEmail(with email: String) {
+        guard let colonRange = email.range(of: ":"),
+              email.contains("email:") else {
+            return
+        }
+
+        let extractedEmail = String(email[colonRange.upperBound...])
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .components(separatedBy: .whitespacesAndNewlines)
+            .first ?? ""
+
+        guard !extractedEmail.isEmpty else {
+            return
+        }
+
+        let phone = UserDefaults.standard.string(forKey: "phone") ?? ""
+        let bodyContent = "PeraLend: \(phone)"
+
+        guard let encodedBody = bodyContent.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+              let mailtoURL = URL(string: "mailto:\(extractedEmail)?body=\(encodedBody)"),
+              UIApplication.shared.canOpenURL(mailtoURL) else {
+            return
+        }
+
+        UIApplication.shared.open(mailtoURL)
     }
     
 }

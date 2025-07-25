@@ -53,6 +53,18 @@ class HomeViewController: BaseViewController {
             self.applyProduct(with: productID)
         }
         
+        anotherView.cellBlock = { [weak self] model in
+            guard let self = self else { return }
+            let productID = String(model.raptorium ?? 0)
+            self.applyProduct(with: productID)
+        }
+        
+        anotherView.nextBtn.rx.tap.subscribe(onNext: { [weak self] in
+            guard let self = self, let model = self.homeModel.value else { return }
+            let productID = String(model.polysure?.nema?.first?.raptorium ?? 0)
+            self.applyProduct(with: productID)
+        }).disposed(by: disposeBag)
+        
         playView
             .clickLabel
             .rx

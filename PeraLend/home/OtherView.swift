@@ -8,6 +8,8 @@
 import UIKit
 
 class OtherView: BaseView {
+    
+    var cellBlock: ((nemaModel) -> Void)?
 
     var homeModel: phrenlikeModel? {
         didSet {
@@ -78,6 +80,38 @@ class OtherView: BaseView {
         return whiteView
     }()
     
+    lazy var logoImageView: UIImageView = {
+        let logoImageView = UIImageView()
+        logoImageView.layer.cornerRadius = 18
+        logoImageView.layer.masksToBounds = true
+        return logoImageView
+    }()
+    
+    lazy var nameLabel: UILabel = {
+        let nameLabel = UILabel()
+        nameLabel.textColor = .black
+        nameLabel.font = UIFont.boldSystemFont(ofSize: 15)
+        nameLabel.textAlignment = .left
+        return nameLabel
+    }()
+    
+    lazy var descLabel: UILabel = {
+        let descLabel = UILabel()
+        descLabel.textColor = .init(hexStr: "#666666")
+        descLabel.font = UIFont.boldSystemFont(ofSize: 13)
+        descLabel.textAlignment = .left
+        descLabel.numberOfLines = 2
+        return descLabel
+    }()
+    
+    lazy var moneyLabel: UILabel = {
+        let moneyLabel = UILabel()
+        moneyLabel.textColor = .black
+        moneyLabel.font = UIFont.boldSystemFont(ofSize: 19)
+        moneyLabel.textAlignment = .right
+        return moneyLabel
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(whiteView)
@@ -110,9 +144,15 @@ extension OtherView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let nemaArray = self.homeModel?.discussaire?.nema ?? []
+        let bigModel = self.homeModel?.polysure?.nema?.first
         headView.addSubview(headImageView)
         headView.addSubview(nextBtn)
         headView.addSubview(oveeImageView)
+        
+        headImageView.addSubview(logoImageView)
+        headImageView.addSubview(nameLabel)
+        headImageView.addSubview(descLabel)
+        headImageView.addSubview(moneyLabel)
         
         headImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(70)
@@ -130,6 +170,37 @@ extension OtherView: UITableViewDelegate, UITableViewDataSource {
             make.size.equalTo(CGSize(width: 350, height: 88))
         }
         oveeImageView.isHidden = nemaArray.isEmpty
+        
+        logoImageView.snp.makeConstraints { make in
+            make.size.equalTo(CGSize(width: 36, height: 36))
+            make.top.equalToSuperview().offset(85)
+            make.left.equalToSuperview().offset(18)
+        }
+        nameLabel.snp.makeConstraints { make in
+            make.left.equalTo(logoImageView.snp.right).offset(11)
+            make.centerY.equalTo(logoImageView.snp.centerY)
+            make.height.equalTo(16)
+        }
+        descLabel.snp.makeConstraints { make in
+            make.width.equalTo(150)
+            make.left.equalTo(logoImageView.snp.right).offset(12)
+            make.top.equalTo(nameLabel.snp.bottom).offset(3)
+        }
+        
+        moneyLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(descLabel.snp.centerY)
+            make.height.equalTo(16)
+            make.left.equalTo(descLabel.snp.right).offset(5)
+            make.right.equalToSuperview().offset(-20)
+        }
+        logoImageView.kf.setImage(with:URL(string: bigModel?.apertaster ?? ""))
+        nameLabel.text = bigModel?.ruptwise ?? ""
+        descLabel.text = bigModel?.theyine ?? ""
+        moneyLabel.text = bigModel?.voluntacy ?? ""
+        nextBtn.setTitle(bigModel?.amongel ?? "", for: .normal)
+        
+        
+        
         return self.headView
     }
     
@@ -145,8 +216,16 @@ extension OtherView: UITableViewDelegate, UITableViewDataSource {
         if modelArray.count > 0 {
             cell.model = modelArray[indexPath.row]
         }
+        cell.clickBlock = { [weak self] in
+            self?.cellBlock?(modelArray[indexPath.row])
+        }
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let modelArray = self.homeModel?.cantesque?.nema ?? []
+        let model = modelArray[indexPath.row]
+        self.cellBlock?(model)
+    }
     
 }

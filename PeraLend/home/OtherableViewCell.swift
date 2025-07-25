@@ -6,15 +6,20 @@
 //
 
 import UIKit
+import RxSwift
 
 class OtherableViewCell: UITableViewCell {
+    
+    let disposeBag = DisposeBag()
+    
+    var clickBlock: (() -> Void)?
     
     var model: nemaModel? {
         didSet {
             guard let model = model else { return }
             logoImageView.kf.setImage(with: URL(string: model.apertaster ?? ""))
             nameLabel.text = model.ruptwise ?? ""
-            descLabel.text = model.theyine ?? ""
+            descLabel.text = (model.theyine ?? "") + ":"
             moneyLabel.text = model.voluntacy ?? ""
             let title = model.amongel ?? ""
             if title.isEmpty {
@@ -35,6 +40,8 @@ class OtherableViewCell: UITableViewCell {
     
     lazy var logoImageView: UIImageView = {
         let logoImageView = UIImageView()
+        logoImageView.layer.cornerRadius = 18
+        logoImageView.layer.masksToBounds = true
         return logoImageView
     }()
     
@@ -64,20 +71,22 @@ class OtherableViewCell: UITableViewCell {
     
     lazy var nextBtn: UIButton = {
         let nextBtn = UIButton(type: .custom)
-        nextBtn.setBackgroundImage(UIImage(named: "apply_imag_d"), for: .normal)
+        nextBtn.setBackgroundImage(UIImage(named: "fads+__fa_fa"), for: .normal)
         nextBtn.setTitleColor(.white, for: .normal)
         nextBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        nextBtn.layer.cornerRadius = 9
+        nextBtn.layer.masksToBounds = true
         return nextBtn
     }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(bgView)
-        contentView.addSubview(logoImageView)
-        contentView.addSubview(nameLabel)
-        contentView.addSubview(descLabel)
-        contentView.addSubview(moneyLabel)
-        contentView.addSubview(nextBtn)
+        bgView.addSubview(logoImageView)
+        bgView.addSubview(nameLabel)
+        bgView.addSubview(descLabel)
+        bgView.addSubview(moneyLabel)
+        bgView.addSubview(nextBtn)
         
         bgView.snp.makeConstraints { make in
             make.top.equalToSuperview()
@@ -87,8 +96,39 @@ class OtherableViewCell: UITableViewCell {
             make.bottom.equalToSuperview().offset(-13)
         }
         
+        logoImageView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.left.equalToSuperview().offset(18)
+            make.size.equalTo(CGSize(width: 36, height: 36))
+        }
         
+        nameLabel.snp.makeConstraints { make in
+            make.left.equalTo(logoImageView.snp.right).offset(11)
+            make.top.equalToSuperview().offset(18)
+            make.height.equalTo(16)
+        }
+        descLabel.snp.makeConstraints { make in
+            make.left.equalTo(logoImageView.snp.right).offset(11)
+            make.top.equalTo(nameLabel.snp.bottom).offset(3)
+            make.height.equalTo(16)
+        }
         
+        nextBtn.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.right.equalToSuperview().offset(-15)
+            make.size.equalTo(CGSize(width: 88, height: 36))
+        }
+        moneyLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(descLabel.snp.centerY)
+            make.height.equalTo(16)
+            make.left.equalTo(descLabel.snp.right).offset(5)
+            make.right.equalTo(nextBtn.snp.left).offset(-10)
+        }
+        
+        nextBtn.rx.tap.subscribe(onNext: { [weak self] in
+            guard let self = self else { return }
+            self.clickBlock?()
+        }).disposed(by: disposeBag)
     }
     
     required init?(coder: NSCoder) {
