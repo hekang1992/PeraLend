@@ -172,9 +172,6 @@ extension LoginViewController {
                     if verscancerern == "0" || verscancerern == "00" {
                         if let affectariumModel = success.phrenlike?.affectarium {
                             faceBookUpModel(from: affectariumModel)
-                            //                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                            //                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CHANGEROOTPAGE"), object: nil)
-                            //                            }
                         }
                     }
                     break
