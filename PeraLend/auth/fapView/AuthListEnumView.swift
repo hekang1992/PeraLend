@@ -13,7 +13,7 @@ class AuthListEnumView: UIView {
     let disposeBag = DisposeBag()
     
     var clickblock: ((UITextField) -> Void)?
-
+    
     lazy var bgImageView: UIImageView = {
         let bgImageView = UIImageView()
         bgImageView.image = UIImage(named: "lis_auy_uu")

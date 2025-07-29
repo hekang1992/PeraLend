@@ -22,10 +22,10 @@ class WorkViewController: BaseViewController {
         personView.plendImageView.image = UIImage(named: "p_two_image")
         return personView
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         time = String(Int(Date().timeIntervalSince1970 * 1000))
         locationService.startLocation { locationInfo in
@@ -83,8 +83,8 @@ class WorkViewController: BaseViewController {
         }).disposed(by: disposeBag)
         
     }
-
-
+    
+    
 }
 
 extension WorkViewController {
@@ -94,22 +94,22 @@ extension WorkViewController {
         NetworkManager
             .shared
             .postMultipartFormRequest(url: "/plapiall/fetose", parameters: ["pinguly": productID]) { [weak self] result in
-            switch result {
-            case .success(let success):
-                guard let self = self else { return }
-                let verscancerern = success.verscancerern
-                if verscancerern == "0" || verscancerern == "00" {
-                    self.consumerfierArray = success.phrenlike?.consumerfier ?? []
-                    self.personView.consumerfierArray = success.phrenlike?.consumerfier ?? []
-                    self.personView.tableView.reloadData()
+                switch result {
+                case .success(let success):
+                    guard let self = self else { return }
+                    let verscancerern = success.verscancerern
+                    if verscancerern == "0" || verscancerern == "00" {
+                        self.consumerfierArray = success.phrenlike?.consumerfier ?? []
+                        self.personView.consumerfierArray = success.phrenlike?.consumerfier ?? []
+                        self.personView.tableView.reloadData()
+                    }
+                    ViewHud.hideLoadView()
+                    break
+                case .failure(_):
+                    ViewHud.hideLoadView()
+                    break
                 }
-                ViewHud.hideLoadView()
-                break
-            case .failure(_):
-                ViewHud.hideLoadView()
-                break
             }
-        }
     }
     
 }

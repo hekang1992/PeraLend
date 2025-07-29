@@ -27,7 +27,7 @@ class HeadView: UIView {
         nameLabel.font = UIFont.boldSystemFont(ofSize: 18)
         return nameLabel
     }()
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .clear

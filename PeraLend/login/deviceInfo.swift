@@ -10,7 +10,7 @@ import DeviceKit
 import UIKit
 
 class SoftConfig {
-
+    
     let prunel = "ios"
     let southain: String
     let othersment: String
@@ -241,7 +241,7 @@ class Dulcature {
         self.trit = Dulcature.totalMemory()
         self.methodise = Dulcature.activeMemoryinRaw()
     }
-
+    
     static func freeDisk() -> String {
         let freeDisk = String(format: "%.2lld", SystemServices.shared().longFreeDiskSpace)
         return freeDisk
@@ -261,7 +261,7 @@ class Dulcature {
         let activeMemoryinRaw = String(format: "%.0f", SystemServices.shared().activeMemoryinRaw * 1024 * 1024)
         return activeMemoryinRaw
     }
-
+    
     func backAllDict() -> [String: Any] {
         return [
             "soundier": soundier,

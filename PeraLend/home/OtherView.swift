@@ -12,7 +12,7 @@ class OtherView: BaseView {
     
     var cellBlock: ((nemaModel) -> Void)?
     var cellBlock1: ((nemaModel) -> Void)?
-
+    
     var homeModel: phrenlikeModel? {
         didSet {
             guard let homeModel = homeModel else { return }

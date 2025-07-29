@@ -19,10 +19,10 @@ class LoginViewController: BaseViewController {
         let loginView = LoginView()
         return loginView
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         view.addSubview(loginView)
         loginView.snp.makeConstraints { make in
@@ -53,7 +53,7 @@ class LoginViewController: BaseViewController {
             //login_code
             getCode()
         }).disposed(by: disposeBag)
-    
+        
         
         loginView.loginBtn.rx.tap.subscribe(onNext: { [weak self] in
             self?.getLogin(with: self?.loginView.oneView.phoneTx.text ?? "",
@@ -81,23 +81,23 @@ extension LoginViewController {
         NetworkManager
             .shared
             .postMultipartFormRequest(url: "/plapiall/dyistic", parameters: dict) { [weak self] result in
-            switch result {
-            case .success(let success):
-                let microfic = success.microfic ?? ""
-                guard let self = self else { return }
-                ToastConfig.makeToast(form: view, message: microfic)
-                
-                let verscancerern = success.verscancerern
-                if verscancerern == "0" || verscancerern == "00" {
-                    startCountdown()
+                switch result {
+                case .success(let success):
+                    let microfic = success.microfic ?? ""
+                    guard let self = self else { return }
+                    ToastConfig.makeToast(form: view, message: microfic)
+                    
+                    let verscancerern = success.verscancerern
+                    if verscancerern == "0" || verscancerern == "00" {
+                        startCountdown()
+                    }
+                    ViewHud.hideLoadView()
+                    break
+                case .failure(_):
+                    ViewHud.hideLoadView()
+                    break
                 }
-                ViewHud.hideLoadView()
-                break
-            case .failure(_):
-                ViewHud.hideLoadView()
-                break
             }
-        }
     }
     
     private func getLogin(with phone: String, code: String) {
@@ -126,7 +126,7 @@ extension LoginViewController {
                     ViewHud.hideLoadView()
                     break
                 }
-        }
+            }
     }
     
     private func startCountdown() {
@@ -172,9 +172,9 @@ extension LoginViewController {
                     if verscancerern == "0" || verscancerern == "00" {
                         if let affectariumModel = success.phrenlike?.affectarium {
                             faceBookUpModel(from: affectariumModel)
-//                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-//                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CHANGEROOTPAGE"), object: nil)
-//                            }
+                            //                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                            //                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CHANGEROOTPAGE"), object: nil)
+                            //                            }
                         }
                     }
                     break

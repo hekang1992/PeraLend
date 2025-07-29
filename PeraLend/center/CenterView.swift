@@ -76,7 +76,7 @@ class CenterView: BaseView {
         threeImageView.isUserInteractionEnabled = true
         return threeImageView
     }()
-
+    
     lazy var fourImageView: UIImageView = {
         let fourImageView = UIImageView()
         fourImageView.image = UIImage(named: "center_four")
@@ -115,7 +115,7 @@ class CenterView: BaseView {
         let fiveBtn = UIButton()
         return fiveBtn
     }()
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(scrollView)

@@ -61,19 +61,19 @@ extension BaseViewController {
         NetworkManager
             .shared
             .postMultipartFormRequest(url: "/plapiall/polysure", parameters: dict) { result in
-            switch result {
-            case .success(let success):
-                let verscancerern = success.verscancerern
-                if verscancerern == "0" || verscancerern == "00" {
-                    complete(success.phrenlike?.talkability ?? "")
+                switch result {
+                case .success(let success):
+                    let verscancerern = success.verscancerern
+                    if verscancerern == "0" || verscancerern == "00" {
+                        complete(success.phrenlike?.talkability ?? "")
+                    }
+                    ViewHud.hideLoadView()
+                    break
+                case .failure(_):
+                    ViewHud.hideLoadView()
+                    break
                 }
-                ViewHud.hideLoadView()
-                break
-            case .failure(_):
-                ViewHud.hideLoadView()
-                break
             }
-        }
     }
     
     //点击获取产品详情

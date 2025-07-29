@@ -328,35 +328,35 @@ extension PhotoFaceViewController {
         NetworkManager
             .shared
             .uploadImage(url: "/plapiall/proctacious", image: image, parameters: dict) { [weak self] result in
-            switch result {
-            case .success(let success):
-                guard let self = self else { return }
-                let verscancerern = success.verscancerern
-                let microfic = success.microfic ?? ""
-                if verscancerern == "0" || verscancerern == "00" {
-                    if let model = success.phrenlike {
-                        if potamowise == "11" {
-                            alertModel(with: model)
-                        }else {
-                            self.bclickProductDetailInfo(with: pinguly)
-                            let endTime = String(Int(Date().timeIntervalSince1970 * 1000))
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                                let locationInfo = LocationModelSingle.shared.locationInfo
-                                let probar = locationInfo?["probar"] ?? ""
-                                let cyston = locationInfo?["cyston"] ?? ""
-                                PongCombineManager.goYourPoint(with: self.productID, type: "4", publicfic: self.time2, probar: probar, cyston: cyston, endTime: endTime)
+                switch result {
+                case .success(let success):
+                    guard let self = self else { return }
+                    let verscancerern = success.verscancerern
+                    let microfic = success.microfic ?? ""
+                    if verscancerern == "0" || verscancerern == "00" {
+                        if let model = success.phrenlike {
+                            if potamowise == "11" {
+                                alertModel(with: model)
+                            }else {
+                                self.bclickProductDetailInfo(with: pinguly)
+                                let endTime = String(Int(Date().timeIntervalSince1970 * 1000))
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                                    let locationInfo = LocationModelSingle.shared.locationInfo
+                                    let probar = locationInfo?["probar"] ?? ""
+                                    let cyston = locationInfo?["cyston"] ?? ""
+                                    PongCombineManager.goYourPoint(with: self.productID, type: "4", publicfic: self.time2, probar: probar, cyston: cyston, endTime: endTime)
+                                }
                             }
                         }
                     }
+                    ViewHud.hideLoadView()
+                    ToastConfig.makeToast(form: view, message: microfic)
+                    break
+                case .failure(_):
+                    ViewHud.hideLoadView()
+                    break
                 }
-                ViewHud.hideLoadView()
-                ToastConfig.makeToast(form: view, message: microfic)
-                break
-            case .failure(_):
-                ViewHud.hideLoadView()
-                break
             }
-        }
     }
     
     private func alertModel(with model: phrenlikeModel) {

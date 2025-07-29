@@ -50,7 +50,7 @@ class AVMuidTableViewCell: UITableViewCell {
         suceImageView.isHidden = true
         return suceImageView
     }()
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(bgView)

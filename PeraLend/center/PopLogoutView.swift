@@ -20,7 +20,7 @@ class PopLogoutView: UIView {
         plendImageView.isUserInteractionEnabled = true
         return plendImageView
     }()
-
+    
     lazy var oneBtn: UIButton = {
         let oneBtn = UIButton(type: .custom)
         return oneBtn

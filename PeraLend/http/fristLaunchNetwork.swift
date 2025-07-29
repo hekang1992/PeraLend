@@ -26,11 +26,11 @@ class NetworkStatusManager {
                 UserDefaults.standard.set("unknown", forKey: "network")
                 UserDefaults.standard.synchronize()
             case .reachable(.ethernetOrWiFi):
-//                self.getAppTypeInit()
+                //                self.getAppTypeInit()
                 UserDefaults.standard.set("WIFI", forKey: "network")
                 UserDefaults.standard.synchronize()
             case .reachable(.cellular):
-//                self.getAppTypeInit()
+                //                self.getAppTypeInit()
                 UserDefaults.standard.set("5G", forKey: "network")
                 UserDefaults.standard.synchronize()
             }

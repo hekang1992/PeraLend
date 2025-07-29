@@ -34,7 +34,7 @@ class PhotoFaceListView: UIView {
         iconImageView.image = UIImage(named: "image_ri_daf")
         return iconImageView
     }()
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(bgView)

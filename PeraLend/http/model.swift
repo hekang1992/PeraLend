@@ -98,14 +98,14 @@ class consumerfierModel: Codable {
     var chlor: String?
     var potamowise: String?
     var consumerfier: [consumerfierModel]?
-
+    
     enum CodingKeys: String, CodingKey {
         case cal, opinel, readize, road, sufling, verscancerern, troubletion, chlor, potamowise, consumerfier
     }
-
+    
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-
+        
         cal = try? container.decode(String.self, forKey: .cal)
         opinel = try? container.decode(String.self, forKey: .opinel)
         readize = try? container.decode([readizeModel].self, forKey: .readize)
@@ -114,13 +114,13 @@ class consumerfierModel: Codable {
         verscancerern = try? container.decode(String.self, forKey: .verscancerern)
         troubletion = try? container.decode(Int.self, forKey: .troubletion)
         chlor = try? container.decode(String.self, forKey: .chlor)
-
+        
         if let str = try? container.decode(String.self, forKey: .potamowise) {
             potamowise = str
         } else if let intVal = try? container.decode(Int.self, forKey: .potamowise) {
             potamowise = String(intVal)
         }
-
+        
         consumerfier = try? container.decode([consumerfierModel].self, forKey: .consumerfier)
     }
 }
@@ -128,15 +128,15 @@ class consumerfierModel: Codable {
 class readizeModel: Codable {
     var exactlyent: String?
     var potamowise: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case exactlyent, potamowise
     }
-
+    
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         exactlyent = try? container.decode(String.self, forKey: .exactlyent)
-
+        
         if let str = try? container.decode(String.self, forKey: .potamowise) {
             potamowise = str
         } else if let intVal = try? container.decode(Int.self, forKey: .potamowise) {

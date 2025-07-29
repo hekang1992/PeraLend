@@ -20,7 +20,7 @@ class EnumCell: UITableViewCell {
             phoneTx.text = chlor
         }
     }
-
+    
     lazy var bgImageView: UIImageView = {
         let bgImageView = UIImageView()
         bgImageView.image = UIImage(named: "lis_auy_uu")
@@ -76,7 +76,7 @@ class EnumCell: UITableViewCell {
         oneBtn.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-
+        
         
     }
     

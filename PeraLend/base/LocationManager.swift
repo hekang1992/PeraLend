@@ -83,7 +83,7 @@ class PongCombineManager {
         NetworkManager.shared.postMultipartFormRequest(url: "/plapiall/ultimid", parameters: dict) { resulut in
             switch resulut {
             case .success(_):
-                 break
+                break
             case .failure(_):
                 break
             }

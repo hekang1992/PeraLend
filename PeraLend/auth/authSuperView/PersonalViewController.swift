@@ -23,10 +23,10 @@ class PersonalViewController: BaseViewController {
         personView.plendImageView.image = UIImage(named: "p_one_image")
         return personView
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         locationService.startLocation { locationInfo in
             LocationModelSingle.shared.locationInfo = locationInfo
@@ -85,8 +85,8 @@ class PersonalViewController: BaseViewController {
         
         
     }
-
-
+    
+    
 }
 
 extension PersonalViewController {
@@ -96,22 +96,22 @@ extension PersonalViewController {
         NetworkManager
             .shared
             .postMultipartFormRequest(url: "/plapiall/messageible", parameters: ["pinguly": productID]) { [weak self] result in
-            switch result {
-            case .success(let success):
-                guard let self = self else { return }
-                let verscancerern = success.verscancerern
-                if verscancerern == "0" || verscancerern == "00" {
-                    self.consumerfierArray = success.phrenlike?.consumerfier ?? []
-                    self.personView.consumerfierArray = success.phrenlike?.consumerfier ?? []
-                    self.personView.tableView.reloadData()
+                switch result {
+                case .success(let success):
+                    guard let self = self else { return }
+                    let verscancerern = success.verscancerern
+                    if verscancerern == "0" || verscancerern == "00" {
+                        self.consumerfierArray = success.phrenlike?.consumerfier ?? []
+                        self.personView.consumerfierArray = success.phrenlike?.consumerfier ?? []
+                        self.personView.tableView.reloadData()
+                    }
+                    ViewHud.hideLoadView()
+                    break
+                case .failure(_):
+                    ViewHud.hideLoadView()
+                    break
                 }
-                ViewHud.hideLoadView()
-                break
-            case .failure(_):
-                ViewHud.hideLoadView()
-                break
             }
-        }
     }
     
 }

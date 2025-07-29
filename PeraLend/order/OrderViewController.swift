@@ -21,10 +21,10 @@ class OrderViewController: BaseViewController {
         let emptyView = OrderEmptyView()
         return emptyView
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.addSubview(headView)
         headView.nameLabel.text = "Order List"
         
@@ -100,7 +100,7 @@ class OrderViewController: BaseViewController {
         getOrderListInfo(with: orderType)
     }
     
-
+    
 }
 
 
@@ -123,7 +123,7 @@ extension OrderViewController {
                         muidVc.productID = productID
                         self.navigationController?.pushViewController(muidVc, animated: true)
                         //去认证--产品详情
-//                        getProductDetailInfo(with: productID)
+                        //                        getProductDetailInfo(with: productID)
                     }else {
                         let webVc = WebViewController()
                         webVc.pageUrl = talkability
@@ -178,35 +178,35 @@ extension OrderViewController {
         NetworkManager
             .shared
             .postMultipartFormRequest(url: "/plapiall/potamowise", parameters: ["bringster": orderType]) { [weak self] result in
-            switch result {
-            case .success(let success):
-                guard let self = self else { return }
-                let verscancerern = success.verscancerern
-                if verscancerern == "0" || verscancerern == "00" {
-                    let rurModelArray = success.phrenlike?.rur ?? []
-                    self.orderView.rurModelArray = rurModelArray
-                    self.orderView.tableView.reloadData()
-                    self.emptyView.removeFromSuperview()
-                    if rurModelArray.isEmpty {
-                        self.orderView.tableView.insertSubview(emptyView, at: 0)
-                        self.emptyView.snp.makeConstraints { make in
-                            make.top.equalToSuperview().offset(200)
-                            make.centerX.equalToSuperview()
-                            make.left.equalTo((screenwidth - 200) * 0.5)
-                            make.size.equalTo(CGSize(width: 200, height: 200))
+                switch result {
+                case .success(let success):
+                    guard let self = self else { return }
+                    let verscancerern = success.verscancerern
+                    if verscancerern == "0" || verscancerern == "00" {
+                        let rurModelArray = success.phrenlike?.rur ?? []
+                        self.orderView.rurModelArray = rurModelArray
+                        self.orderView.tableView.reloadData()
+                        self.emptyView.removeFromSuperview()
+                        if rurModelArray.isEmpty {
+                            self.orderView.tableView.insertSubview(emptyView, at: 0)
+                            self.emptyView.snp.makeConstraints { make in
+                                make.top.equalToSuperview().offset(200)
+                                make.centerX.equalToSuperview()
+                                make.left.equalTo((screenwidth - 200) * 0.5)
+                                make.size.equalTo(CGSize(width: 200, height: 200))
+                            }
                         }
                     }
+                    ViewHud.hideLoadView()
+                    self.orderView.tableView.reloadData()
+                    self.orderView.tableView.mj_header?.endRefreshing()
+                    break
+                case .failure(_):
+                    ViewHud.hideLoadView()
+                    self?.orderView.tableView.mj_header?.endRefreshing()
+                    break
                 }
-                ViewHud.hideLoadView()
-                self.orderView.tableView.reloadData()
-                self.orderView.tableView.mj_header?.endRefreshing()
-                break
-            case .failure(_):
-                ViewHud.hideLoadView()
-                self?.orderView.tableView.mj_header?.endRefreshing()
-                break
             }
-        }
     }
     
     

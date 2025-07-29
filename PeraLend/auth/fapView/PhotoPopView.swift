@@ -22,7 +22,7 @@ class PhotoPopView: UIView {
         plendImageView.image = UIImage(named: "umad_ima_da")
         return plendImageView
     }()
-
+    
     lazy var oneBtn: UIButton = {
         let oneBtn = UIButton(type: .custom)
         return oneBtn
@@ -105,7 +105,7 @@ class CameraPopView: UIView {
         plendImageView.image = UIImage(named: "face_iamg_ad_d")
         return plendImageView
     }()
-
+    
     lazy var oneBtn: UIButton = {
         let oneBtn = UIButton(type: .custom)
         return oneBtn

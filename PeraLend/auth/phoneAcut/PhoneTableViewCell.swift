@@ -8,7 +8,7 @@
 import UIKit
 
 class PhoneTableViewCell: UITableViewCell {
-
+    
     var oneBlock: ((UITextField) -> Void)?
     var twoBlock: ((UITextField) -> Void)?
     
@@ -26,7 +26,7 @@ class PhoneTableViewCell: UITableViewCell {
             }
         }
     }
-
+    
     lazy var bgImageView: UIImageView = {
         let bgImageView = UIImageView()
         bgImageView.image = UIImage(named: "phocon_ima_list")
@@ -153,5 +153,5 @@ class PhoneTableViewCell: UITableViewCell {
     @objc func twoBtnClick(_ sender: UIButton) {
         self.twoBlock?(phoneTx)
     }
-
+    
 }

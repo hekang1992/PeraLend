@@ -13,7 +13,7 @@ class PersonalView: BaseView {
     var cellBlock: ((consumerfierModel) -> Void)?
     
     var consumerfierArray: [consumerfierModel] = []
-
+    
     lazy var headView: HeadView = {
         let headView = HeadView()
         headView.nameLabel.text = "Information Confirmation"

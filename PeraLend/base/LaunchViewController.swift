@@ -15,10 +15,10 @@ class LaunchViewController: UIViewController {
         bgImageView.contentMode = .scaleToFill
         return bgImageView
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         view.addSubview(bgImageView)
         
@@ -29,6 +29,6 @@ class LaunchViewController: UIViewController {
         NetworkStatusManager.shared.startListening()
         
     }
-  
-
+    
+    
 }

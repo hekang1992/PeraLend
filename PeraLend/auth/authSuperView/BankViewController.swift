@@ -25,10 +25,10 @@ class BankViewController: BaseViewController {
     var array: [consumerfierModel] = []
     
     var everybodyior: String = "1"
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         locationService.startLocation { locationInfo in
             LocationModelSingle.shared.locationInfo = locationInfo
@@ -108,7 +108,7 @@ class BankViewController: BaseViewController {
         }).disposed(by: disposeBag)
         
     }
-
+    
 }
 
 extension BankViewController {
@@ -118,22 +118,22 @@ extension BankViewController {
         NetworkManager
             .shared
             .getRequest(url: "/plapiall/formee", parameters: ["pinguly": productID, "larv": "0"]) { [weak self] result in
-            switch result {
-            case .success(let success):
-                guard let self = self else { return }
-                let verscancerern = success.verscancerern
-                if verscancerern == "0" || verscancerern == "00" {
-                    self.consumerfierArray = success.phrenlike?.consumerfier ?? []
-                    self.bankView.consumerfierArray = success.phrenlike?.consumerfier?.first?.consumerfier ?? []
-                    self.bankView.tableView.reloadData()
+                switch result {
+                case .success(let success):
+                    guard let self = self else { return }
+                    let verscancerern = success.verscancerern
+                    if verscancerern == "0" || verscancerern == "00" {
+                        self.consumerfierArray = success.phrenlike?.consumerfier ?? []
+                        self.bankView.consumerfierArray = success.phrenlike?.consumerfier?.first?.consumerfier ?? []
+                        self.bankView.tableView.reloadData()
+                    }
+                    ViewHud.hideLoadView()
+                    break
+                case .failure(_):
+                    ViewHud.hideLoadView()
+                    break
                 }
-                ViewHud.hideLoadView()
-                break
-            case .failure(_):
-                ViewHud.hideLoadView()
-                break
             }
-        }
     }
     
 }

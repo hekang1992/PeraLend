@@ -172,8 +172,8 @@ struct URLQueryConfig {
 }
 
 class ImageProviderData {
-   
-   static func compressImage(_ image: UIImage, maxKB: Int = 500) -> Data? {
+    
+    static func compressImage(_ image: UIImage, maxKB: Int = 500) -> Data? {
         let maxBytes = maxKB * 1024
         var compression: CGFloat = 0.9
         var imageData: Data?
@@ -187,7 +187,7 @@ class ImageProviderData {
             compression -= 0.15
         }
         
-      
+        
         var scale: CGFloat = 0.8
         while scale >= 0.3 {
             let newSize = CGSize(
@@ -203,7 +203,7 @@ class ImageProviderData {
             guard let resizedImage = resizedImage else { break }
             currentImage = resizedImage
             
-           
+            
             imageData = currentImage.jpegData(compressionQuality: 0.5)
             if let data = imageData, data.count <= maxBytes {
                 return data

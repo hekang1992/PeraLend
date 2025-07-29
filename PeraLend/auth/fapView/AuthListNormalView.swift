@@ -8,7 +8,7 @@
 import UIKit
 
 class AuthListNormalView: UIView {
-
+    
     lazy var bgImageView: UIImageView = {
         let bgImageView = UIImageView()
         bgImageView.image = UIImage(named: "lis_auy_uu")
@@ -57,5 +57,5 @@ class AuthListNormalView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
 }

@@ -14,10 +14,10 @@ class SettingViewController: BaseViewController {
         let settingView = SettingView()
         return settingView
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.addSubview(headView)
         headView.nameLabel.text = "Set Up"
         view.addSubview(settingView)
@@ -85,7 +85,7 @@ class SettingViewController: BaseViewController {
         
     }
     
-
+    
 }
 
 
@@ -96,25 +96,25 @@ extension SettingViewController {
         NetworkManager
             .shared
             .getRequest(url: "/plapiall/microfic") { [weak self] result in
-            switch result {
-            case .success(let success):
-                guard let self = self else { return }
-                ViewHud.hideLoadView()
-                let verscancerern = success.verscancerern
-                let microfic = success.microfic ?? ""
-                if verscancerern == "0" || verscancerern == "00" {
-                    LoginBackState.removeLoginInfo()
-                    self.dismiss(animated: true) {
-                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CHANGEROOTPAGE"), object: nil)
+                switch result {
+                case .success(let success):
+                    guard let self = self else { return }
+                    ViewHud.hideLoadView()
+                    let verscancerern = success.verscancerern
+                    let microfic = success.microfic ?? ""
+                    if verscancerern == "0" || verscancerern == "00" {
+                        LoginBackState.removeLoginInfo()
+                        self.dismiss(animated: true) {
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CHANGEROOTPAGE"), object: nil)
+                        }
                     }
+                    ToastConfig.makeToast(form: view, message: microfic)
+                    break
+                case .failure(_):
+                    ViewHud.hideLoadView()
+                    break
                 }
-                ToastConfig.makeToast(form: view, message: microfic)
-                break
-            case .failure(_):
-                ViewHud.hideLoadView()
-                break
             }
-        }
     }
     
     private func getDelete(with view: PopLogoutView) {
@@ -122,25 +122,25 @@ extension SettingViewController {
         NetworkManager
             .shared
             .getRequest(url: "/plapiall/goodfold") { [weak self] result in
-            switch result {
-            case .success(let success):
-                guard let self = self else { return }
-                ViewHud.hideLoadView()
-                let verscancerern = success.verscancerern
-                let microfic = success.microfic ?? ""
-                if verscancerern == "0" || verscancerern == "00" {
-                    LoginBackState.removeLoginInfo()
-                    self.dismiss(animated: true) {
-                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CHANGEROOTPAGE"), object: nil)
+                switch result {
+                case .success(let success):
+                    guard let self = self else { return }
+                    ViewHud.hideLoadView()
+                    let verscancerern = success.verscancerern
+                    let microfic = success.microfic ?? ""
+                    if verscancerern == "0" || verscancerern == "00" {
+                        LoginBackState.removeLoginInfo()
+                        self.dismiss(animated: true) {
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CHANGEROOTPAGE"), object: nil)
+                        }
                     }
+                    ToastConfig.makeToast(form: view, message: microfic)
+                    break
+                case .failure(_):
+                    ViewHud.hideLoadView()
+                    break
                 }
-                ToastConfig.makeToast(form: view, message: microfic)
-                break
-            case .failure(_):
-                ViewHud.hideLoadView()
-                break
             }
-        }
     }
     
 }

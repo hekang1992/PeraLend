@@ -14,7 +14,7 @@ import StoreKit
 class WebViewController: BaseViewController {
     
     let locationService = LocationService()  // 保留引用
-
+    
     lazy var webView: WKWebView = {
         let userContentController = WKUserContentController()
         let configuration = WKWebViewConfiguration()
@@ -38,7 +38,7 @@ class WebViewController: BaseViewController {
         webView.navigationDelegate = self
         return webView
     }()
-        
+    
     var pageUrl: String?
     
     lazy var progressView: UIProgressView = {
@@ -63,7 +63,7 @@ class WebViewController: BaseViewController {
             make.size.equalTo(CGSize(width: screenwidth, height: 30))
             make.centerX.equalToSuperview()
         }
-       
+        
         self.headView.backBlock = { [weak self] in
             guard let self = self else { return }
             if self.webView.canGoBack {
@@ -186,25 +186,25 @@ extension WebViewController: WKScriptMessageHandler, WKNavigationDelegate {
               email.contains("email:") else {
             return
         }
-
+        
         let extractedEmail = String(email[colonRange.upperBound...])
             .trimmingCharacters(in: .whitespacesAndNewlines)
             .components(separatedBy: .whitespacesAndNewlines)
             .first ?? ""
-
+        
         guard !extractedEmail.isEmpty else {
             return
         }
-
+        
         let phone = UserDefaults.standard.string(forKey: "phone") ?? ""
         let bodyContent = "PeraLend: \(phone)"
-
+        
         guard let encodedBody = bodyContent.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
               let mailtoURL = URL(string: "mailto:\(extractedEmail)?body=\(encodedBody)"),
               UIApplication.shared.canOpenURL(mailtoURL) else {
             return
         }
-
+        
         UIApplication.shared.open(mailtoURL)
     }
     

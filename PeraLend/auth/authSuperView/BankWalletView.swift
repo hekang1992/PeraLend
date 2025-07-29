@@ -16,7 +16,7 @@ class BankWalletView: BaseView {
     var cellBlock: ((consumerfierModel) -> Void)?
     
     var consumerfierArray: [consumerfierModel] = []
-
+    
     lazy var headView: HeadView = {
         let headView = HeadView()
         headView.nameLabel.text = "Payment Binding"
