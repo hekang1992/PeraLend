@@ -23,5 +23,6 @@ target 'PeraLend' do
   pod 'SAMKeychain'
   pod 'lottie-ios'
   pod 'SystemServices'
+  pod 'FSPagerView'
   
 end

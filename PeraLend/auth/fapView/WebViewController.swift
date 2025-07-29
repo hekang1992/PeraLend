@@ -130,7 +130,7 @@ extension WebViewController: WKScriptMessageHandler, WKNavigationDelegate {
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         let messageName = message.name
-        if messageName == "toGrade" {
+        if messageName == "dinosaurJ" {
             requestAppReview()
         }else if messageName == "dogRutaba" {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CHANGEROOTPAGE"), object: nil)
@@ -152,11 +152,12 @@ extension WebViewController: WKScriptMessageHandler, WKNavigationDelegate {
         }else if messageName == "rowanwood" {//bugpoint
             let body = message.body as? [String]
             let productID = body?.first ?? ""
+            let endTime = String(Int(Date().timeIntervalSince1970 * 1000))
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                 let locationInfo = LocationModelSingle.shared.locationInfo
                 let probar = locationInfo?["probar"] ?? ""
                 let cyston = locationInfo?["cyston"] ?? ""
-                PongCombineManager.goYourPoint(with: productID, type: "10", publicfic: String(Int(Date().timeIntervalSince1970 * 1000)), probar: probar, cyston: cyston)
+                PongCombineManager.goYourPoint(with: productID, type: "10", publicfic: endTime, probar: probar, cyston: cyston, endTime: endTime)
             }
         }else if messageName == "houseWine" {//email
             let body = message.body

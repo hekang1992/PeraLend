@@ -28,12 +28,12 @@ class ImagePickerHelper: NSObject, UIImagePickerControllerDelegate, UINavigation
                     if granted {
                         helper.presentPicker(sourceType: .camera, from: viewController, type: type)
                     } else {
-                        showPermissionAlert(from: viewController, feature: "相机")
+                        showPermissionAlert(from: viewController, feature: "Camera")
                     }
                 }
             }
         case .denied, .restricted:
-            showPermissionAlert(from: viewController, feature: "相机")
+            showPermissionAlert(from: viewController, feature: "Camera")
         @unknown default:
             break
         }
@@ -54,12 +54,12 @@ class ImagePickerHelper: NSObject, UIImagePickerControllerDelegate, UINavigation
                     if newStatus == .authorized || newStatus == .limited {
                         helper.presentPicker(sourceType: .photoLibrary, from: viewController, type: "photo")
                     } else {
-                        showPermissionAlert(from: viewController, feature: "相册")
+                        showPermissionAlert(from: viewController, feature: "Photos")
                     }
                 }
             }
         case .denied, .restricted:
-            showPermissionAlert(from: viewController, feature: "相册")
+            showPermissionAlert(from: viewController, feature: "Photos")
         @unknown default:
             break
         }
@@ -119,15 +119,19 @@ class ImagePickerHelper: NSObject, UIImagePickerControllerDelegate, UINavigation
     }
     
     private class func showPermissionAlert(from vc: UIViewController, feature: String) {
-        let alert = UIAlertController(title: "\(feature)权限未开启",
-                                      message: "请前往 设置 > 隐私 > \(feature)，开启权限后重试。",
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "取消", style: .cancel))
-        alert.addAction(UIAlertAction(title: "去设置", style: .default, handler: { _ in
+        let alert = UIAlertController(
+            title: "\(feature) Permission Disabled",
+            message: "Please go to Settings > Privacy > \(feature) to enable the permission and try again.",
+            preferredStyle: .alert
+        )
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Go to Settings", style: .default, handler: { _ in
             if let url = URL(string: UIApplication.openSettingsURLString) {
                 UIApplication.shared.open(url)
             }
         }))
+        
         vc.present(alert, animated: true)
     }
     

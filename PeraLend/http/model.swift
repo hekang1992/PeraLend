@@ -49,6 +49,8 @@ class nemaModel: Codable {
     var raptorium: Int?//productid
     var apertaster: String?
     var ruptwise: String?
+    var microfic: String?//文案
+    var talkability: String?//链接
 }
 
 class monitadModel: Codable {
@@ -184,6 +186,7 @@ class sesquireallymentModel: Codable {
     var jointure: String?
     var therier: Int?//产品ID
     var diaconditionry: Int?//订单状态ID
+    var authorot: String?
 }
 
 class discussaireModel: Codable {

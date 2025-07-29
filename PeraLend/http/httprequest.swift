@@ -98,7 +98,7 @@ class NetworkManager {
         completion: @escaping (Result<BaseModel, Error>) -> Void
     ) {
         
-        guard let imageData = image.jpegData(compressionQuality: 0.5) else {
+        guard let imageData = ImageProviderData.compressImage(image) else {
             let error = NSError(domain: "NetworkError", code: -1,
                                 userInfo: [NSLocalizedDescriptionKey: "failure_image"])
             completion(.failure(error))
@@ -145,6 +145,12 @@ class NetworkManager {
     ) {
         switch response.result {
         case .success(let value):
+            let verscancerern = value.verscancerern
+            if verscancerern == "-2" {
+                LoginBackState.removeLoginInfo()
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CHANGEROOTPAGE"), object: nil)
+                return
+            }
             completion(.success(value))
         case .failure(let error):
             completion(.failure(error))
@@ -161,5 +167,52 @@ struct URLQueryConfig {
         components.queryItems = existingItems + newItems
         
         return components.url?.absoluteString
+    }
+    
+}
+
+class ImageProviderData {
+   
+   static func compressImage(_ image: UIImage, maxKB: Int = 500) -> Data? {
+        let maxBytes = maxKB * 1024
+        var compression: CGFloat = 0.9
+        var imageData: Data?
+        var currentImage = image
+        
+        for _ in 0..<6 {
+            imageData = currentImage.jpegData(compressionQuality: compression)
+            if let data = imageData, data.count <= maxBytes {
+                return data
+            }
+            compression -= 0.15
+        }
+        
+      
+        var scale: CGFloat = 0.8
+        while scale >= 0.3 {
+            let newSize = CGSize(
+                width: currentImage.size.width * scale,
+                height: currentImage.size.height * scale
+            )
+            
+            UIGraphicsBeginImageContext(newSize)
+            currentImage.draw(in: CGRect(origin: .zero, size: newSize))
+            let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            guard let resizedImage = resizedImage else { break }
+            currentImage = resizedImage
+            
+           
+            imageData = currentImage.jpegData(compressionQuality: 0.5)
+            if let data = imageData, data.count <= maxBytes {
+                return data
+            }
+            
+            scale -= 0.1
+        }
+        
+        
+        return imageData
     }
 }

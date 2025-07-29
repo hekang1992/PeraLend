@@ -83,7 +83,14 @@ class OrderViewController: BaseViewController {
         self.orderView.cellBlock = { [weak self] model in
             guard let self = self else { return }
             let productID = model.sesquireallyment?.therier ?? 0
-            applyProduct(with: String(productID))
+            let authorot = model.sesquireallyment?.authorot ?? ""
+            if authorot.hasPrefix("http://") || authorot.hasPrefix("https://")  {
+                let webVc = WebViewController()
+                webVc.pageUrl = authorot
+                self.navigationController?.pushViewController(webVc, animated: true)
+            }else {
+                applyProduct(with: String(productID))
+            }
         }
         
     }

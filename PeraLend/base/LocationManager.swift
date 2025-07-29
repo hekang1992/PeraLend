@@ -66,12 +66,12 @@ class PongCombineManager {
                             type: String,
                             publicfic: String,
                             probar: String,
-                            cyston: String) {
+                            cyston: String,
+                            endTime: String) {
         let your = DeviceIdfvManager.shared.getDeviceID()
         let summerency = DeviceIdfvManager.shared.getIDFA()
         let probar = probar
         let cyston = cyston
-        let endTime = String(Int(Date().timeIntervalSince1970 * 1000))
         let dict = ["therier": productID,
                     "ofless": type,
                     "your": your,

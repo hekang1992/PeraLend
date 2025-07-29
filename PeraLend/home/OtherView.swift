@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import FSPagerView
 
 class OtherView: BaseView {
     
     var cellBlock: ((nemaModel) -> Void)?
+    var cellBlock1: ((nemaModel) -> Void)?
 
     var homeModel: phrenlikeModel? {
         didSet {
@@ -36,6 +38,7 @@ class OtherView: BaseView {
     
     lazy var headImageView: UIImageView = {
         let headImageView = UIImageView()
+        headImageView.isUserInteractionEnabled = true
         headImageView.image = UIImage(named: "reco_image_se")
         return headImageView
     }()
@@ -43,6 +46,7 @@ class OtherView: BaseView {
     lazy var oveeImageView: UIImageView = {
         let oveeImageView = UIImageView()
         oveeImageView.image = UIImage(named: "de_fa_overview")
+        oveeImageView.isUserInteractionEnabled = true
         return oveeImageView
     }()
     
@@ -112,6 +116,30 @@ class OtherView: BaseView {
         return moneyLabel
     }()
     
+    lazy var pagerView: FSPagerView = {
+        let pagerView = FSPagerView(frame: .zero)
+        pagerView.delegate = self
+        pagerView.dataSource = self
+        pagerView.register(OtherViewCell.self,
+                           forCellWithReuseIdentifier: "OtherViewCell")
+        pagerView.isInfinite = true
+        pagerView.transformer = FSPagerViewTransformer(type: .linear)
+        pagerView.itemSize = CGSize(width: 240, height: 44)
+        pagerView.interitemSpacing = 12
+        pagerView.automaticSlidingInterval = 3.0
+        return pagerView
+    }()
+    
+    lazy var mlabel: UILabel = {
+        let mlabel = UILabel()
+        mlabel.text = "Overdue Reminder"
+        mlabel.textColor = UIColor.init(hexStr: "#CD4E66")
+        mlabel.textAlignment = .left
+        mlabel.font = UIFont.boldSystemFont(ofSize: 14)
+        return mlabel
+    }()
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(whiteView)
@@ -171,6 +199,20 @@ extension OtherView: UITableViewDelegate, UITableViewDataSource {
         }
         oveeImageView.isHidden = nemaArray.isEmpty
         
+        oveeImageView.addSubview(pagerView)
+        oveeImageView.addSubview(mlabel)
+        pagerView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(36)
+            make.left.equalToSuperview().offset(90)
+            make.right.equalToSuperview().offset(-18)
+            make.height.equalTo(44)
+        }
+        mlabel.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(97)
+            make.top.equalToSuperview().offset(14)
+            make.height.equalTo(15)
+        }
+        
         logoImageView.snp.makeConstraints { make in
             make.size.equalTo(CGSize(width: 36, height: 36))
             make.top.equalToSuperview().offset(85)
@@ -226,6 +268,28 @@ extension OtherView: UITableViewDelegate, UITableViewDataSource {
         let modelArray = self.homeModel?.cantesque?.nema ?? []
         let model = modelArray[indexPath.row]
         self.cellBlock?(model)
+    }
+    
+}
+
+extension OtherView: FSPagerViewDelegate, FSPagerViewDataSource {
+    
+    func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
+        let model = self.homeModel?.discussaire?.nema?[index]
+        let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "OtherViewCell", at: index) as! OtherViewCell
+        cell.mlabel.text = model?.microfic ?? ""
+        return cell
+    }
+    
+    func numberOfItems(in pagerView: FSPagerView) -> Int {
+        return self.homeModel?.discussaire?.nema?.count ?? 0
+    }
+    
+    func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
+        if let model = self.homeModel?.discussaire?.nema?[index] {
+            self.cellBlock1?(model)
+        }
+        
     }
     
 }

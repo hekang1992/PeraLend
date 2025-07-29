@@ -37,35 +37,10 @@ class HomeViewController: BaseViewController {
         time = String(Int(Date().timeIntervalSince1970 * 1000))
         locationService.startLocation { locationInfo in
             LocationModelSingle.shared.locationInfo = locationInfo
-            let locationInfo = LocationModelSingle.shared.locationInfo
             
-            let satious = locationInfo?["satious"] ?? ""
-            let arborfine = locationInfo?["arborfine"] ?? ""
-            let coracdom = locationInfo?["coracdom"] ?? ""
-            let biblatory = locationInfo?["biblatory"] ?? ""
-            let cyston = locationInfo?["cyston"] ?? ""
-            let probar = locationInfo?["probar"] ?? ""
-            let millwise = locationInfo?["millwise"] ?? ""
-            
-            let dict = [
-                "satious": satious,
-                "arborfine": arborfine,
-                "coracdom": coracdom,
-                "biblatory": biblatory,
-                "cyston": cyston,
-                "probar": probar,
-                "millwise": millwise
-            ]
-            
-            NetworkManager.shared.postMultipartFormRequest(url: "/plapiall/apertaster", parameters: dict) { result in
-                switch result {
-                case .success(_):
-                    break
-                case .failure(_):
-                    break
-                }
-            }
         }
+        
+        locatinoupidn()
         
         view.addSubview(playView)
         playView.snp.makeConstraints { make in
@@ -95,6 +70,14 @@ class HomeViewController: BaseViewController {
             guard let self = self else { return }
             let productID = String(model.raptorium ?? 0)
             self.applyProduct(with: productID)
+        }
+        
+        anotherView.cellBlock1 = { [weak self] model in
+            guard let self = self else { return }
+            let talkability = model.talkability ?? ""
+            let webVc = WebViewController()
+            webVc.pageUrl = talkability
+            self.navigationController?.pushViewController(webVc, animated: true)
         }
         
         anotherView.nextBtn.rx.tap.subscribe(onNext: { [weak self] in
@@ -129,15 +112,19 @@ class HomeViewController: BaseViewController {
 extension HomeViewController {
     
     func showPermissionAlert(from vc: UIViewController, feature: String) {
-        let alert = UIAlertController(title: "\(feature)权限未开启",
-                                      message: "请前往 设置 > 隐私 > \(feature)，开启权限后重试。",
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "取消", style: .cancel))
-        alert.addAction(UIAlertAction(title: "去设置", style: .default, handler: { _ in
+        let alert = UIAlertController(
+            title: "\(feature) Permission Disabled",
+            message: "Please go to Settings > Privacy > \(feature) to enable the permission and try again.",
+            preferredStyle: .alert
+        )
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Go to Settings", style: .default, handler: { _ in
             if let url = URL(string: UIApplication.openSettingsURLString) {
                 UIApplication.shared.open(url)
             }
         }))
+        
         vc.present(alert, animated: true)
     }
     
@@ -149,17 +136,18 @@ extension HomeViewController {
             let status = CLLocationManager().authorizationStatus
             if status == .authorizedAlways || status == .authorizedWhenInUse {
             }else {
-                showPermissionAlert(from: self, feature: "")
+                showPermissionAlert(from: self, feature: "Location")
                 return
             }
         }
         
         //上报
+        let endTime = String(Int(Date().timeIntervalSince1970 * 1000))
         let locationInfo = LocationModelSingle.shared.locationInfo
         let probar = locationInfo?["probar"] ?? ""
         let cyston = locationInfo?["cyston"] ?? ""
-        PongCombineManager.goYourPoint(with: productID, type: "1", publicfic: self.time, probar: probar, cyston: cyston)
-        
+        PongCombineManager.goYourPoint(with: productID, type: "1", publicfic: self.time, probar: probar, cyston: cyston, endTime: endTime)
+        locatinoupidn()
         //设备
         let deeiidict = SoftConfig().backAllDict()
         do {
@@ -178,7 +166,7 @@ extension HomeViewController {
                 }
             }
         } catch {
-        
+            
         }
         
         ViewHud.addLoadView()
@@ -232,6 +220,7 @@ extension HomeViewController {
                         self.playView.isHidden = true
                         self.anotherView.isHidden = false
                         self.anotherView.tableView.reloadData()
+                        self.anotherView.pagerView.reloadData()
                     }
                 }
                 ViewHud.hideLoadView()
@@ -261,6 +250,39 @@ extension HomeViewController {
 }
 
 extension HomeViewController {
+    
+    private func locatinoupidn() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            let locationInfo = LocationModelSingle.shared.locationInfo
+            
+            let satious = locationInfo?["satious"] ?? ""
+            let arborfine = locationInfo?["arborfine"] ?? ""
+            let coracdom = locationInfo?["coracdom"] ?? ""
+            let biblatory = locationInfo?["biblatory"] ?? ""
+            let cyston = locationInfo?["cyston"] ?? ""
+            let probar = locationInfo?["probar"] ?? ""
+            let millwise = locationInfo?["millwise"] ?? ""
+            
+            let dict = [
+                "satious": satious,
+                "arborfine": arborfine,
+                "coracdom": coracdom,
+                "biblatory": biblatory,
+                "cyston": cyston,
+                "probar": probar,
+                "millwise": millwise
+            ]
+            
+            NetworkManager.shared.postMultipartFormRequest(url: "/plapiall/apertaster", parameters: dict) { result in
+                switch result {
+                case .success(_):
+                    break
+                case .failure(_):
+                    break
+                }
+            }
+        }
+    }
     
     //产品线抗清 ====跳转
     private func getProductDetailInfo(with productID: String) {
@@ -326,7 +348,7 @@ extension HomeViewController {
 
 
 extension HomeViewController {
-     
+    
     private func uploadinfo() {
         
     }

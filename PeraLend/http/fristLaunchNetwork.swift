@@ -26,15 +26,16 @@ class NetworkStatusManager {
                 UserDefaults.standard.set("unknown", forKey: "network")
                 UserDefaults.standard.synchronize()
             case .reachable(.ethernetOrWiFi):
-                self.getAppTypeInit()
+//                self.getAppTypeInit()
                 UserDefaults.standard.set("WIFI", forKey: "network")
                 UserDefaults.standard.synchronize()
             case .reachable(.cellular):
-                self.getAppTypeInit()
+//                self.getAppTypeInit()
                 UserDefaults.standard.set("5G", forKey: "network")
                 UserDefaults.standard.synchronize()
             }
         }
+        self.getAppTypeInit()
     }
     
     func isReachable() -> Bool {
@@ -45,7 +46,7 @@ class NetworkStatusManager {
 extension NetworkStatusManager {
     
     private func getAppTypeInit() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             if #available(iOS 14.0, *) {
                 ATTrackingManager.requestTrackingAuthorization { status in
                     switch status {

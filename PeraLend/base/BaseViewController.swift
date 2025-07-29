@@ -117,11 +117,12 @@ extension BaseViewController {
                                 self.navigationController?.pushViewController(webVc, animated: true)
                             }
                             
+                            let endTime = String(Int(Date().timeIntervalSince1970 * 1000))
                             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                                 let locationInfo = LocationModelSingle.shared.locationInfo
                                 let probar = locationInfo?["probar"] ?? ""
                                 let cyston = locationInfo?["cyston"] ?? ""
-                                PongCombineManager.goYourPoint(with: productID, type: "9", publicfic: String(Int(Date().timeIntervalSince1970 * 1000)), probar: probar, cyston: cyston)
+                                PongCombineManager.goYourPoint(with: productID, type: "9", publicfic: endTime, probar: probar, cyston: cyston, endTime: endTime)
                             }
                             
                         }

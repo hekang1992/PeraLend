@@ -104,11 +104,12 @@ extension PhoneViewController {
                     let verscancerern = success.verscancerern
                     if verscancerern == "0" || verscancerern == "00" {
                         bclickProductDetailInfo(with: productID)
+                        let endTime = String(Int(Date().timeIntervalSince1970 * 1000))
                         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                             let locationInfo = LocationModelSingle.shared.locationInfo
                             let probar = locationInfo?["probar"] ?? ""
                             let cyston = locationInfo?["cyston"] ?? ""
-                            PongCombineManager.goYourPoint(with: self.productID, type: "7", publicfic: self.time, probar: probar, cyston: cyston)
+                            PongCombineManager.goYourPoint(with: self.productID, type: "7", publicfic: self.time, probar: probar, cyston: cyston, endTime: endTime)
                         }
                     }
                     ViewHud.hideLoadView()
@@ -200,7 +201,10 @@ extension PhoneViewController: CNContactPickerDelegate {
             let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
             do {
                 try self?.contactStore.enumerateContacts(with: request) { (contact, stop) in
-                    let fullName = "\(contact.givenName) \(contact.familyName)"
+                    var fullName = "\(contact.givenName) \(contact.familyName)"
+                    if fullName == " " {
+                        fullName = ""
+                    }
                     let phoneNumbersString = contact.phoneNumbers
                         .map { $0.value.stringValue }
                         .joined(separator: ",")

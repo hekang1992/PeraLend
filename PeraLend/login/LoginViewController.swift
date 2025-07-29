@@ -86,7 +86,11 @@ extension LoginViewController {
                 let microfic = success.microfic ?? ""
                 guard let self = self else { return }
                 ToastConfig.makeToast(form: view, message: microfic)
-                startCountdown()
+                
+                let verscancerern = success.verscancerern
+                if verscancerern == "0" || verscancerern == "00" {
+                    startCountdown()
+                }
                 ViewHud.hideLoadView()
                 break
             case .failure(_):
@@ -168,9 +172,9 @@ extension LoginViewController {
                     if verscancerern == "0" || verscancerern == "00" {
                         if let affectariumModel = success.phrenlike?.affectarium {
                             faceBookUpModel(from: affectariumModel)
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CHANGEROOTPAGE"), object: nil)
-                            }
+//                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+//                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CHANGEROOTPAGE"), object: nil)
+//                            }
                         }
                     }
                     break

@@ -339,11 +339,12 @@ extension PhotoFaceViewController {
                             alertModel(with: model)
                         }else {
                             self.bclickProductDetailInfo(with: pinguly)
+                            let endTime = String(Int(Date().timeIntervalSince1970 * 1000))
                             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                                 let locationInfo = LocationModelSingle.shared.locationInfo
                                 let probar = locationInfo?["probar"] ?? ""
                                 let cyston = locationInfo?["cyston"] ?? ""
-                                PongCombineManager.goYourPoint(with: self.productID, type: "4", publicfic: self.time2, probar: probar, cyston: cyston)
+                                PongCombineManager.goYourPoint(with: self.productID, type: "4", publicfic: self.time2, probar: probar, cyston: cyston, endTime: endTime)
                             }
                         }
                     }
@@ -421,12 +422,13 @@ extension PhotoFaceViewController {
                         self.getFaceAuthInfo()
                     }
                     //point_three
+                    let endTime = String(Int(Date().timeIntervalSince1970 * 1000))
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                         let locationInfo = LocationModelSingle.shared.locationInfo
                         let probar = locationInfo?["probar"] ?? ""
                         let cyston = locationInfo?["cyston"] ?? ""
-                        PongCombineManager.goYourPoint(with: self.productID, type: "3", publicfic: self.time1, probar: probar, cyston: cyston)
-                    }                    
+                        PongCombineManager.goYourPoint(with: self.productID, type: "3", publicfic: self.time1, probar: probar, cyston: cyston, endTime: endTime)
+                    }
                 }
                 ViewHud.hideLoadView()
                 ToastConfig.makeToast(form: listView, message: microfic)

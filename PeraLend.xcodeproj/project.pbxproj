@@ -64,6 +64,7 @@
 		73D10F5E2E2DCD0500CCFEF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73D10F552E2DCD0500CCFEF1 /* Assets.xcassets */; };
 		73D10F602E2DCD0500CCFEF1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73D10F582E2DCD0500CCFEF1 /* LaunchScreen.storyboard */; };
 		73D10F622E2DCD0500CCFEF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D10F542E2DCD0500CCFEF1 /* AppDelegate.swift */; };
+		73FF27CE2E37749C008A9D29 /* OtherViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FF27CD2E37749C008A9D29 /* OtherViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -127,6 +128,7 @@
 		73D10F552E2DCD0500CCFEF1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		73D10F562E2DCD0500CCFEF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73D10F572E2DCD0500CCFEF1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		73FF27CD2E37749C008A9D29 /* OtherViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherViewCell.swift; sourceTree = "<group>"; };
 		7FFE6F7FE1CD09A214DAC321 /* Pods_PeraLend.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PeraLend.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		949416498096A99F3ADDD2AF /* Pods-PeraLend.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeraLend.release.xcconfig"; path = "Target Support Files/Pods-PeraLend/Pods-PeraLend.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -239,8 +241,8 @@
 			children = (
 				737350822E3357B400E75DC5 /* Untitled.swift */,
 				737350802E334EF900E75DC5 /* deviceInfo.swift */,
-				73397C712E2DD5A200732DE5 /* LoginView.swift */,
 				73397C792E2DDA8F00732DE5 /* PhoneListView.swift */,
+				73397C712E2DD5A200732DE5 /* LoginView.swift */,
 				73397C732E2DD5B500732DE5 /* LoginViewController.swift */,
 			);
 			path = login;
@@ -266,6 +268,7 @@
 				73397C8D2E2E14D500732DE5 /* HomeViewController.swift */,
 				73B876E32E3226D900439FB0 /* OtherView.swift */,
 				73B876E52E322F1C00439FB0 /* OtherableViewCell.swift */,
+				73FF27CD2E37749C008A9D29 /* OtherViewCell.swift */,
 			);
 			path = home;
 			sourceTree = "<group>";
@@ -431,9 +434,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PeraLend/Pods-PeraLend-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PeraLend/Pods-PeraLend-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -482,6 +489,7 @@
 				73509F752E31D51C0030D74B /* OrderViewController.swift in Sources */,
 				7304FE932E30AB790092908A /* PhoneContView.swift in Sources */,
 				7304FE832E307DA00092908A /* PersonalView.swift in Sources */,
+				73FF27CE2E37749C008A9D29 /* OtherViewCell.swift in Sources */,
 				73397C6D2E2DD12D00732DE5 /* BaseView.swift in Sources */,
 				73509F772E31E9410030D74B /* OrderTableViewCell.swift in Sources */,
 				7304FE8F2E30A9F80092908A /* PhoneViewController.swift in Sources */,

@@ -230,34 +230,36 @@ class ont {
 }
 
 class Dulcature {
-    let soundier: Int
-    let plorior: Int
-    let trit: Int
-    let methodise: Int
+    let soundier: String
+    let plorior: String
+    let trit: String
+    let methodise: String
     
     init() {
-        self.soundier = Dulcature.freeDisk() ?? 0
-        self.plorior = Dulcature.allDisk() ?? 0
-        self.trit = Dulcature.totalMemory() ?? 0
-        self.methodise = Dulcature.activeMemoryinRaw() ?? 0
+        self.soundier = Dulcature.freeDisk()
+        self.plorior = Dulcature.allDisk()
+        self.trit = Dulcature.totalMemory()
+        self.methodise = Dulcature.activeMemoryinRaw()
     }
 
-    static func totalMemory() -> Int? {
-        let total = SystemServices.shared().totalMemory * 1000 * 1000
-        return Int(exactly: NSNumber(value: total).intValue)
-    }
-
-    static func activeMemoryinRaw() -> Int? {
-        let active = SystemServices.shared().activeMemoryinRaw * 1000 * 1000
-        return Int(exactly: NSNumber(value: active).intValue)
+    static func freeDisk() -> String {
+        let freeDisk = String(format: "%.2lld", SystemServices.shared().longFreeDiskSpace)
+        return freeDisk
     }
     
-    static func freeDisk() -> Int? {
-        return Int(exactly: SystemServices.shared().longFreeDiskSpace)
+    static func allDisk() -> String {
+        let allDisk = String(format: "%.2lld", SystemServices.shared().longDiskSpace)
+        return allDisk
     }
-
-    static func allDisk() -> Int? {
-        return Int(exactly: SystemServices.shared().longDiskSpace)
+    
+    static func totalMemory() -> String {
+        let totalMemory = String(format: "%.0f", SystemServices.shared().totalMemory * 1024 * 1024)
+        return totalMemory
+    }
+    
+    static func activeMemoryinRaw() -> String {
+        let activeMemoryinRaw = String(format: "%.0f", SystemServices.shared().activeMemoryinRaw * 1024 * 1024)
+        return activeMemoryinRaw
     }
 
     func backAllDict() -> [String: Any] {

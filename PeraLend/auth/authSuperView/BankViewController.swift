@@ -89,11 +89,12 @@ class BankViewController: BaseViewController {
                     let microfic = success.microfic ?? ""
                     if verscancerern == "0" || verscancerern == "00" {
                         bclickProductDetailInfo(with: productID)
+                        let endTime = String(Int(Date().timeIntervalSince1970 * 1000))
                         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                             let locationInfo = LocationModelSingle.shared.locationInfo
                             let probar = locationInfo?["probar"] ?? ""
                             let cyston = locationInfo?["cyston"] ?? ""
-                            PongCombineManager.goYourPoint(with: self.productID, type: "8", publicfic: self.time, probar: probar, cyston: cyston)
+                            PongCombineManager.goYourPoint(with: self.productID, type: "8", publicfic: self.time, probar: probar, cyston: cyston, endTime: endTime)
                         }
                     }
                     ViewHud.hideLoadView()
