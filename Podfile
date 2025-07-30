@@ -21,7 +21,6 @@ target 'PeraLend' do
   pod 'DeviceKit'
   pod 'Alamofire'
   pod 'SAMKeychain'
-  pod 'lottie-ios'
   pod 'SystemServices'
   pod 'FSPagerView'
   

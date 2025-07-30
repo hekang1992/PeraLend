@@ -6,23 +6,16 @@
 //
 
 import UIKit
-import Lottie
 
 class HudView: UIView {
     
-    lazy var hudView: LottieAnimationView = {
-        let hudView = LottieAnimationView(name: "loading.json", bundle: Bundle.main)
-        hudView.layer.cornerRadius = 12
-        hudView.loopMode = .loop
-        hudView.play()
-        hudView.backgroundColor = .white.withAlphaComponent(0.8)
+    lazy var hudView: UIActivityIndicatorView = {
+        let hudView = UIActivityIndicatorView(style: .large)
+        hudView.backgroundColor = .white
+        hudView.layer.cornerRadius = 9
+        hudView.layer.masksToBounds = true
+        hudView.startAnimating()
         return hudView
-    }()
-    
-    lazy var grayView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.25)
-        return view
     }()
     
     override init(frame: CGRect) {
@@ -36,14 +29,10 @@ class HudView: UIView {
     }
     
     private func setupViews() {
-        addSubview(grayView)
-        grayView.addSubview(hudView)
+        addSubview(hudView)
         hudView.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.size.equalTo(CGSize(width: 100, height: 100))
-        }
-        grayView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
         }
     }
 }
