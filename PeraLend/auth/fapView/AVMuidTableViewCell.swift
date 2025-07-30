@@ -46,7 +46,7 @@ class AVMuidTableViewCell: UITableViewCell {
     
     lazy var suceImageView: UIImageView = {
         let suceImageView = UIImageView()
-        suceImageView.image = UIImage(named: "adf_adeld")
+        suceImageView.image = UIImage(named: "fadf_adeld")
         suceImageView.isHidden = true
         return suceImageView
     }()
