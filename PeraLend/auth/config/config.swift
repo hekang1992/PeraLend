@@ -79,10 +79,14 @@ class AdressModelSingle {
     var modelArray: [BRProvinceModel]?
 }
 
-
-
 class LocationModelSingle {
     static let shared = LocationModelSingle()
     private init() {}
     var locationInfo: [String: String]?
+}
+
+class HomeModelSingle {
+    static let shared = HomeModelSingle()
+    private init() {}
+    var homeModel: phrenlikeModel?
 }

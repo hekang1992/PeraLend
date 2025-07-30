@@ -47,7 +47,7 @@ class LoginViewController: BaseViewController {
             guard let self = self else { return }
             let phone = self.loginView.oneView.phoneTx.text ?? ""
             if phone.isEmpty {
-                ToastConfig.makeToast(form: view, message: "Please enter your phone")
+                ShowHudConfig.makeToast(form: view, message: "Please enter your phone")
                 return
             }
             //login_code
@@ -56,8 +56,22 @@ class LoginViewController: BaseViewController {
         
         
         loginView.loginBtn.rx.tap.subscribe(onNext: { [weak self] in
-            self?.getLogin(with: self?.loginView.oneView.phoneTx.text ?? "",
-                           code: self?.loginView.twoView.phoneTx.text ?? "")
+            guard let self = self else { return }
+            let phone = self.loginView.oneView.phoneTx.text ?? ""
+            let code = self.loginView.twoView.phoneTx.text ?? ""
+            if phone.isEmpty {
+                ShowHudConfig.makeToast(form: view, message: "Please enter your phone number")
+                return
+            }
+            if code.isEmpty {
+                ShowHudConfig.makeToast(form: view, message: "Please enter your code number")
+                return
+            }
+            if !self.loginView.surePrivacyBtn.isSelected {
+                ShowHudConfig.makeToast(form: view, message: "Please review and agree to the Privacy Policy and Loan Terms before proceeding to log in.")
+                return
+            }
+            self.getLogin(with: phone, code: code)
         }).disposed(by: disposeBag)
         
     }
@@ -85,7 +99,7 @@ extension LoginViewController {
                 case .success(let success):
                     let microfic = success.microfic ?? ""
                     guard let self = self else { return }
-                    ToastConfig.makeToast(form: view, message: microfic)
+                    ShowHudConfig.makeToast(form: view, message: microfic)
                     
                     let verscancerern = success.verscancerern
                     if verscancerern == "0" || verscancerern == "00" {
@@ -119,7 +133,7 @@ extension LoginViewController {
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CHANGEROOTPAGE"), object: nil)
                         }
                     }
-                    ToastConfig.makeToast(form: view, message: microfic)
+                    ShowHudConfig.makeToast(form: view, message: microfic)
                     ViewHud.hideLoadView()
                     break
                 case .failure(_):

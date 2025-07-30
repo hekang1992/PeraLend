@@ -9,6 +9,7 @@ import UIKit
 import BRPickerView
 import Contacts
 import ContactsUI
+import TYAlertController
 
 class PhoneViewController: BaseViewController {
     
@@ -49,7 +50,21 @@ class PhoneViewController: BaseViewController {
             make.edges.equalToSuperview()
         }
         phoneView.headView.backBlock = { [weak self] in
-            self?.popToSelectController()
+            guard let self = self else { return }
+            let logView = PopLogoutView(frame: CGRectMake(0, 0, screenwidth, screenheight))
+            logView.plendImageView.image = UIImage(named: "wan_li_imge")
+            let alertVc = TYAlertController(alert: logView, preferredStyle: .alert)!
+            self.present(alertVc, animated: true)
+            
+            logView.dismissblock = {
+                self.dismiss(animated: true)
+            }
+            
+            logView.sureblock = {
+                self.dismiss(animated: true) {
+                    self.popToSelectController()
+                }
+            }
         }
         
         getPhoneInfo()
@@ -201,8 +216,16 @@ extension PhoneViewController: CNContactPickerDelegate {
             let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
             do {
                 try self?.contactStore.enumerateContacts(with: request) { (contact, stop) in
-                    var fullName = "\(contact.givenName) \(contact.familyName)"
-                    if fullName == " " {
+                    let givenName = contact.givenName
+                    let familyName = contact.familyName
+                    var fullName = ""
+                    if !givenName.isEmpty && !familyName.isEmpty {
+                         fullName = "\(givenName) \(familyName)"
+                    }else if !givenName.isEmpty && familyName.isEmpty {
+                        fullName = "\(givenName)"
+                    }else if givenName.isEmpty && !familyName.isEmpty {
+                        fullName = "\(familyName)"
+                    }else {
                         fullName = ""
                     }
                     let phoneNumbersString = contact.phoneNumbers
@@ -225,24 +248,44 @@ extension PhoneViewController: CNContactPickerDelegate {
         picker.displayedPropertyKeys = [CNContactPhoneNumbersKey]
         present(picker, animated: true)
     }
-    
-    
+
     func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
-        let fullName = "\(contact.givenName) \(contact.familyName)"
-        if fullName == " " || fullName.isEmpty {
-            ToastConfig.makeToast(form: view, message: "Emergency contact name cannot be empty.")
-            return
+        
+        let givenName = contact.givenName
+        let familyName = contact.familyName
+        var fullName = ""
+        if !givenName.isEmpty && !familyName.isEmpty {
+             fullName = "\(givenName) \(familyName)"
+        }else if !givenName.isEmpty && familyName.isEmpty {
+            fullName = "\(givenName)"
+        }else if givenName.isEmpty && !familyName.isEmpty {
+            fullName = "\(familyName)"
+        }else {
+            fullName = ""
         }
-        if let phoneNumber = contact.phoneNumbers.first?.value.stringValue {
-            if let selectCell = self.selectCell {
-                selectCell.phoneTx.text = "\(fullName) - \(phoneNumber)"
-                let model = self.rurModelArray[selectIndex ?? 0]
-                model.exactlyent = fullName
-                model.mollfier = phoneNumber
-            }
-        } else {
-            ToastConfig.makeToast(form: view, message: "Emergency contact phone number cannot be empty.")
+        
+        guard !fullName.isEmpty else {
+            return showToast(message: "Emergency contact name cannot be empty.")
         }
+        
+        guard let phoneNumber = contact.phoneNumbers.first?.value.stringValue else {
+            return showToast(message: "Emergency contact phone number cannot be empty.")
+        }
+        
+        updateSelectedCell(with: fullName, phoneNumber: phoneNumber)
+    }
+
+    private func showToast(message: String) {
+        ShowHudConfig.makeToast(form: view, message: message)
+    }
+
+    private func updateSelectedCell(with name: String, phoneNumber: String) {
+        guard let selectCell = selectCell, let index = selectIndex else { return }
+        
+        selectCell.phoneTx.text = "\(name) - \(phoneNumber)"
+        let model = rurModelArray[index]
+        model.exactlyent = name
+        model.mollfier = phoneNumber
     }
     
     func contactPickerDidCancel(_ picker: CNContactPickerViewController) {

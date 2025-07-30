@@ -54,10 +54,6 @@ class WebViewController: BaseViewController {
         
         view.addSubview(headView)
         
-        locationService.startLocation { locationInfo in
-            LocationModelSingle.shared.locationInfo = locationInfo
-        }
-        
         headView.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             make.size.equalTo(CGSize(width: screenwidth, height: 30))
@@ -153,6 +149,9 @@ extension WebViewController: WKScriptMessageHandler, WKNavigationDelegate {
             let body = message.body as? [String]
             let productID = body?.first ?? ""
             let endTime = String(Int(Date().timeIntervalSince1970 * 1000))
+            locationService.startLocation { locationInfo in
+                LocationModelSingle.shared.locationInfo = locationInfo
+            }
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                 let locationInfo = LocationModelSingle.shared.locationInfo
                 let probar = locationInfo?["probar"] ?? ""

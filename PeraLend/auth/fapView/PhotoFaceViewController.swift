@@ -89,12 +89,27 @@ class PhotoFaceViewController: BaseViewController {
         
         headView.backBlock = { [weak self] in
             guard let self = self else { return }
-            let salimiddleette = self.model?.physalidpm?.salimiddleette ?? 0
-            if salimiddleette == 0 {
-                self.navigationController?.popViewController(animated: true)
-            }else {
-                popToSelectController()
+            let logView = PopLogoutView(frame: CGRectMake(0, 0, screenwidth, screenheight))
+            logView.plendImageView.image = UIImage(named: "wan_li_imge")
+            let alertVc = TYAlertController(alert: logView, preferredStyle: .alert)!
+            self.present(alertVc, animated: true)
+            
+            logView.dismissblock = {
+                self.dismiss(animated: true)
             }
+            
+            logView.sureblock = {
+                self.dismiss(animated: true) {
+                    let salimiddleette = self.model?.physalidpm?.salimiddleette ?? 0
+                    if salimiddleette == 0 {
+                        self.navigationController?.popViewController(animated: true)
+                    }else {
+                        self.popToSelectController()
+                    }
+                }
+            }
+
+            
         }
         
         view.addSubview(scrollVeiw)
@@ -163,7 +178,7 @@ class PhotoFaceViewController: BaseViewController {
                 guard let self = self else { return }
                 let salimiddleette = self.model?.physalidpm?.salimiddleette ?? 0
                 if salimiddleette == 1 {
-                    ToastConfig.makeToast(form: view, message: "You have already completed the verification and cannot verify again.")
+                    ShowHudConfig.makeToast(form: view, message: "You have already completed the verification and cannot verify again.")
                     return
                 }else {
                     self.navigationController?.popViewController(animated: true)
@@ -179,7 +194,7 @@ class PhotoFaceViewController: BaseViewController {
                 time1 = String(Int(Date().timeIntervalSince1970 * 1000))
                 let salimiddleette = self.model?.physalidpm?.salimiddleette ?? 0
                 if salimiddleette == 1 {
-                    ToastConfig.makeToast(form: view, message: "You have already completed the verification and cannot verify again.")
+                    ShowHudConfig.makeToast(form: view, message: "You have already completed the verification and cannot verify again.")
                     return
                 }
                 
@@ -234,11 +249,11 @@ class PhotoFaceViewController: BaseViewController {
                 let salimiddleette = self.model?.physalidpm?.salimiddleette ?? 0
                 let gregcasey = self.model?.gregcasey ?? 0
                 if salimiddleette == 0 {
-                    ToastConfig.makeToast(form: view, message: "Please complete identity verification first.")
+                    ShowHudConfig.makeToast(form: view, message: "Please complete identity verification first.")
                     return
                 }
                 if gregcasey == 1 {
-                    ToastConfig.makeToast(form: view, message: "You have already completed the verification and cannot verify again.")
+                    ShowHudConfig.makeToast(form: view, message: "You have already completed the verification and cannot verify again.")
                     return
                 }
                 let popView = CameraPopView(frame: CGRectMake(0, 0, screenwidth, screenheight))
@@ -267,7 +282,7 @@ class PhotoFaceViewController: BaseViewController {
         nextBtn.rx.tap.subscribe(onNext: { [weak self] in
             guard let self = self else { return }
             if self.model?.physalidpm?.salimiddleette == 0 || self.model?.gregcasey == 0 {
-                ToastConfig.makeToast(form: view, message: "Please complete the verification process first.")
+                ShowHudConfig.makeToast(form: view, message: "Please complete the verification process first.")
             }else {
                 bclickProductDetailInfo(with: productID)
             }
@@ -350,7 +365,7 @@ extension PhotoFaceViewController {
                         }
                     }
                     ViewHud.hideLoadView()
-                    ToastConfig.makeToast(form: view, message: microfic)
+                    ShowHudConfig.makeToast(form: view, message: microfic)
                     break
                 case .failure(_):
                     ViewHud.hideLoadView()
@@ -431,7 +446,7 @@ extension PhotoFaceViewController {
                     }
                 }
                 ViewHud.hideLoadView()
-                ToastConfig.makeToast(form: listView, message: microfic)
+                ShowHudConfig.makeToast(form: listView, message: microfic)
                 break
             case .failure(_):
                 ViewHud.hideLoadView()

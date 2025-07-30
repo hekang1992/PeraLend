@@ -7,6 +7,7 @@
 
 import UIKit
 import BRPickerView
+import TYAlertController
 
 class BankViewController: BaseViewController {
     
@@ -39,7 +40,21 @@ class BankViewController: BaseViewController {
             make.edges.equalToSuperview()
         }
         bankView.headView.backBlock = { [weak self] in
-            self?.popToSelectController()
+            guard let self = self else { return }
+            let logView = PopLogoutView(frame: CGRectMake(0, 0, screenwidth, screenheight))
+            logView.plendImageView.image = UIImage(named: "wan_li_imge")
+            let alertVc = TYAlertController(alert: logView, preferredStyle: .alert)!
+            self.present(alertVc, animated: true)
+            
+            logView.dismissblock = {
+                self.dismiss(animated: true)
+            }
+            
+            logView.sureblock = {
+                self.dismiss(animated: true) {
+                    self.popToSelectController()
+                }
+            }
         }
         
         getBankInfo()
@@ -98,7 +113,7 @@ class BankViewController: BaseViewController {
                         }
                     }
                     ViewHud.hideLoadView()
-                    ToastConfig.makeToast(form: view, message: microfic)
+                    ShowHudConfig.makeToast(form: view, message: microfic)
                     break
                 case .failure(_):
                     ViewHud.hideLoadView()

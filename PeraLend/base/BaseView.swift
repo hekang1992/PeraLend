@@ -38,22 +38,15 @@ class BaseView: UIView {
 
 
 extension UIView {
-    func addGradient(
-        colors: [Any],
-        startPoint: CGPoint = CGPoint(x: 0.5, y: 0),
-        endPoint: CGPoint = CGPoint(x: 0.5, y: 1),
-        cornerRadius: CGFloat = 0
-    ) {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = bounds
-        gradientLayer.colors = colors
-        gradientLayer.startPoint = startPoint
-        gradientLayer.endPoint = endPoint
-        gradientLayer.cornerRadius = cornerRadius
-        
-        // 移除之前的渐变色
-        layer.sublayers?.filter { $0 is CAGradientLayer }.forEach { $0.removeFromSuperlayer() }
-        layer.insertSublayer(gradientLayer, at: 0)
+    
+    func findViewController() -> UIViewController? {
+        if let nextResponder = self.next as? UIViewController {
+            return nextResponder
+        } else if let nextResponder = self.next as? UIView {
+            return nextResponder.findViewController()
+        } else {
+            return nil
+        }
     }
 }
 

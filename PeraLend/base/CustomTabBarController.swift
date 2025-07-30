@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class CustomTabBarController: UITabBarController {
     
@@ -104,6 +105,20 @@ class CustomTabBarView: UIView {
     }
     
     @objc private func tabTapped(_ sender: UIButton) {
+        if sender.tag == 1 {
+            let homeModel = HomeModelSingle.shared.homeModel
+            let kakier = homeModel?.kakier ?? 0
+            if kakier == 1 {
+                let status = CLLocationManager().authorizationStatus
+                if status == .authorizedAlways || status == .authorizedWhenInUse {
+                }else {
+                    if let vc = self.findViewController() {
+                        ShowPermissionAlert.showPermissionAlert(from: vc, feature: "Location")
+                    }
+                    return
+                }
+            }
+        }
         setSelected(index: sender.tag)
         buttonTapped?(sender.tag)
     }

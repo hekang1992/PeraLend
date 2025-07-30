@@ -108,7 +108,7 @@ extension SettingViewController {
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CHANGEROOTPAGE"), object: nil)
                         }
                     }
-                    ToastConfig.makeToast(form: view, message: microfic)
+                    ShowHudConfig.makeToast(form: view, message: microfic)
                     break
                 case .failure(_):
                     ViewHud.hideLoadView()
@@ -134,7 +134,7 @@ extension SettingViewController {
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CHANGEROOTPAGE"), object: nil)
                         }
                     }
-                    ToastConfig.makeToast(form: view, message: microfic)
+                    ShowHudConfig.makeToast(form: view, message: microfic)
                     break
                 case .failure(_):
                     ViewHud.hideLoadView()

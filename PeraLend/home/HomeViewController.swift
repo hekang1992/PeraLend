@@ -111,23 +111,6 @@ class HomeViewController: BaseViewController {
 
 extension HomeViewController {
     
-    func showPermissionAlert(from vc: UIViewController, feature: String) {
-        let alert = UIAlertController(
-            title: "\(feature) Permission Disabled",
-            message: "Please go to Settings > Privacy > \(feature) to enable the permission and try again.",
-            preferredStyle: .alert
-        )
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        alert.addAction(UIAlertAction(title: "Go to Settings", style: .default, handler: { _ in
-            if let url = URL(string: UIApplication.openSettingsURLString) {
-                UIApplication.shared.open(url)
-            }
-        }))
-        
-        vc.present(alert, animated: true)
-    }
-    
     private func applyProduct(with productID: String) {
         
         //判断权限
@@ -136,7 +119,7 @@ extension HomeViewController {
             let status = CLLocationManager().authorizationStatus
             if status == .authorizedAlways || status == .authorizedWhenInUse {
             }else {
-                showPermissionAlert(from: self, feature: "Location")
+                ShowPermissionAlert.showPermissionAlert(from: self, feature: "Location")
                 return
             }
         }
@@ -209,6 +192,7 @@ extension HomeViewController {
                 guard let self = self, let homeModel = success.phrenlike else { return }
                 let verscancerern = success.verscancerern
                 if verscancerern == "0" || verscancerern == "00" {
+                    HomeModelSingle.shared.homeModel = homeModel
                     self.homeModel.accept(homeModel)
                     let potamowise = homeModel.polysure?.potamowise ?? ""
                     if potamowise == "partpowerfy" {//a
@@ -221,6 +205,18 @@ extension HomeViewController {
                         self.anotherView.isHidden = false
                         self.anotherView.tableView.reloadData()
                         self.anotherView.pagerView.reloadData()
+                    }
+                    let ultimid = homeModel.ultimid ?? 0
+                    if ultimid == 1 {
+                        self.playView.oneImageView.isHidden = false
+                        self.playView.descLabel.isHidden = false
+                        self.playView.twoImageView.isHidden = false
+                        self.playView.threeImageView.isHidden = false
+                    }else {
+                        self.playView.oneImageView.isHidden = true
+                        self.playView.descLabel.isHidden = true
+                        self.playView.twoImageView.isHidden = true
+                        self.playView.threeImageView.isHidden = true
                     }
                 }
                 ViewHud.hideLoadView()
@@ -259,8 +255,8 @@ extension HomeViewController {
             let arborfine = locationInfo?["arborfine"] ?? ""
             let coracdom = locationInfo?["coracdom"] ?? ""
             let biblatory = locationInfo?["biblatory"] ?? ""
-            let cyston = locationInfo?["cyston"] ?? ""
-            let probar = locationInfo?["probar"] ?? ""
+            let cyston = locationInfo?["cyston"] ?? "0.0"
+            let probar = locationInfo?["probar"] ?? "0.0"
             let millwise = locationInfo?["millwise"] ?? ""
             
             let dict = [

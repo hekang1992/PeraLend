@@ -7,6 +7,7 @@
 
 import UIKit
 import MJRefresh
+import TYAlertController
 
 class AVMuidViewController: BaseViewController {
     
@@ -38,9 +39,9 @@ class AVMuidViewController: BaseViewController {
     
     lazy var logoImageView: UIImageView = {
         let logoImageView = UIImageView()
-        logoImageView.backgroundColor = .black
         logoImageView.layer.cornerRadius = 20
         logoImageView.layer.masksToBounds = true
+        logoImageView.image = UIImage(named: "logo_imge")
         return logoImageView
     }()
     
@@ -118,7 +119,21 @@ class AVMuidViewController: BaseViewController {
         }
         
         backBtn.rx.tap.subscribe(onNext: { [weak self] in
-            self?.navigationController?.popViewController(animated: true)
+            guard let self = self else { return }
+            let logView = PopLogoutView(frame: CGRectMake(0, 0, screenwidth, screenheight))
+            logView.plendImageView.image = UIImage(named: "wan_li_imge")
+            let alertVc = TYAlertController(alert: logView, preferredStyle: .alert)!
+            self.present(alertVc, animated: true)
+            
+            logView.dismissblock = {
+                self.dismiss(animated: true)
+            }
+            
+            logView.sureblock = {
+                self.dismiss(animated: true) {
+                    self.navigationController?.popToRootViewController(animated: true)
+                }
+            }
         }).disposed(by: disposeBag)
         
         applyBtn.rx.tap.subscribe(onNext: { [weak self] in
