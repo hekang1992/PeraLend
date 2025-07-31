@@ -268,13 +268,15 @@ extension HomeViewController {
                 "probar": probar,
                 "millwise": millwise
             ]
-            
-            NetworkManager.shared.postMultipartFormRequest(url: "/plapiall/apertaster", parameters: dict) { result in
-                switch result {
-                case .success(_):
-                    break
-                case .failure(_):
-                    break
+            let status = CLLocationManager().authorizationStatus
+            if status == .authorizedAlways || status == .authorizedWhenInUse {
+                NetworkManager.shared.postMultipartFormRequest(url: "/plapiall/apertaster", parameters: dict) { result in
+                    switch result {
+                    case .success(_):
+                        break
+                    case .failure(_):
+                        break
+                    }
                 }
             }
         }

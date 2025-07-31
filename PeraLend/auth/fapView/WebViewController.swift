@@ -143,7 +143,7 @@ extension WebViewController: WKScriptMessageHandler, WKNavigationDelegate {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CHANGEROOTPAGE"), object: nil)
             }else if body.contains("flamingoCypr") {
                 let productID = getQueryParameter(from: body, parameterName: "pinguly") ?? ""
-                bclickProductDetailInfo(with: productID)
+                applyProduct(with: productID)
             }
         }else if messageName == "rowanwood" {//bugpoint
             let body = message.body as? [String]
@@ -213,4 +213,43 @@ extension UIScrollView {
     func scrollViewInfoApple(_ configuration: (UIScrollView) -> Void) {
         configuration(self)
     }
+}
+
+extension WebViewController {
+    
+    private func applyProduct(with productID: String) {
+        
+        ViewHud.addLoadView()
+        let dict = ["pinguly": productID, "home": "1"]
+        NetworkManager.shared.postMultipartFormRequest(url: "/plapiall/opportunityment", parameters: dict) { [weak self] result in
+            switch result {
+            case .success(let success):
+                guard let self = self else { return }
+                let verscancerern = success.verscancerern
+                if verscancerern == "0" || verscancerern == "00" {
+                    let phrenlike = success.phrenlike
+                    let talkability = phrenlike?.talkability ?? ""
+                    if talkability.contains("ios://pera.lend.app/flamingoCypr") {
+                        let productID = getQueryParameter(from: talkability, parameterName: "pinguly") ?? ""
+                        let muidVc = AVMuidViewController()
+                        muidVc.productID = productID
+                        self.navigationController?.pushViewController(muidVc, animated: true)
+                        //去认证--产品详情
+                        //                        getProductDetailInfo(with: productID)
+                    }else {
+                        let webVc = WebViewController()
+                        webVc.pageUrl = talkability
+                        self.navigationController?.pushViewController(webVc, animated: true)
+                    }
+                }
+                ViewHud.hideLoadView()
+                break
+            case .failure(_):
+                ViewHud.hideLoadView()
+                break
+            }
+        }
+    }
+    
+    
 }

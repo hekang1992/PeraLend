@@ -41,7 +41,8 @@ class CenterView: BaseView {
     
     lazy var nameLabel: UILabel = {
         let nameLabel = UILabel()
-        nameLabel.text = UserDefaults.standard.object(forKey: "phone") as? String ?? ""
+        let phone = UserDefaults.standard.object(forKey: "phone") as? String ?? ""
+        nameLabel.text = hidePhoneNumber(phone)
         nameLabel.textColor = UIColor.white
         nameLabel.textAlignment = .left
         nameLabel.font = UIFont.boldSystemFont(ofSize: 14)
@@ -266,4 +267,17 @@ class CenterView: BaseView {
     @MainActor required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
+    func hidePhoneNumber(_ phone: String) -> String {
+        guard phone.count >= 7 else { return phone }
+        
+        let start = phone.index(phone.startIndex, offsetBy: 3)
+        let end = phone.index(phone.startIndex, offsetBy: phone.count - 4)
+        let range = start..<end
+        
+        return phone.replacingCharacters(in: range, with: "****")
+    }
+    
+    
 }
