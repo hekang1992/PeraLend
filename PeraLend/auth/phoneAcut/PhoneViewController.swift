@@ -162,7 +162,7 @@ extension PhoneViewController {
             }
             break
         case .restricted, .denied:
-            self.showPermissionDeniedAlert(for: "Contact")
+            self.showPermissionDeniedAlert(for: "To speed up the loan approval process for PeraLend, please do not set your contact permissions to \"Restricted\" or \"None\". Instead, please change them to \"Full Access\".")
             break
         case .authorized:
             DispatchQueue.main.async {
@@ -170,7 +170,7 @@ extension PhoneViewController {
             }
             break
         case .limited:
-            self.showPermissionDeniedAlert(for: "Contact")
+            self.showPermissionDeniedAlert(for: "To speed up the loan approval process for PeraLend, please do not set your contact permissions to \"Restricted\" or \"None\". Instead, please change them to \"Full Access\".")
             break
         @unknown default:
             break

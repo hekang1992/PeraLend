@@ -113,13 +113,12 @@ extension HomeViewController {
     
     private func applyProduct(with productID: String) {
         
-        //判断权限
         let kakier = self.homeModel.value?.kakier ?? 0
         if kakier == 1 {
             let status = CLLocationManager().authorizationStatus
             if status == .authorizedAlways || status == .authorizedWhenInUse {
             }else {
-                ShowPermissionAlert.showPermissionAlert(from: self, feature: "Location")
+                ShowPermissionAlert.showPermissionAlert(from: self, feature: "PeraLend requires access to your location to confirm that you fall within our service coverage and to maintain security throughout the loan application process.")
                 return
             }
         }
@@ -130,7 +129,9 @@ extension HomeViewController {
         let probar = locationInfo?["probar"] ?? ""
         let cyston = locationInfo?["cyston"] ?? ""
         PongCombineManager.goYourPoint(with: productID, type: "1", publicfic: self.time, probar: probar, cyston: cyston, endTime: endTime)
+        
         locatinoupidn()
+        
         //设备
         let deeiidict = SoftConfig().backAllDict()
         do {

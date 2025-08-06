@@ -539,10 +539,16 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 8K9YQ3M42C;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PeraLend/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "To accurately and reliably verify your identity by capturing clear images of your identification documents, PeraLend needs access to your camera.";
+				INFOPLIST_KEY_NSContactsUsageDescription = "To verify your identity information and ensure the smooth progress of the loan process, PeraLend needs to request permission to access your contacts.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "PeraLend requires access to your location to confirm that you fall within our service coverage and to maintain security throughout the loan application process.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "PeraLend requires access to your photo album to obtain relevant document photos, which are needed for identity verification to ensure the authenticity and reliability of information throughout the loan process.";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "To keep your account in a more secure state, PeraLend needs to request access to your ad-tracking permission. Additionally, this permission will help us provide you with personalized loan content that better fits your actual needs, thereby comprehensively enhancing your user experience.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -577,10 +583,16 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 8K9YQ3M42C;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PeraLend/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "To accurately and reliably verify your identity by capturing clear images of your identification documents, PeraLend needs access to your camera.";
+				INFOPLIST_KEY_NSContactsUsageDescription = "To verify your identity information and ensure the smooth progress of the loan process, PeraLend needs to request permission to access your contacts.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "PeraLend requires access to your location to confirm that you fall within our service coverage and to maintain security throughout the loan application process.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "PeraLend requires access to your photo album to obtain relevant document photos, which are needed for identity verification to ensure the authenticity and reliability of information throughout the loan process.";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "To keep your account in a more secure state, PeraLend needs to request access to your ad-tracking permission. Additionally, this permission will help us provide you with personalized loan content that better fits your actual needs, thereby comprehensively enhancing your user experience.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

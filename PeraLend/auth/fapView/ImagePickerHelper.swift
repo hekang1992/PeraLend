@@ -28,12 +28,12 @@ class ImagePickerHelper: NSObject, UIImagePickerControllerDelegate, UINavigation
                     if granted {
                         helper.presentPicker(sourceType: .camera, from: viewController, type: type)
                     } else {
-                        showPermissionAlert(from: viewController, feature: "Camera")
+                        showPermissionAlert(from: viewController, feature: "To accurately and reliably verify your identity by capturing clear images of your identification documents, PeraLend needs access to your camera.")
                     }
                 }
             }
         case .denied, .restricted:
-            showPermissionAlert(from: viewController, feature: "Camera")
+            showPermissionAlert(from: viewController, feature: "To accurately and reliably verify your identity by capturing clear images of your identification documents, PeraLend needs access to your camera.")
         @unknown default:
             break
         }
@@ -54,12 +54,12 @@ class ImagePickerHelper: NSObject, UIImagePickerControllerDelegate, UINavigation
                     if newStatus == .authorized || newStatus == .limited {
                         helper.presentPicker(sourceType: .photoLibrary, from: viewController, type: "photo")
                     } else {
-                        showPermissionAlert(from: viewController, feature: "Photos")
+                        showPermissionAlert(from: viewController, feature: "PeraLend requires access to your photo album to obtain relevant document photos, which are needed for identity verification to ensure the authenticity and reliability of information throughout the loan process.")
                     }
                 }
             }
         case .denied, .restricted:
-            showPermissionAlert(from: viewController, feature: "Photos")
+            showPermissionAlert(from: viewController, feature: "PeraLend requires access to your photo album to obtain relevant document photos, which are needed for identity verification to ensure the authenticity and reliability of information throughout the loan process.")
         @unknown default:
             break
         }
@@ -120,8 +120,8 @@ class ImagePickerHelper: NSObject, UIImagePickerControllerDelegate, UINavigation
     
     private class func showPermissionAlert(from vc: UIViewController, feature: String) {
         let alert = UIAlertController(
-            title: "\(feature) Permission Disabled",
-            message: "Please go to Settings > Privacy > \(feature) to enable the permission and try again.",
+            title: "Permission Disabled",
+            message: feature,
             preferredStyle: .alert
         )
         

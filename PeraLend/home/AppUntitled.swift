@@ -10,8 +10,8 @@ import UIKit
 class ShowPermissionAlert{
    static func showPermissionAlert(from vc: UIViewController, feature: String) {
         let alert = UIAlertController(
-            title: "\(feature) Permission Disabled",
-            message: "Please go to Settings > Privacy > \(feature) to enable the permission and try again.",
+            title: "Permission Disabled",
+            message: feature,
             preferredStyle: .alert
         )
         

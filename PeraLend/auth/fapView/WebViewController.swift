@@ -13,8 +13,6 @@ import StoreKit
 
 class WebViewController: BaseViewController {
     
-    let locationService = LocationService()  // 保留引用
-    
     lazy var webView: WKWebView = {
         let userContentController = WKUserContentController()
         let configuration = WKWebViewConfiguration()
@@ -65,7 +63,7 @@ class WebViewController: BaseViewController {
             if self.webView.canGoBack {
                 self.webView.goBack()
             }else {
-                self.navigationController?.popToRootViewController(animated: true)
+                self.popToSelectListController()
             }
         }
         
@@ -149,6 +147,7 @@ extension WebViewController: WKScriptMessageHandler, WKNavigationDelegate {
             let body = message.body as? [String]
             let productID = body?.first ?? ""
             let endTime = String(Int(Date().timeIntervalSince1970 * 1000))
+            let locationService = LocationService()  // 保留引用
             locationService.startLocation { locationInfo in
                 LocationModelSingle.shared.locationInfo = locationInfo
             }

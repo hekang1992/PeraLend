@@ -54,6 +54,24 @@ extension BaseViewController {
         }
     }
     
+    func popToSelectListController() {
+        guard let navigationController = self.navigationController else { return }
+        
+        var foundTarget = false
+        for viewController in navigationController.viewControllers {
+            if let targetVC = viewController as? OrderViewController {
+                navigationController.popToViewController(targetVC, animated: true)
+                foundTarget = true
+                break
+            }
+        }
+        
+        // If target view controller wasn't found, pop to root
+        if !foundTarget {
+            navigationController.popToRootViewController(animated: true)
+        }
+    }
+    
     //根据订单号获取跳转地址
     func orderNoInfo(with orderNo: String, complete: @escaping ((String) -> Void)) {
         ViewHud.addLoadView()
@@ -139,7 +157,7 @@ extension BaseViewController {
     func showPermissionDeniedAlert(for permission: String, customMessage: String? = "0") {
         let alert = UIAlertController(
             title: "Permission required",
-            message: "To use this feature, please grant \(permission) access in Settings.",
+            message: permission,
             preferredStyle: .alert
         )
         
