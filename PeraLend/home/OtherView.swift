@@ -130,13 +130,13 @@ class OtherView: BaseView {
         return pagerView
     }()
     
-    lazy var mlabel: UILabel = {
-        let mlabel = UILabel()
-        mlabel.text = "Overdue Reminder"
-        mlabel.textColor = UIColor.init(hexStr: "#CD4E66")
-        mlabel.textAlignment = .left
-        mlabel.font = UIFont.boldSystemFont(ofSize: 14)
-        return mlabel
+    lazy var montherLabel: UILabel = {
+        let montherLabel = UILabel()
+        montherLabel.text = "Overdue Reminder"
+        montherLabel.textColor = UIColor.init(hexStr: "#CD4E66")
+        montherLabel.textAlignment = .left
+        montherLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        return montherLabel
     }()
     
     
@@ -200,14 +200,14 @@ extension OtherView: UITableViewDelegate, UITableViewDataSource {
         oveeImageView.isHidden = nemaArray.isEmpty
         
         oveeImageView.addSubview(pagerView)
-        oveeImageView.addSubview(mlabel)
+        oveeImageView.addSubview(montherLabel)
         pagerView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(36)
             make.left.equalToSuperview().offset(90)
             make.right.equalToSuperview().offset(-18)
             make.height.equalTo(44)
         }
-        mlabel.snp.makeConstraints { make in
+        montherLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(97)
             make.top.equalToSuperview().offset(14)
             make.height.equalTo(15)
@@ -277,7 +277,7 @@ extension OtherView: FSPagerViewDelegate, FSPagerViewDataSource {
     func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
         let model = self.homeModel?.discussaire?.nema?[index]
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "OtherViewCell", at: index) as! OtherViewCell
-        cell.mlabel.text = model?.microfic ?? ""
+        cell.montherLabel.text = model?.microfic ?? ""
         return cell
     }
     

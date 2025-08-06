@@ -108,7 +108,7 @@ class PhotoFaceViewController: BaseViewController {
                     }
                 }
             }
-
+            
             
         }
         
@@ -454,8 +454,6 @@ extension PhotoFaceViewController {
             }
         }
     }
-    
-    
     
 }
 

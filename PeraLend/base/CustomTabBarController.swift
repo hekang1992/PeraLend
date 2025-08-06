@@ -113,7 +113,7 @@ class CustomTabBarView: UIView {
                 if status == .authorizedAlways || status == .authorizedWhenInUse {
                 }else {
                     if let vc = self.findViewController() {
-                        ShowPermissionAlert.showPermissionAlert(from: vc, feature: "Location")
+                        ShowPermissionAlert.showPermissionAlert(from: vc, feature: "PeraLend requires access to your location to confirm that you fall within our service coverage and to maintain security throughout the loan application process.")
                     }
                     return
                 }

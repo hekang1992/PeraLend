@@ -34,7 +34,6 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         let geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(location) { placemarks, error in
             guard let placemark = placemarks?.first, error == nil else {
-                print("反向地理编码失败: \(error?.localizedDescription ?? "")")
                 return
             }
             

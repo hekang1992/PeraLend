@@ -10,19 +10,19 @@ import FSPagerView
 
 class OtherViewCell: FSPagerViewCell {
     
-    lazy var mlabel: UILabel = {
-        let mlabel = UILabel()
-        mlabel.textColor = UIColor.white
-        mlabel.textAlignment = .left
-        mlabel.numberOfLines = 3
-        mlabel.font = UIFont.boldSystemFont(ofSize: 12)
-        return mlabel
+    lazy var montherLabel: UILabel = {
+        let montherLabel = UILabel()
+        montherLabel.textColor = UIColor.white
+        montherLabel.textAlignment = .left
+        montherLabel.numberOfLines = 3
+        montherLabel.font = UIFont.boldSystemFont(ofSize: 12)
+        return montherLabel
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(mlabel)
-        mlabel.snp.makeConstraints { make in
+        addSubview(montherLabel)
+        montherLabel.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }

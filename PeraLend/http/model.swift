@@ -7,6 +7,10 @@
 
 import Foundation
 
+let base_web_url = "http://8.212.151.134:9393"
+let base_url = "\(base_web_url)/peralendapi"
+let scheme_url = "ios://pera.lend.app"
+
 class BaseModel: Codable {
     var verscancerern: String
     var microfic: String?
